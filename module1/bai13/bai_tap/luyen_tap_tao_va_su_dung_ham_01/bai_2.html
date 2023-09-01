@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="number" id="inputN"><br>
+<button onclick="increaseNumber(num)">Click me</button>
+<h1 id='display'></h1>
+</body>
+<script>
+    let num
+    function increaseNumber(num) {
+        num = document.getElementById('inputN').value;
+        num++
+        document.getElementById('display').innerText = num
+    }
+</script>
+</html>

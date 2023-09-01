@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Viết hàm có tham số truyền vào là một mảng ,tìm các số fibonaci có trong mảng(số này đã làm bài tập ở jame). Hàm trả về 1 mảng số fibonaci được tìm thấy trong mảng ( Yêu cầu sắp xếp tăng dần).-->
+<!--Gợi ý đây là dãy số fibonaci: 0,1,1,2,3,5,8,13,21,…..-->
+<script>
+    let myArr = [1, 2, 5, 6, 7, 3, 5, 6, 25, 8, 34, 9, 10, 11, 12, 13, 14, 16, 18, 21]
+
+    function findFibonaci(arr) {
+        // tim so lon nhat trong mang
+        let max = arr[0]
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] >= max) {
+                max = myArr[i]
+            }
+        }
+        // list ra cac so fibonaci tu 0 toi max
+        let a = 0
+        let b = 1
+        let c
+        let fiboArr = []
+        while (a <= max) {
+            fiboArr.push(a)
+            c = a + b
+            a = b
+            b = c
+        }
+        console.log(fiboArr)
+    // so sanh mang fiboArr vua tao voi mang arr de cho ra mang co phan tu chung
+        let newArr =[]
+      for(let l =0; l<arr.length; l++){
+          for(let m=0; m<fiboArr.length;m++){
+              if(arr[l]===fiboArr[m]){
+                  newArr.push(arr[l])
+              }
+          }
+      }
+      console.log(newArr)
+      return newArr
+
+    }
+    let x = findFibonaci(myArr)
+    document.write('Tu mang ['+myArr+'] tao ra duoc mang fibonaci ['+ x+']')
+
+</script>
+</body>
+</html>

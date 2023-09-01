@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let myArrLength = +prompt("Nhập vào số lượng phần tử trong mảng:")
+        if (myArrLength !== isNaN() && myArrLength > 0) {
+            for (let i = 0; i < myArrLength; i++) {
+                myArray[i] = prompt('Nhập vào phần tử thứ ' + (i + 1))
+            }
+            alert("Chuỗi của bạn là: " + myArray)
+            break;
+        } else {
+            alert("Dữ liệu bạn nhập vào sai yêu cầu, vui lòng nhập lại")
+        }
+    }
+    while (true)
+    // Đảo ngược thứ tự:
+    let first = 0;
+    let last = myArray.length - 1;
+    let a;
+    while (first < last) {
+        a = myArray[first];
+        myArray[first] = myArray[last];
+        myArray[last] = a;
+        first++;
+        last--;
+    }
+    alert(myArray.join(''))
+</script>
+</body>
+</html>

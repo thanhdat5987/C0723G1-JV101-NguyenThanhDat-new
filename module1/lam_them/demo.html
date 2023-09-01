@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Câu 4: Tạo một lớp Máy tính  có:-->
+<!-- - Thuộc tính:-->
+<!--+ Mã máy (string)-->
+<!--+ Tên máy(string)-->
+<!--+ Tên Hãng sản xuất (string)-->
+<!--+ Giá bán (number).-->
+<!-- - Các phương thức getter và setter cho các thuộc tính-->
+<!-- - Phương thức  toString() : phương thức lấy các thông tin của đối tượng.-->
+<!-- -Yêu cầu: Viết chương trình quản lý  Máy tính    với các chức năng sau;-->
+<!--+ Thêm mới 1 máy tính-->
+<h1>Chương trình quản lý máy tính</h1>
+<button onclick="addComputer(computerArr)">Thêm mới</button><br>
+<br>
+<div id="display"></div>
+
+<script>
+   let arr =[9,5,6,3,10,4,1,2,11]
+   for(let i=0; i<arr.length-1;i++){
+       for(let j =i+1; j<arr.length;j++){
+           if(arr[i]<arr[j]){
+               let temp
+               temp =arr[i]
+               arr[i]=arr[j]
+               arr[j]=temp
+           }
+       }
+   }
+   document.write(arr+'<br>')
+
+   let arr1 =[9,5,6,3,10,4,1,2,11]
+   for(let i=0; i<arr1.length/2;i++){
+       let temp
+       temp =arr1[i]
+       arr1[i]=arr1[arr1.length-1-i]
+       arr1[arr1.length-1-i]= temp
+   }
+   document.write(arr1)
+
+</script>
+</body>
+</html>

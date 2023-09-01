@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh giai thua</title>
+</head>
+<body>
+<script>
+    let numInput = +prompt("Nhập vào 1 só")
+    alert(numInput + '! = ' + tinhGiaiThua(numInput))
+    function tinhGiaiThua(num) {
+        let giaiThua = 1;
+        for (i = 1; i <= num; i++) {
+            giaiThua = giaiThua * i
+        }
+        return giaiThua
+    }
+</script>
+</body>
+</html>

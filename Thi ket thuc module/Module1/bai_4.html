@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 4</title>
+</head>
+<body>
+<h1>Chương trình quản lý trái cây</h1>
+<div id="display"></div>
+<script>
+    class Fruit {
+        constructor(id, name, type, price) {
+            this.id = id;
+            this.name = name;
+            this.type = type;
+            this.price = price;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getType() {
+            return this.type;
+        }
+
+        getPrice() {
+            return this.price;
+        }
+    }
+
+    let fruit1 = new Fruit('app-001', 'Red Apple', 'Apple', 30000);
+    let fruit2 = new Fruit('man-001', 'Green Mango', 'Mango', 200000);
+    let fruit3 = new Fruit('man-002', 'Yellow Mango', 'Mango', 50000);
+    let fruitArr = [fruit1, fruit2, fruit3];
+    sortArr(fruitArr);
+    let table = ''
+    table += `<table border="1" style="border-collapse: collapse">
+      <tr>
+        <th>Mã trái cây</th>
+        <th>Tên</th>
+        <th>Loại</th>
+        <th>Giá</th>
+      </tr>`
+    for (let i = 0; i < fruitArr.length; i++) {
+        table += `<tr>
+        <td>${fruitArr[i].getId()}</td>
+        <td>${fruitArr[i].getName()}</td>
+        <td>${fruitArr[i].getType()}</td>
+        <td>${fruitArr[i].getPrice()}</td>
+      </tr>`
+    }
+    table += `</table>`;
+    document.getElementById('display').innerHTML = table;
+
+    // function sắp xếp theo giá:
+    function sortArr(arr) {
+        let temp;
+        for (let i = 0; i < arr.length - 1; i++) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[i].getPrice() <= arr[j].getPrice()) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

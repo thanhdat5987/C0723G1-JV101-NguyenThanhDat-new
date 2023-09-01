@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh dien tich hinh chu nhat</title>
+</head>
+<body>
+<script>
+    let chieuRong = +prompt("Nhap chieu rong hinh chu nhat: ")
+    if(chieuRong <= 0){
+        alert("Chieu rong phai lon hon 0")
+    } else {
+        let chieuDai = +prompt("Nhap chieu dai hinh chu nhat")
+        if(chieuDai <=0){
+            alert("Chieu dai phai lon hon 0")
+        } else{
+            alert("Dien tich hinh chu nhat la: "+ chieuDai*chieuRong)
+        }
+    }
+</script>
+</body>
+</html>

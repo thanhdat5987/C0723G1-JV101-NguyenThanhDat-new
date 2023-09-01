@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra nam nhuan</title>
+</head>
+<body>
+<script>
+    let year = +prompt("Nhap vao mot nam ba ky: ")
+    if(year % 4 === 0){
+        if(year % 100 === 0){
+            if(year % 400 === 0){
+                alert("Nam " + year + " la nam nhuan")
+            } else {
+                alert("Nam " + year + " khong phai lam nam nhuan")
+            }
+        } else { alert("Nam " + year + " la nam nhuan")
+        }
+    } else {
+        alert("Nam " + year + " khong phai la nam nhuan")
+    }
+</script>
+</body>
+</html>

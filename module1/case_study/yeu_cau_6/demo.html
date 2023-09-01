@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hệ thống quản lý học viên CodeGym</h1>
+<input type="button" value="Thêm mới học viên" onclick="addStudent()">
+<input type="button" value="Sửa thông tin học viên" onclick="editStudent()">
+<input type="button" value="Xóa học viên" onclick="deleteStudent()">
+<div id="root"></div>
+
+<script>
+    class Student {
+        constructor(maHocVien, ten, lop, email, ngaySinh, module) {
+            this.maHocVien = maHocVien;
+            this.ten = ten;
+            this.lop = lop;
+            this.email = email;
+            this.ngaySinh = ngaySinh;
+            this.module = module;
+        }
+    }
+
+    let student1 = new Student("HV-0001", "Nguyễn Văn A", "C1022G1", "nguyenvana@gmail.com", "01/01/2004", "1");
+    let student2 = new Student("HV-0002", "Nguyễn Văn B", "C1022G1", "nguyenvanb@gmail.com", "01/02/2004", "1");
+    let student3 = new Student("HV-0003", "Nguyễn Văn C", "C1022G1", "nguyenvanc@gmail.com", "01/03/2004", "1");
+
+    let student = [student1, student2, student3];
+
+    function displayStudent(arr) {
+        let table = `<table border="1" cellspacing="0" style="text-align: center">
+    <thead>
+    <tr>
+        <th>Mã học viên</th>
+        <th>Tên</th>
+        <th>Lớp</th>
+        <th>Email</th>
+        <th>Ngày sinh</th>
+        <th>Module</th>
+    </tr>
+    </thead>`
+        for (let i = 0; i < arr.length; i++) {
+            table += `<tr>
+                <td>` + arr[i].maHocVien + `</td>
+                <td>` + arr[i].ten + `</td>
+                <td>` + arr[i].lop + `</td>
+                <td>` + arr[i].email + `</td>
+                <td>` + arr[i].ngaySinh + `</td>
+                <td>` + arr[i].module + `</td>
+            </tr>`
+        }
+        table += "</table>";
+        document.getElementById("root").innerHTML = table;
+    }
+
+    // function addStudent() {
+    //     do {
+    //
+    //         let inputMaHocVien = prompt("Nhập mã học viên (VD: HV-0003): ");
+    //
+    //         let flag = true;
+    //         for (let i = 0; i < student.length; i++) {
+    //             if (inputMaHocVien === student[i].maHocVien) {
+    //                 flag = false;
+    //             }
+    //         }
+    //
+    //         if (flag === true && checkMaHocVien(inputMaHocVien) === true) {
+    //             let inputTen;
+    //             do {
+    //                 inputTen = prompt("Nhập tên học viên: ");
+    //                 if (checkTenHocVien(inputTen)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Tên không được quá 50 ký tự");
+    //                 }
+    //             } while (true)
+    //             let inputLop = prompt("Nhập lớp: ");
+    //             let inputEmail = prompt("Nhập email: ");
+    //             let inputNgaySinh;
+    //             do {
+    //                 inputNgaySinh = prompt("Nhập ngày sinh (dd/mm/yyyy): ");
+    //                 if (checkNgaySinh(inputNgaySinh)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Ngày sinh không đúng định dạng. Mời nhập lại");
+    //                 }
+    //             } while (true)
+    //
+    //             let inputModule;
+    //             do {
+    //                 inputModule = +prompt("Nhập module (1=>6): ");
+    //                 if (checkModule(inputModule)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Module chỉ nhập từ 1 đến 6")
+    //                 }
+    //             } while (true)
+    //
+    //             let addStudent = new Student(inputMaHocVien, inputTen, inputLop, inputEmail, inputNgaySinh, inputModule);
+    //             student.push(addStudent);
+    //             break;
+    //         } else {
+    //             alert("Trùng mã học viên or mã học viên không đúng định dạng.Mời nhập lại");
+    //         }
+    //     } while (true)
+    //
+    //     displayStudent(student);
+    // }
+    //
+    // function editStudent() {
+    //     do {
+    //         let inputMaHocVien = prompt("Nhập mã học viên (VD: HV-0003): ");
+    //         let flag = false;
+    //         let index = -1;
+    //         for (let i = 0; i < student.length; i++) {
+    //             if (inputMaHocVien === student[i].maHocVien) {
+    //                 index = i;
+    //                 flag = true;
+    //             }
+    //         }
+    //         if (flag === true && checkMaHocVien(inputMaHocVien) === true) {
+    //             student[index].lop = prompt("Sửa lớp: ");
+    //             do {
+    //                 student[index].ten = prompt("Sửa tên (không quá 50 ký tự): ");
+    //                 if (checkTenHocVien(student[index].ten)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Tên không được quá 50 ký tự");
+    //                 }
+    //             } while (true)
+    //
+    //             student[index].email = prompt("Sửa email: ");
+    //
+    //             do {
+    //                 student[index].ngaySinh = prompt("Sửa ngày sinh(dd/mm/yyyy): ");
+    //                 if (checkNgaySinh(student[index].ngaySinh)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Ngày sinh không đúng định dạng. Mời nhập lại");
+    //                 }
+    //             } while (true)
+    //
+    //             do {
+    //                 student[index].module = prompt("Sửa module(1=>6): ");
+    //                 if (checkModule(student[index].module)) {
+    //                     break;
+    //                 } else {
+    //                     alert("Module chỉ nhập từ 1 đến 6")
+    //                 }
+    //             } while (true)
+    //
+    //             break;
+    //         } else {
+    //             alert("Mã học viên không tồn tại. Mời nhập lại")
+    //         }
+    //     } while (true)
+    //     displayStudent(student);
+    // }
+    //
+    // function deleteStudent() {
+    //     do {
+    //         let inputMaHocVien = prompt("Nhập mã học viên (VD: HV-0003): ");
+    //         let flag = false;
+    //         let index = -1;
+    //         for (let i = 0; i < student.length; i++) {
+    //             if (inputMaHocVien === student[i].maHocVien) {
+    //                 index = i;
+    //                 flag = true;
+    //             }
+    //         }
+    //         if (flag === true) {
+    //             let cancel = confirm("Bạn có muốn xóa không?")
+    //             if (cancel === true) {
+    //                 student.splice(index, 1);
+    //                 break;
+    //             } else {
+    //                 break;
+    //             }
+    //         } else {
+    //             alert("Mã học viên không tồn tại. Mời nhập lại");
+    //         }
+    //     } while (true)
+    //     displayStudent(student);
+    // }
+    //
+    // function checkMaHocVien(id) {
+    //     if (id.length === 7) {
+    //         id = id.split("");
+    //         for (let i = 3; i < id.length; i++) {
+    //             id[i] = parseInt(id[i])
+    //         }
+    //         if (id[0] === "H" && id[1] === "V" && id[2] === "-" &&
+    //             !isNaN(id[3]) && !isNaN(id[4]) && !isNaN(id[5]) && !isNaN(id[6])) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    //
+    // function checkTenHocVien(ten) {
+    //     if (ten.length > 50) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
+    //
+    // function checkModule(num) {
+    //     if (num >= 1 && num <= 6) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    //
+    // function checkNgaySinh(ns) {
+    //     if (ns.length === 10) {
+    //         ns = ns.split("/");
+    //         for (let i = 0; i < ns.length; i++) {
+    //             ns[i] = parseInt(ns[i]);
+    //         }
+    //         if (!isNaN(ns[0]) && !isNaN(ns[1]) && !isNaN(ns[2])) {
+    //             if (ns[0] > 0 && ns[0] <= 31 && ns[1] >= 1 && ns[1] <= 12 && ns[2] > 1000 && ns[2] < 2010) {
+    //                 return true;
+    //             } else {
+    //                 return false;
+    //             }
+    //
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    displayStudent(student);
+</script>
+</body>
+</html>

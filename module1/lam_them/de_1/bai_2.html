@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Bài 2: Viết hàm có tham số truyền vào là một chuỗi các ký tự.Hàm thực hiện tạo ra một cụm từ viết tắt-->
+<!-- -	Nếu chuỗi có nhiều hơn hoặc bằng 2 từ trở lên thì hàm sẽ trả về 1 cụm từ viết tắt là lấy các ký tự đầu tiên của từng từ và đổi sang in hoa.-->
+<!--Ví dụ:   object     Oriented     programming => kết quả trả về :OOP-->
+<!-- -	Nếu Chuỗi chỉ có duy nhất 1 từ thì kết quả trả về là 1 thông báo "Chuỗi chỉ có 1 từ nên không cần viết tắt"-->
+<!-- -	    Ví du:   ObjectOriented => chuỗi này chỉ được tính chỉ có 1 từ-->
+<script>
+    let myStr = 'Nguyen van Thanh dAT'
+    let optimizeStr = []
+
+    function vietTat(str) {
+        let myArr = str.split('')
+        let count = 0;
+        for (let i = 0; i < myArr.length; i++) {
+            if (myArr[i] === ' ') {
+                count++
+            }
+        }
+        if (count === 0) {
+            alert('Chuỗi có 1 từ không cần viết tắt')
+        } else {
+            myArr[0] = myArr[0].toLocaleUpperCase()
+            optimizeStr.push(myArr[0])
+            for (let i = 0; i < myArr.length; i++) {
+                if (myArr[i] === ' ') {
+                    myArr[i + 1] = myArr[i + 1].toLocaleUpperCase()
+                    optimizeStr.push(myArr[i + 1])
+                }
+            }
+        }
+        document.write('Chuoi '+ str + ' sau khi viet tat la: '+optimizeStr.join(''))
+    }
+    vietTat(myStr)
+</script>
+</body>
+</html>

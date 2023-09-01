@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh giai thua</title>
+</head>
+<body>
+    <script>
+        let n = parseInt(prompt("Hãy nhập vào số nguyên dương cần tính giai thừa: "))
+        if(n>=1){
+            let i;
+            let gThua =1;
+            for(i=1; i<=n; i++){
+                gThua = gThua*i;
+            }
+            document.write(n + "! = " + gThua)
+        } else {
+            alert("Hãy nhập vào số nguyên dương ")
+        }
+    </script>
+</body>
+</html>

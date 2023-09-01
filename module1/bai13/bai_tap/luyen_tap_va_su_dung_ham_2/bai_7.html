@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 7</title>
+</head>
+<body>
+<script>
+  let num1 = +prompt("Nhập vào số thứ nhất")
+  let num2 = +prompt("Nhập vào số thứ hai")
+  document.write('Thứ tự 2 số ban đầu là: '+ num1 + ', ' + num2 +'<br>')
+  changeNum(num1,num2)
+  function changeNum(a, b){
+    let c;
+    c = a;
+    a = b;
+    b = c;
+    document.write('Thứ tự sau khi đảo vị trí là: '+ a +', '+ b)
+  }
+</script>
+</body>
+</html>

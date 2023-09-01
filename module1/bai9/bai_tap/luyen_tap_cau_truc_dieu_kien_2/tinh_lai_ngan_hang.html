@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh lai ngan hang</title>
+</head>
+<body>
+<h2>Chương trình tính lãi ngân hàng</h2>
+<table>
+    <tr>
+        <td>Tiền gốc</td>
+        <td>Số tháng vay</td>
+        <td>Lãi suất hằng tháng %</td>
+        <td><button id="tinh-lai" style="width: 100px" onclick="tinhLai()">Tính lãi</button></td>
+    </tr>
+    <tr>
+        <td><input type="text" id="tien-goc"></td>
+        <td><input type="text" id="so-thang"></td>
+        <td><input type="text" id="lai-suat"></td>
+        <td><p id="display" style="text-align:center"></p></td>
+    </tr>
+    <script>
+        function tinhLai(){
+            let tienGoc = + document.getElementById('tien-goc').value
+        let soThang = + document.getElementById('so-thang').value
+        let laiSuat = + document.getElementById('lai-suat').value
+        if(tienGoc>0 && soThang >0 && laiSuat>0){
+            let tienLai = tienGoc*(Math.pow(1+laiSuat/100, soThang)) - tienGoc
+            // tienLai = tienGoc * ( 1 + lai suat %)^so_thang_vay - tienGoc
+            document.getElementById("display").innerText= Math.round(tienLai) + " đồng"
+        } else {
+            alert("Số liệu bạn nhập không hợp lệ!")
+        }
+        }
+    </script>
+</table>
+</body>
+</html>

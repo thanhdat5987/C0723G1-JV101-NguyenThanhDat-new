@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 5</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let n = +prompt("Hãy nhập vào số lượng số nguyên bạn muốn nhập vào:")
+        if (n !== isNaN() && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArray[i] = +prompt("Nhap vao số nguyên thứ " + (i + 1) + ':')
+            }
+            alert('Dãy số nguyên đã nhập là: ' + myArray)
+            break;
+        } else {
+            alert('Thông số bạn nhập không phù hợp, hãy nhập lại')
+        }
+    }
+    while (true)
+    let count = 0;
+    let daySoNguyenAm = ''
+    for (let j = 0; j < myArray.length; j++) {
+        if (myArray[j] < 0) {
+            count++
+            daySoNguyenAm = daySoNguyenAm + myArray[j] + ','
+        } else {
+            count === count;
+            daySoNguyenAm === daySoNguyenAm;
+        }
+    }
+    document.write('Số lượng số nguyên âm trong dãy là: ' + count + ' . Đó là các số: ' + daySoNguyenAm)
+</script>
+</body>
+</html>

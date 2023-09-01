@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hien thi fibonacci</title>
+</head>
+<body>
+<script>
+// cach 1:
+//   let a = 0;
+//   let b = 1;
+//   let c  ;
+//   let i ;
+// for (i=0; i<8; i++){
+//   c = a + b;
+//   document.write(a + " " + b + " " + c + " ");
+//   a = b + c;
+//   b = c + a;
+// }
+// document.write(b+c)
+// cach 2:
+// let soNhap = +prompt("Nhập số lượng các số trong dãy fibonacci mà bạn muốn hiển thị :");
+// let a = 0;
+// let b = 1;
+// let c ;
+// let i;
+// let daySo="";
+// for (i = 0; i< soNhap; i++){
+//   c = a + b;
+//   daySo += a + "</br>";
+//   a = b;
+//   b = c ;
+// }
+// document.write(daySo);
+
+  // Cach 3:
+let a = 0;
+let b = 1;
+let c = 1 ;
+let i;
+let dayFibonacci = ""
+for (i=0; i<25; i++){
+  c = a + b;
+    dayFibonacci = dayFibonacci + a + "</br>";
+  a = b
+  b = c
+}
+document.write(dayFibonacci)
+</script>
+</body>
+</html>

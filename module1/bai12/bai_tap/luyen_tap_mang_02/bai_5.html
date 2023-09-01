@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 5</title>
+</head>
+<body>
+<script>
+    let myArrayA = []
+    let myArrayB = []
+    //Nhập mảng A
+    do {
+        let lengthA = +prompt("Nhập vào số phần tử của mảng A: ")
+        if (lengthA !== isNaN() && lengthA > 0) {
+            for (let i = 0; i < lengthA; i++) {
+                myArrayA[i] = +prompt("Nhập vào phần tử thứ " + (i + 1) + ' của mảng A')
+            }
+            alert('Mảng A vừa tạo là: ' + myArrayA)
+            break;
+        } else {
+            alert('Số liệu bạn nhập ko đúng yêu cầu, hãy nhập lại')
+        }
+    }
+    while (true)
+    // Nhập mảng B
+    do {
+        let lengthB = +prompt('Nhập vào số phần tử của mảng B: ')
+        if (lengthB !== isNaN() && lengthB > 0) {
+            for (let j = 0; j < lengthB; j++) {
+                myArrayB[j] = +prompt('Nhập vào phần tử thứ  ' + (j + 1) + ' của mảng B')
+            }
+            alert('Mảng B vừa tạo là: ' + myArrayB)
+            break;
+        } else {
+            alert('Bạn nhập dữ liệu sai yêu cầu, vui lòng nhập lại')
+        }
+    }
+    while (true)
+    // kem tra
+    let check = 0;
+    if (myArrayA.length !== myArrayB.length) {
+        check = 0;
+    } else {
+        for (let a = 0; a < myArrayA.length; a++) {
+            if (myArrayA[a] === myArrayB[a]) {
+                check = 1;
+            } else {
+                check = 0;
+            }
+        }
+    }
+    if (check === 1) {
+        alert("Hai mảng giống nhau")
+    } else {
+        alert("Hai mảng khác nhau")
+    }
+</script>
+</body>
+</html>

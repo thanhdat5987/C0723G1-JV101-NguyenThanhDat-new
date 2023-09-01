@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+    let triHeight = +prompt('Nhập vào chiều cao của tam giác cần vẽ:')
+    for (let i = 1; i <= triHeight; i++) {
+        for (let j = 0; j < triHeight - i; j++) {
+            document.write('&nbsp;&nbsp;')
+        }
+        for (let k = 0; k < 2 * i - 1; k++) {
+            document.write('*')
+        }
+        document.write('</br>')
+    }
+</script>
+</body>
+</html>

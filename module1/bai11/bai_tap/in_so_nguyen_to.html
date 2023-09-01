@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai tap in ra so nguyen to</title>
+</head>
+<body>
+<script>
+    let number = +prompt("Nhập vào số lượng snt bạn muốn hiển thị:")
+    let count = 0;
+    for (let N = 2; N > 0; N++) {
+        kTraSNT(N)
+        if (count === number) {
+            break;
+        }
+    }
+    function kTraSNT(snt) {
+        let kTra = 0;
+        let i;
+        for (i = 2; i <= snt / 2; i++) {
+            if (snt % i === 0) {
+                kTra++;
+            }
+        }
+        if (kTra === 0) {
+            document.write(snt + "</br>")
+            count++
+        }
+    }
+</script>
+</body>
+</html>

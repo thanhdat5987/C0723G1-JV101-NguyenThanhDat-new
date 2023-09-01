@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh hoa hong theo doanh so</title>
+</head>
+<body>
+<script>
+    let doanhSo = +prompt("Nhap doanh so cua ban");
+    if (doanhSo>=10000000){
+        alert("hoa hong cua ban la: " + doanhSo*0.1 )
+    } else if (doanhSo>=5000000){
+        alert("hoa hong cua ban la: " + doanhSo*0.07 )
+    } else if (doanhSo>=3000000){
+        alert("hoa hong cua ban la: " + doanhSo*0.05 )
+    } else {alert("hoa hong cua ban la: " + doanhSo*0.02 )
+    }
+</script>
+</body>
+</html>

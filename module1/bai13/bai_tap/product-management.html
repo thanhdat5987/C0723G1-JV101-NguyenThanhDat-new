@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="add-product">
+        <input type="text" id="inputValue" />
+        <button type="button" onclick="addNewProduct()">Them moi</button>
+        <span id="edit-product"> </span>
+      </div>
+      <div id="root"></div>
+    </div>
+    <script>
+      let products = [
+        "Iphone 13",
+        "Sony Xperia Z3",
+        "Samsung galaxy Y",
+        "Xiaomi Mi4",
+      ];
+      //Hien thi san pham
+      function displayProducts() {
+        let tableProducts = `<table border="1">
+        <thead>
+          <tr>
+            <th>Ten san pham</th>
+            <th>Chinh sua</th>
+            <th>Xoa</th>
+          </tr>
+        </thead>
+        <tbody>`;
+        for (let i = 0; i < products.length; i++) {
+          const product = products[i];
+          tableProducts += `<tr>
+            <td>${product}</td>
+            <td>
+                <button type="button" onclick="showEditProduct('${i}')">Chinh sua</button>
+            </td>
+            <td>
+                <button type="button" onclick="deleteProduct('${i}')">Xoa</button>
+            </td>
+          </tr>`;
+        }
+        tableProducts += `</tbody>
+      </table>`;
+        document.getElementById("root").innerHTML = tableProducts;
+      }
+
+      function addNewProduct() {
+        let product = document.getElementById("inputValue").value;
+        products.push(product);
+        displayProducts();
+        document.getElementById("inputValue").value = "";
+      }
+
+      function deleteProduct(index) {
+        const confirmDelete = confirm(
+          `Ban co muon xoa san pham ${products[index]} khong?`
+        );
+        if (confirmDelete) {
+          products.splice(index, 1);
+          displayProducts();
+        }
+      }
+
+      function showEditProduct(index) {
+        document.getElementById("inputValue").value = products[index];
+        let buttonEdit = `<button type="button" onclick="editProduct('${index}')">Chinh sua</button>`;
+        document.getElementById("edit-product").innerHTML = buttonEdit;
+      }
+
+      function editProduct(index) {
+        let newProduct = document.getElementById("inputValue").value;
+        products[index] = newProduct;
+        displayProducts();
+        document.getElementById("inputValue").value = "";
+        document.getElementById("edit-product").innerHTML = "";
+      }
+
+      displayProducts();
+    </script>
+  </body>
+</html>

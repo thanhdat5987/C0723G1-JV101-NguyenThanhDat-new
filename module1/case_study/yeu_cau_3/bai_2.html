@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+    let myArr1 = []
+    let myArr2 = []
+    //tao mang 1
+    do {
+        let n = +prompt("Hay nhap vao chieu dai mang 1")
+        if (isNaN(n) === false && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArr1[i] = +prompt('Nhap vao phan tu so Nguyen thu ' + (i + 1))
+                if (myArr1[i] % 1 === 0) {
+                    continue;
+                } else {
+                    alert("Ban phai nhap so nguyen")
+                    i--
+                }
+            }
+            break;
+        } else {
+            alert("Ban nhap thong tin sai yeu cau, vui long nhap lai")
+        }
+    } while (true)
+    alert("Mang 1 vua tao la: " + myArr1)
+    //tao mang 2
+    do {
+        let m = +prompt("Hay nhap vao chieu dai mang 2")
+        if (isNaN(m) === false && m > 0) {
+            for (let j = 0; j < m; j++) {
+                myArr2[j] = +prompt('Nhap vao phan tu so Nguyen thu ' + (j + 1))
+                if (myArr2[j] % 1 === 0) {
+                    continue;
+                } else {
+                    alert("Ban phai nhap so nguyen")
+                    j--
+                }
+            }
+            break;
+        } else {
+            alert("Ban nhap thong tin sai yeu cau, vui long nhap lai")
+        }
+    } while (true)
+    alert("Mang 2 vua tao la: " + myArr2)
+    //Lấy ra các phần tử có trong Arr2 mà không có trong Arr1
+    let missingArr
+    missingArr = myArr2
+    for (let i = 0; i < myArr1.length; i++) {
+        for (let j = 0; j < missingArr.length; j++) {
+            if (myArr1[i] === missingArr[j]) {
+                missingArr.splice(j, 1)
+            }
+        }
+    }
+    //Kiểm tra và xoá các phần tử trùng nhau trong mảng missingArr vừa tạo được
+    for (let k = 0; k < missingArr.length; k++) {
+        for (let l = k+1; l < missingArr.length; l++) {
+            if (missingArr[k] === missingArr[l]) {
+                missingArr.splice(k, 1)
+                k--
+            }
+        }
+    }
+    document.write('missingArr(arr1,arr2) is ' + '[' + missingArr + ']')
+</script>
+</body>
+</html>

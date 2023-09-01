@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 7</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let n = +prompt('Nhập vào số lượng phần tử của mảng')
+        if (n !== isNaN() && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArray[i] = +prompt("Nhập phần tử số nguyên thứ: " + (i + 1))
+            }
+            alert("Mảng của bạn là" + myArray)
+            break;
+        } else {
+            alert("Bạn nhập thông tin không đúng yêu cầu")
+        }
+    }
+    while (true)
+    myArray[myArray.length] = +prompt('Nhập phần tử số nguyên bạn muốn thêm vào mảng')
+    alert('Mảng của bạn bây giờ là: ' + myArray)
+    let check = 0;
+    for (let j = 0; j < (myArray.length - 1); j++) {
+        if (myArray[j] === myArray[myArray.length - 1]) {
+            check = 1;
+            for (let k = j; k < myArray.length - 1; k++) {
+                myArray[k] = myArray[k + 1];
+            }
+            myArray.length = myArray.length - 1
+        }
+    }
+    if (check === 1) {
+        alert(myArray[myArray.length - 1] + ' đã tồn tại trong mảng. Mảng của bạn sau khi xoá ' + myArray[myArray.length - 1] + ' là: ' + myArray)
+        console.log(myArray)
+    } else {
+        alert(myArray[myArray.length - 1] + ' chưa tồn tại trong mảng, mảng vẫn giữ nguyên là: ' + myArray)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+<script>
+    let m = +prompt('Mhập số lượng hàng của ma trận 2d:')
+    let n = +prompt('Mhập số lượng cột của ma trận 2d:')
+    let arr2d = new Array(m)
+    for (let m = 0; m < arr2d.length; m++) {
+        arr2d[m] = new Array(n)
+        for (let n = 0; n < arr2d[m].length; n++) {
+            arr2d[m][n] = +prompt("Nhập phần tử ở vị trí [" + m + "][" + n + "]:");
+        }
+    }
+    document.write('Mảng 2d vừa tạo là: ' + '</br>')
+    for (m = 0; m < arr2d.length; m++) {
+        for (n = 0; n < arr2d[m].length; n++) {
+            document.write(arr2d[m][n] + '&nbsp;')
+        }
+        document.write('</br>')
+    }
+    let sum = 0
+    for (let m = 0; m < arr2d.length; m++) {
+        for (let n = 0; n < arr2d[m].length; n++) {
+            if (arr2d[m][n] % 2 === 0) {
+                sum = sum + arr2d[m][n]
+            }
+        }
+    }
+    document.write('Tổng các số chẵn trong ma trận 2d là: ' + sum)
+</script>
+</body>
+</html>

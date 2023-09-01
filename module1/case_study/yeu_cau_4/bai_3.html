@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 3</title>
+</head>
+<body>
+<script>
+    let str1 = prompt('Nhập chuỗi ký tự 1: ')
+    let str2 = prompt('Nhập chuỗi ký tự 2: ')
+
+    function commonChar(str1, str2) {
+        let arr1 = str1.split('');// chuyển chuỗi thành mảng
+        let arr2 = str2.split('');// chuyển chuỗi thành mảng
+        let commonArr = [];// tạo mảng chứa các ký tự chung
+        for (let i = 0; i < arr1.length; i++) {
+            for (let j = 0; j < arr2.length; j++) {
+                if (arr1[i] === arr2[j]) {
+                    commonArr.push(arr2[j]) // thêm ký tự chung vào mảng commonArr
+                    arr2.splice(j, 1) // xoá ký tự chung trên mảng 2 để tránh lặp lại
+                }
+            }
+        }
+        console.log(commonArr)
+        return commonArr
+    }
+
+    document.write('Có ' + commonChar(str1, str2).length + ' ký tự chung giữa hai xâu ' + str1 + " và " + str2 + ' đó là: ' + commonChar(str1, str2))
+</script>
+</body>
+</html>

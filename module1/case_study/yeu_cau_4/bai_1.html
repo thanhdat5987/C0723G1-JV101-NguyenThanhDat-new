@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+<script>
+    function main() {
+        let myString1 = prompt('Nhập vào chuỗi ký tự chữ cái là họ và tên bất kỳ để chuẩn hoá: ')
+        document.write("Chuỗi ký tự trước khi chuẩn hoá là: " + myString1 + '</br>')
+        document.write('Chuỗi ký tự sau khi chuẩn hoá là: ' + correct(myString1) + '</br>')
+        document.write('Từ dài nhất trong chuỗi ký tự của bạn là: ' + findMaxWord(correct(myString1)))
+
+        // function chuẩn hoá chuỗi ký tự:
+        function correct(myString) {
+            let myArr = myString.split('')// chuyển chuỗi thàng mảng
+            // Xoá các khoảng trắng đầu chuỗi
+            while (myArr[0] === ' ') {
+                myArr.shift()
+            }
+            // Xoá các khoảng trắng cuối chuỗi
+            while (myArr[myArr.length - 1] === ' ') {
+                myArr.pop()
+            }
+            // xoá ký tự trắng thừa ở giữa chuỗi.
+            for (let i = 1; i < myArr.length; i++) {
+                if (myArr[i] === ' ' && myArr[i + 1] === ' ') {
+                    myArr.splice(i, 1)
+                    i--
+                }
+            }
+            console.log(myArr)
+            //chuẩn hoá chữ hoa, chữ thường
+            myArr[0] = myArr[0].toLocaleUpperCase()
+            for (let j = 0; j < myArr.length - 1; j++) {
+                if (myArr[j] === ' ') {
+                    myArr[j + 1] = myArr[j + 1].toLocaleUpperCase()
+                } else {
+                    myArr[j + 1] = myArr[j + 1].toLocaleLowerCase()
+                }
+            }
+            let correctString = myArr.join('') // Chuyển mảng lại thành chuỗi
+            return correctString
+        }
+
+        //Function tìm từ dài nhất trong chuỗi:
+        function findMaxWord(myString) {
+            let maxLength = 0;
+            let index
+            let words = myString.split(' '); // chia chuỗi thành mảng với các phần tử là các từ trong chuỗi
+            // so sánh độ dài các từ
+            for (let i = 0; i < words.length; i++) {
+                if (words[i].length > maxLength) {
+                    maxLength = words[i].length
+                    index = i
+                }
+            }
+            return words[index]
+        }
+    }
+
+    main()
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 5</title>
+</head>
+<body>
+<script>
+    let num1 = +prompt('Nhập vào số thứ nhất')
+    let num2 = +prompt('Nhập vào số thứ hai')
+    let num3 = +prompt('Nhập vào số thứ ba')
+    alert('Số nhỏ nhất trong 3 số: ' + num1 + ', ' + num2 + ', ' + num3 + ' là: ' + checkMin(num1, num2, num3))
+    function checkMin(a, b, c) {
+        let min
+        if (a <= b) {
+            if (a <= c) {
+                min = a;
+            } else {
+                min = c;
+            }
+        } else if (b >= c) {
+            min = c;
+        } else {
+            min = b;
+        }
+        return min;
+    }
+</script>
+</body>
+</html>

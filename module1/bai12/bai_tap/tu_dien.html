@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu dien</title>
+</head>
+<body>
+<span>Nhập từ: </span><input type="text" id="input-word">
+<button onclick="translateToVN()">Dịch</button>
+</br>
+<h3 id=result></h3>
+</body>
+<script>
+    function translateToVN() {
+        let english = ["banana", "apple", "lemon", "mango", "coconut"]
+        let vietnamese = ["chuối", "táo", "chanh", "xoài", "dừa"]
+        let word = document.getElementById("input-word").value
+        let indexE;
+        let result = '';
+        for (let i = 0; i < english.length; i++) {
+            if (word === english[i]) {
+                indexE = i;
+                for (j = 0; j < vietnamese.length; j++) {
+                    if (indexE === j) {
+                        result = vietnamese[j];
+                        document.getElementById("result").innerText = result
+                    }
+                }
+            }
+        }
+        if (result === '') {
+            document.getElementById('result').innerText = 'Từ điển chưa cập nhật từ này'
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm số đầu tiên trong dãy fibonacci chia hết cho 5</title>
+</head>
+<body>
+<script>
+    // nếu chấp nhận số đầu tiên trong dãy là 0
+    let a = 0;
+    let b = 1;
+    let c ;
+    while(a %5!==0){
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    document.write("- So dau tien trong day fibonacci chia het cho 5 la: " + a + "</br>")
+   // nếu loại trường hợp số 0
+    let d = 0;
+    let e = 1;
+    let f = 1 ;
+    let daySo ="0 "
+    do{
+        f = d + e;
+        d = e;
+        e = f;
+        daySo = daySo + d + " ";
+    } while(e %5!==0);
+    document.write("- So dau tien trong day fibonacci chia het cho 5 (loại trừ 0) la: " + e + "</br>")
+    document.write(" Day so la: " + daySo + e)
+</script>
+</body>
+</html>

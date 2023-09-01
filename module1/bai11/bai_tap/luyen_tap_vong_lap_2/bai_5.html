@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh lai me de lai con</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Số tiền gốc</td>
+        <td><input type ="text" id="tien-goc"></td>
+    </tr>
+    <tr>
+        <td>Số tháng vay</td>
+        <td><input type="text" id="thang-vay"></td>
+    </tr>
+    <tr>
+        <td>Lãi suất hằng tháng</td>
+        <td><input type="text" id="lai-suat"></td>
+    </tr>
+    <tr>
+        <td><button onclick = "tinhLai()">Tính lãi</button></td>
+        <td><p id="display"></p></td>
+    </tr>
+</table>
+<script>
+    function tinhLai(){
+        let tienGoc = +document.getElementById('tien-goc').value
+        let thangVay = +document.getElementById('thang-vay').value
+        let laiSuat = +document.getElementById('lai-suat').value
+        let tienLai = 0
+        let i;
+        for(i=1;i<= thangVay; i++){
+            tienLai = tienLai + (tienLai + tienGoc)*(laiSuat/100);
+        }
+        document.getElementById('display').innerText = Math.round(tienLai) + ' đồng';
+    }
+</script>
+</body>
+</html>

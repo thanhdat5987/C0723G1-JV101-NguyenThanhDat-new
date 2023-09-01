@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n
+    let arr = []
+    do {
+        n = +prompt('Nhap vao so luong phan tu cua mang can tao voi n<=50')
+        if (n > 0 && n <= 50 && n % 1 === 0) {
+            break;
+        } else {
+            alert('n phai la so nguyen >0 va <=50')
+        }
+    } while (true)
+    for (let i = 0; i < n; i++) {
+        arr[i] = +prompt('Nhap vao phan tu thu ' + (i + 1) + ' cua mang')
+    }
+    document.write('Mang vua tao la [' + arr + ']<br>')
+    let arr1 = []
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 5 === 0 && i % 3 === 0) {
+            arr1.push(arr[i])
+        }
+    }
+    document.write('cac phan tu chia het cho 5 o vi tri khi het cho 3 la: ' + arr1 + '<br>')
+    let sum = 0
+    let avg
+    for (let j = 0; j < arr1.length; j++) {
+        sum = sum + arr1[j]
+    }
+    avg = sum / arr1.length
+    document.write('gia tri trung binh cua cac phan tu nay la: ' + avg)
+
+</script>
+</body>
+</html>

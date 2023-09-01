@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh cuoc dien thoai cho ho gia dinh</title>
+</head>
+<body>
+<h1>Chuong trinh tinh cuoc dien thoai</h1>
+<table>
+  <tr>
+    <th>So phut goi ngoai mang</th>
+    <th>So phut goi noi mang</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><input type="number" id="internal-time"></td>
+    <td><input type="number" id="external-time"></td>
+    <td><button id ="calculate" onclick = "calculateMoney()">Calculate</button></td>
+  </tr>
+</table>
+<h2 id = "amount-money"></h2>
+<script>
+  function calculateMoney(){
+    let internalTime = document.getElementById("internal-time").value;
+    let externalTime = document.getElementById("external-time").value;
+    let amountMoney = internalTime*600 + externalTime*1000;
+    document.getElementById("amount-money").innerText = "Tien cuoc la: " + amountMoney
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+    let n;
+    do {
+        n = +prompt('Hãy nhập vào n: ')
+        if (n <= 20 && n > 0 && n % 1 === 0) {
+            break;
+        } else {
+            alert('n phải là số nguyên dương và nhỏ hơn hoặc bằng 20')
+        }
+    } while (true)
+    let arr = new Array(n)
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = +prompt('Nhập vào phần tử thứ ' + (i + 1));
+        if (arr[i] % 1 !== 0) {
+            alert('Bạn phải nhập số nguyên dương');
+            i--;
+        }
+    }
+    document.write('Mảng vừa tạo là: [' + arr + ']' + "<br>");
+    let tongChan = 0;
+    let tongLe = 0;
+    let ketQua;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            tongChan += arr[i];
+        } else {
+            tongLe += arr[i];
+        }
+    }
+    ketQua = tongChan - tongLe;
+    document.write('Kết quả là: ' + ketQua);
+</script>
+</body>
+</html>

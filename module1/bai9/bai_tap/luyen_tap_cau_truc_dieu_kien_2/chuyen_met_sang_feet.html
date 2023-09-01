@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyen met sang feet</title>
+</head>
+<body>
+<style>
+    th {
+        height: 50px; width: 150px;
+    }
+    td {
+        text-align: center;
+        height: 50px; width: 150px;
+    }
+</style>
+<h2>Chương trình chuyển đổi mét sang feet</h2>
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <th>Nhập sô mét</th>
+        <th>Feet</th>
+    </tr>
+    <tr>
+        <td><input type="number" id="met" style="border:0"></td>
+        <td><p id="display"></p></td>
+    </tr>
+</table>
+<button id="convert" onclick="convert()">Convert</button>
+<script>
+    function convert(){
+        let met = document.getElementById("met").value;
+        if(met>=0){
+            let feet = met * 3.2808;
+            document.getElementById("display").innerText = feet;
+        } else{
+            alert("so lieu phai >= 0")
+        }
+    }
+</script>
+</body>
+</html>

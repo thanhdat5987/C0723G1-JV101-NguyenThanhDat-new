@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>ung dung may tinh</title>
+</head>
+<body>
+<h1>Calculator</h1>
+    <input type="text" id ="num1">
+    <input type="text" id ="num2"><br/>
+    <button onclick="addition()">Addition</button>
+    <button onclick="subtraction()">Subtraction</button>
+    <button onclick="multiplication()">Multiplication</button>
+    <button onclick="division()">Division</button>
+<h2 id="showResult"></h2>
+</body>
+<script>
+   function addition(){
+       let number1 = +document.getElementById("num1").value
+       let number2 = +document.getElementById("num2").value
+       let result
+        result = number1 + number2
+        document.getElementById("showResult").innerText = "The result is: " + result
+    }
+    function subtraction(){
+        let number1 = +document.getElementById("num1").value
+        let number2 = +document.getElementById("num2").value
+        let result
+        result = number1 - number2
+        document.getElementById("showResult").innerHTML = "The result is: " + result
+    }
+    function multiplication(){
+        let number1 = +document.getElementById("num1").value
+        let number2 = +document.getElementById("num2").value
+        let result
+        result = number1*number2
+        document.getElementById("showResult").innerText = "The result is: " + result
+    }
+    function division(){
+        let number1 = +document.getElementById("num1").value
+        let number2 = +document.getElementById("num2").value
+        if(number2===0){
+            alert("Mau so phai khac khong!")
+        } else{
+            let result
+            result = number1/number2
+            document.getElementById("showResult").innerText = "The result is: " + result
+        }
+    }
+</script>
+</html>

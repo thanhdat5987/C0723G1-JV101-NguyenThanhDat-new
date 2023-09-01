@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 2</title>
+</head>
+<body>
+<script>
+    let myArray = [2, 10, 34, 27, 11, 36, 14, 15, 18, 20]
+    let max = myArray[0];
+    let index = 0;
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i] >= max) {
+            max = myArray[i]
+            index = i
+        }
+    }
+    document.write('Giá trị lớn nhất là: ' + max + " vị trí phần từ là: " + index)
+</script>
+</body>
+</html>

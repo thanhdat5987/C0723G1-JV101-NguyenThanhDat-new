@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Cho 1 mảng bất kì. Lấy ra phần tử nhỏ nhất có số lần xuất hiện nhiều nhất.Ví dụ:
+    //     [1,2,2,2,3,3,3,4,4,5] -> thì lấy ra số 2 vì số 2 và số 3 cùng xuất hiện 3 lần nhưng mà 2 < 3
+    let myArr = [1, 1,1,1, 2, 2, 2,1,1,1,1,1,1,1,1, 3, 3, 3, 4,4,4,4,4,4,4,4]
+    let arr1 = []
+    for (let i = 0; i < myArr.length; i++) {
+        let arr2 = []
+        if (myArr[i] === myArr[i - 1]) {
+            continue
+        }
+        let count = 0
+        for (let j = i; j < myArr.length; j++) {
+            if (myArr[i] === myArr[j]) {
+                count++
+            }
+        }
+        arr2.push(myArr[i])
+        arr2.push(count)
+        arr1.push(arr2)
+    }
+    document.write(arr1+'<br>')
+    let result = arr1[0]
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i][1] > result[1]) {
+            result = arr1[i]
+        } else if (arr1[i][1] === result[1]) {
+            if (arr1[i][0]<=result[0]) {
+                result = arr1[i]
+            }
+        }
+    }
+    document.write('Số nhỏ nhất mà lặp lại nhiều lần là số '+ result[0]+ ', '+ result[0]+' lặp lại '+result[1] +' lần')
+</script>
+</body>
+</html>

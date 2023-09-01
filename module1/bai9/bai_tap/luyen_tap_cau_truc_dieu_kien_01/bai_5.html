@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xep loai hoc sinh</title>
+</head>
+<body>
+<script>
+    let diemKT = +prompt("Nhap diem kiem tra")
+    let diemGK = +prompt("nhap diem giua ky")
+    let diemCK = +prompt("nhap diem cuoi ky")
+    let diemTB = (diemKT + diemGK*2 + diemCK*3)/6
+    if(diemTB>=9){
+        alert("Diem trung binh cua ban la:" + diemTB + " , ban duoc loai Xuat Sac")
+    } else if(diemTB>=8){
+        alert("Diem trung binh cua ban la:" + diemTB + " , ban duoc loai Gioi")
+    } else if(diemTB>=6.5){
+        alert("Diem trung binh cua ban la:" + diemTB + " , ban duoc loai Kha")
+    } else if(diemTB>=5){
+        alert("Diem trung binh cua ban la:" + diemTB + " , ban duoc loai Trung Binh")
+    } else {
+        alert("Diem trung binh cua ban la:" + diemTB + " , ban duoc loai Yeu")
+    }
+</script>
+</body>
+</html>

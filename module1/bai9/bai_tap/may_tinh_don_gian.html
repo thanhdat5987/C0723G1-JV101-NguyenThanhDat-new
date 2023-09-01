@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>May tinh don gian</title>
+</head>
+<body>
+<style>
+    button {
+        color: green;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+    }
+</style>
+<table border="1" cellpadding="0" cellspacing="20" bgcolor="#5f9ea0">
+    <tr>
+        <td colspan="4" height="50px" bgcolor="white"><span id="display" style="font-size: 30px"></span></td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="calculate('1')">1</button>
+        </td>
+        <td>
+            <button onclick="calculate('2')">2</button>
+        </td>
+        <td>
+            <button onclick="calculate('3')">3</button>
+        </td>
+        <td>
+            <button onclick="calculate('+')">+</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="calculate('4')">4</button>
+        </td>
+        <td>
+            <button onclick="calculate('5')">5</button>
+        </td>
+        <td>
+            <button onclick="calculate('6')">6</button>
+        </td>
+        <td>
+            <button onclick="calculate('-')">-</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="calculate('7')">7</button>
+        </td>
+        <td>
+            <button onclick="calculate('8')">8</button>
+        </td>
+        <td>
+            <button onclick="calculate('9')">9</button>
+        </td>
+        <td>
+            <button onclick="calculate('*')">X</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="calculate('c')">C</button>
+        </td>
+        <td>
+            <button onclick="calculate('0')">0</button>
+        </td>
+        <td>
+            <button onclick="calculate('=')">=</button>
+        </td>
+        <td>
+            <button onclick="calculate('/')">/</button>
+        </td>
+    </tr>
+</table>
+<script>
+    function calculate(x) {
+        let result = document.getElementById("display").innerText;
+        switch (x) {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '0':
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                result = result + x;
+                break;
+            case '=':
+                result = eval(result);
+                break;
+            case 'c' :
+                result = ''
+        }
+        document.getElementById("display").innerText = result;
+    }
+</script>
+</body>
+</html>

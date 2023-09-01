@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyen tap cau truc if else if</title>
+</head>
+<body>
+<script>
+    let userName = prompt("Nhap user name: ")
+    if (userName === "admin"){
+        let passWord = prompt("Hay nhap mat khau")
+        if (passWord === "thanhdat"){
+            alert("WELCOME DAT")
+        } else if(passWord == null){
+            alert("Cancelled")
+        } else {
+            alert("Sai mat khau roi em oi!")
+        }
+    } else if (userName == null) {
+        alert("Cancelled")
+    } else {
+        alert("Toi khong biet ban la ai")
+    }
+</script>
+</body>
+</html>

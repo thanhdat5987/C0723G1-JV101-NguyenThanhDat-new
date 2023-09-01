@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="amount" />
+    <select id="from">
+      <option value="VND">VND</option>
+      <option value="USD">USD</option>
+    </select>
+    <select id="to">
+      <option value="USD">USD</option>
+      <option value="VND">VND</option>
+    </select>
+    <input type="button" onclick="handleClick()" value="Convert"></input>
+    <div id="result"></div>
+    <script>
+      function handleClick() {
+        // Lấy giá trị
+        let amount = document.getElementById("amount").value;
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+        // Khai báo biến để nhận giá trị sau khi tính toán
+        let result = 0;
+        // Kiểm tra lựa chọn của người dùng
+        if (from === "VND" && to === "USD") {
+          result = amount / 23000;
+        } else if (from === "USD" && to === "VND") {
+          result = amount * 23000;
+        } else {
+          result = amount;
+        }
+        // In ra kết quả
+        document.getElementById("result").innerText = result;
+      }
+    </script>
+  </body>
+</html>

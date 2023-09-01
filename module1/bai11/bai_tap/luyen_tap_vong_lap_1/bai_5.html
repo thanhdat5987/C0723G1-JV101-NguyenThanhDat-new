@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let a = 0;
+  let b = 1;
+  let c;
+  let i;
+  let sum = 0;
+  let daySo = "";
+  for(i=0; i<20; i++){
+    c = a + b;
+    sum = sum + a;
+    daySo = daySo + a + "</br>"
+    a = b;
+    b= c;
+  }
+  document.write("20 so dau tien trong day fibonacce la: " + "</br>" + daySo)
+  document.write("Tổng 20 số đầu trong dãy fibonacce là: " + sum)
+</script>
+</body>
+</html>

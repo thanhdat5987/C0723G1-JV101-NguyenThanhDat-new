@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(degreesC) {
+            if(degreesC>=-273.15){
+                this.degreesC = degreesC
+            }
+        }
+        convertToF() {
+            let degreesF = this.degreesC * 9 / 5 + 32
+            document.write(this.degreesC + ' C degrees = ' + degreesF + ' F degress' + '</br>')
+        }
+        convertToK() {
+            let degreesK = this.degreesC + 273.15
+            document.write(this.degreesC + ' C degrees = ' + degreesK + ' K degress' + '</br>')
+        }
+    }
+    let inputDegreesC = +prompt("Nhập vào độ C (>=-273.15 độ): ")
+    if (inputDegreesC >= -273.15 && isNaN(inputDegreesC) === false) {
+        let temperature1 = new Temperature(inputDegreesC)
+        temperature1.convertToF()
+        temperature1.convertToK()
+    } else {
+        alert("Bạn nhập thông tin sai")
+    }
+</script>
+</body>
+</html>

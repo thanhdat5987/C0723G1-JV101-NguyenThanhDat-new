@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<script>
+    let triHigh = +prompt("Nhập chiều cao của tam giác");
+    for (let i = 0; i < triHigh; i++) {
+        for (let j = i; j < triHigh; j++) {
+            document.write("&nbsp;");
+        }
+        for (let j = 0; j <= i; j++) {
+            if (j === 0 || j === i) {
+                document.write("*")
+            } else if (i === triHigh - 1) {
+                document.write("*");
+            } else {
+                document.write("&nbsp;&nbsp;");
+            }
+        }
+        document.write("<br>");
+    }
+</script>
+</body>
+</html>

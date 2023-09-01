@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 6</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let myArrLength = +prompt("Nhập vào số lượng phần tử trong mảng:")
+        if (isNaN(myArrLength) === false && myArrLength > 0) {
+            for (let i = 0; i < myArrLength; i++) {
+                myArray[i] = prompt('Nhập vào phần tử thứ ' + (i + 1))
+            }
+            alert("Chuỗi của bạn là: " + myArray)
+            break;
+        } else {
+            alert("Dữ liệu bạn nhập vào sai yêu cầu, vui lòng nhập lại")
+        }
+    }
+    while (true)
+    for (let j = 0; j <= myArray.length - 1; j++) {
+        if (myArray[j] === '-') {
+            myArray[j] = '_'
+        }
+    }
+    alert('Mảng sau khi thay ký tự "-" bằng "_" là ' + myArray)
+</script>
+</body>
+</html>

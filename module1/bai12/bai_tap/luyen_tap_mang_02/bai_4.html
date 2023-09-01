@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bai 4</title>
+</head>
+<body>
+<script>
+    let myStr = prompt('Nhập vào chuỗi của bạn')
+    let word = 1
+    for (let i = 0; i < myStr.length; i++) {
+        if ((myStr[i] === " ") && (myStr[i + 1] !== " ")) {
+            word = word + 1;
+        }
+    }
+    alert('Có ' + word + ' từ trong chuỗi của bạn')
+</script>
+</body>
+</html>

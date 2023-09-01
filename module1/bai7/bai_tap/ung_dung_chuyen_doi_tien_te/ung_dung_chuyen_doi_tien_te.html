@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ung dung chuyen doi tien te</title>
+</head>
+<body>
+<h1>ỨNG DỤNG CHUYỂN ĐỔI TIỀN TỆ</h1>
+<table style="text-align: center">
+<tr>
+    <th>Amount</th>
+    <th style="width: 200px">From Currency</th>
+    <th style="width: 200px">To Currency</th>
+    <th></th>
+</tr>
+<tr>
+    <td>
+        <input id="inputMoney" type="text">
+    </td>
+    <td>
+        <select id="select1">
+            <option value="VND">VND</option>
+            <option value="USD">USD</option>
+        </select>
+    </td>
+    <td>
+        <select id="select2">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+    </td>
+    <td>
+        <button onclick="changeMoney()">CONVERT</button>
+    </td>
+</tr>
+</table>
+<h2 id="result"></h2>
+<script>
+    function changeMoney() {
+        let amount = document.getElementById("inputMoney").value
+        let fromC = document.getElementById("select1").value
+        let toC = document.getElementById("select2").value
+        let result
+        if (fromC == "VND" && toC == "USD") {
+            result = "Result is " + (amount / 23000) + " $"
+        } else if (fromC == "USD" && toC == "VND") {
+            result = "Result is " + (amount * 23000) + " VND"
+        } else if (fromC == "USD" && toC == "USD") {
+            result = "Result is " + amount + " USD"
+        } else {
+            result = "Result is " + amount + " VND"
+        }
+        document.getElementById("result").innerHTML = result
+    }
+</script>
+</body>
+</html>

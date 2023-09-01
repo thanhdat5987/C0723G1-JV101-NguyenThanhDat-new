@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game doan so</title>
+</head>
+<body>
+<style>
+    button {
+        width: 120px ; height: 50px ; background-color: darkorange ; font-size: 20px; border: solid
+    }
+</style>
+<h2>Chuong trinh Game doan so!</h2>
+<button  onclick="guessNumberGame()">START GAME</button>
+<script>
+    function guessNumberGame() {
+        let fromN = parseInt(prompt("Hãy nhập 1 số nguyên bắt đầu khoảng số có số muốn đoán"))
+        let toN = parseInt(prompt("Hãy nhập 1 số nguyên kết thúc khoảng số có số muốn đoán"))
+        if (fromN <= toN) {
+            //Cach lay ra so ngau nhien tu min tới max: Math.floor(Math.random() * (max - min + 1)) + min;
+            let number = Math.floor(Math.random() * (toN - fromN + 1)) + fromN;
+            let i;
+            for (i = 0; i < 3; i++) {
+                let guessNumber = +prompt("Chương trình đã chọn ra một số ngẫu nhiên trong khoảng bạn đã chọn, hãy đoán xem đó là số mấy: ")
+                if (guessNumber === number) {
+                    alert("Xin chúc mừng bạn đã đoán đúng rồi!")
+                    return;
+                } else if (guessNumber < number) {
+                    alert("Số bạn đoán nhỏ hơn số của chúng tôi")
+                } else {
+                    alert("Số bạn đoán lớn hơn số của chúng tôi")
+                }
+            }
+            alert("Bạn đã hết lượt chơi")
+        } else {
+            alert("Dãy số bạn nhập vào không đúng")
+        }
+    }
+</script>
+</body>
+</html>

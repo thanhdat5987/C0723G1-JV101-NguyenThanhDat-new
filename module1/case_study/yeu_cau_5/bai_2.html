@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+    let row = +prompt("Nhập vào số lượng hàng của mảng 2 chiều: ")
+    let col = +prompt("Nhập vào số lượng cột của mảng 2 chiều: ")
+    let arr2d = new Array(row)
+    for (let row = 0; row < arr2d.length; row++) {
+        arr2d[row] = new Array(col)
+        for (let col = 0; col < arr2d[row].length; col++) {
+            arr2d[row][col] = +prompt("Nhập vào phần tư ở vị trí [" + row + '][' + col + '] :')
+        }
+    }
+    // Hiển thị mảng vừa tạo
+    document.write('Mảng vừa tạo là: ' + '</br>')
+    for (let row = 0; row < arr2d.length; row++) {
+        for (let col = 0; col < arr2d[row].length; col++) {
+            document.write(arr2d[row][col] + '&nbsp;')
+        }
+        document.write('</br>')
+    }
+
+    // Function Kiểm tra số nguyên tố trong mảng 2d
+    let arrSNT = []
+    function checkSNTArr2d(arr2d) {
+        for (let row = 0; row < arr2d.length; row++) {
+            for (let col = 0; col < arr2d[row].length; col++) {
+                checkSNT(arr2d[row][col])
+            }
+        }
+        document.write('Có ' + arrSNT.length + ' số nguyên tố trong mảng 2 chiều vừa tạo, đó là: ' + arrSNT)
+    }
+    // Function kiểm tra 1 số có phải là số nguyên tố
+    function checkSNT(a) {
+        let check = 0
+        for (let k = 2; k <= a / 2; k++) {
+            if (a % k === 0) {
+                check++;
+            }
+        }
+        if (check === 0 && a >= 2) {
+            arrSNT.push(a);
+        }
+    }
+    // chạy chương trình
+    checkSNTArr2d(arr2d)
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh luong</title>
+</head>
+<body>
+<script>
+    let salary
+    let thue = 0
+    let salaryTrue
+    do {
+        salary = +prompt("Nhập vào lương của bạn: ")
+        if (isNaN(salary) === false && salary > 0) {
+            if (salary > 15000000) {
+                thue = salary / 5
+            } else if (salary >= 7000000) {
+                thue = salary / 10
+            } else {
+                thue = salary / 20
+            }
+            salaryTrue = salary - thue
+            break;
+        } else {
+            alert("Lương phải là số lớn hơn 0, vui lòng nhập lại")
+        }
+    }
+    while (true)
+    alert('Lương thực nhận của bạn là: ' + salaryTrue + " ,thuế thu nhập là: " + thue)
+</script>
+</body>
+</html>

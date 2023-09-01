@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 4</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let n = +prompt("Nhap chieu dai cua mang");
+        if (!isNaN(n) && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArray[i] = +prompt("Nhap phan tu thu " + (i + 1) + " cua mang");
+            }
+            document.write("Cac phan tu cua mang la: " + myArray + "</br>");
+            break;
+        } else {
+            alert("Ban nhap sai vui long nhap lai:");
+        }
+    } while (true);
+    let first = 0;
+    let last = myArray.length - 1;
+    while (first < last) {
+        let a = myArray[first];
+        myArray[first] = myArray[last];
+        myArray[last] = a;
+        first++;
+        last--;
+    }
+    document.write('Các phần tử sau khi đảo vị trí là: ' + myArray)
+</script>
+</body>
+</html>

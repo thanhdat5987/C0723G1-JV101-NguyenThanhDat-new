@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In tam giac vuong</title>
+</head>
+<body>
+<script>
+    // ve tam giac so 1
+    for(let i=0; i<5; i++){
+        for(let j=0; j<=i; j++){
+            document.write("*")
+        }
+        document.write("</br>")
+    }
+//xuong hang
+document.write("</br>")
+    // ve tam giac 2
+    for(let i=0; i<5; i++){
+        for(let j=5; j>i; j--){
+            document.write("*")
+        }
+        document.write("</br>")
+    }
+//xuong hang
+document.write("</br>")
+    // ve tam giac 3
+    for(let i= 0; i<=5; i++){
+        for(let j=5; j>0; j--){
+            if(j>i){
+                document.write('\xa0\xa0')
+            } else{
+                document.write('*')
+            }
+        }
+        document.write("</br>")
+    }
+//xuong hang
+document.write("</br>")
+    // ve tam giac 4
+    // ve tam giac 3
+    for(let i=5; i>0; i--){
+        for(let j=5; j>0; j--){
+            if(j<=i){
+                document.write('*')
+            } else{
+                document.write('\xa0\xa0')
+            }
+        }
+        document.write("</br>")
+    }
+</script>
+</body>
+</html>

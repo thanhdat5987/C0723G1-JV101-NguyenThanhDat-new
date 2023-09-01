@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="result"></p>
+<script>
+
+    class ElectricLamp {
+        constructor(status) {
+            this.status = status;
+        }
+
+        turnOff() {
+            if (!this.status) {
+                console.log("Lamp has already Off")
+            } else {
+                this.status = false
+                console.log(" Lamp is Off now")
+            }
+        }
+
+        turnOn() {
+            if (this.status) {
+                console.log("Lamp has already On")
+            } else {
+                this.status = true
+                console.log("Lamp is On now")
+            }
+        }
+    }
+
+    class SwitchButton {
+        constructor(lamp, status) {
+            this.status = status;
+            this.lamp = lamp;
+        }
+
+        setStatus(newStatus) {
+            this.status = newStatus
+        }
+
+        connectToLamp(electricLamp) {
+            this.lamp = electricLamp
+            console.log("The switch has been connected to the lamp ")
+        }
+
+        switchOff() {
+            if (this.status === true) {
+                this.lamp.turnOff()
+                console.log('The lamp status is ' + this.lamp.status)
+                this.status = false
+            } else {
+                console.log('The lamp has already off')
+            }
+        }
+
+        switchOn() {
+            if (this.status === false) {
+                this.lamp.turnOn()
+                console.log('The lamp status is ' + this.lamp.status)
+                this.status = true
+            } else {
+                console.log('The lamp has been turn on')
+            }
+        }
+    }
+
+    let electricLamp01 = new ElectricLamp(false);
+    let switchButton01 = new SwitchButton();
+    //connect electricButton01 to electricLamp01
+    switchButton01.connectToLamp(electricLamp01)
+    switchButton01.setStatus(false)
+    for (let i = 0; i < 10; i++) {
+        switchButton01.switchOn()
+        switchButton01.switchOff()
+    }
+</script>
+</body>
+</html>

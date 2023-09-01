@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 6</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let n = +prompt('Hãy nhập vào số lượng phần tử số nguyên của mảng bạn muốn tạo')
+        if (n !== isNaN() && n > 0) {
+            for (i = 0; i < n; i++) {
+                myArray[i] = +prompt('Nhập vào phần tử số nguyên thứ ' + (i + 1) + " :")
+            }
+            alert('Mảng của bạn đã nhập là: ' + myArray);
+            break;
+        } else {
+            alert('Số liệu bạn nhập không đúng, vui lòng nhập lại')
+        }
+    }
+    while (true)
+    myArray[myArray.length] = +prompt('Hãy nhập phần tử số nguyên bạn muốn thêm vào mảng vừa tạo:')
+    let check = 0;
+    console.log(myArray)
+    for (let j = 0; j < (myArray.length - 1); j++) {
+        if (myArray[j] === myArray[myArray.length - 1]) {
+            check = 1;
+        }
+    }
+    if (check === 1) {
+        alert(myArray[myArray.length - 1] + ' is in my Array')
+    } else {
+        alert(myArray[myArray.length - 1] + ' is not in my Array')
+    }
+</script>
+</body>
+</html>

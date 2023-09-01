@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ve trai tim</title>
+</head>
+<body>
+<script>
+    for (let i = 0; i<11; i++) {
+        for (let j = -5; j <= 5; j++) {
+            switch (i) {
+                case 0: switch (j){
+                    case -5:
+                    case -4:
+                    case -1:
+                    case 0:
+                    case 1:
+                    case 4:
+                    case 5:document.write('\xa0\xa0'); break;
+                    case -3:
+                    case -2:
+                    case 2:
+                    case 3:document.write('*'); break;
+                } break;
+                case 1: switch (j) {
+                    case -5:
+                    case 0:
+                    case 5:
+                        document.write('\xa0\xa0');
+                        break;
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case -4:
+                    case -3:
+                    case -2:
+                    case -1:
+                        document.write('*');
+                        break;
+                } break;
+                case 2: switch (j){
+                    case -5:
+                    case -4:
+                    case -3:
+                    case -2:
+                    case -1:
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5: document.write('*'); break;
+                } break;
+                case 3: switch (j){
+                    case -5:
+                    case -4:
+                    case -3:
+                    case -2:
+                    case -1:
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5: document.write('*'); break;
+                } break;
+                case 4: switch (j){
+                    case -5:
+                    case 5: document.write('\xa0\xa0'); break;
+                    case -4:
+                    case -3:
+                    case -2:
+                    case -1:
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4: document.write('*'); break;
+                } break;
+                case 5: switch (j){
+                    case -5:
+                    case 5:
+                    case -4:
+                    case 4:
+                    case -3:
+                    case 3:document.write('\xa0\xa0'); break;
+                    case 0:
+                    case 1:
+                    case -1:
+                    case 2:
+                    case -2: document.write('*'); break;
+                } break;
+                case 6: switch (j){
+                    case -5:
+                    case 5:
+                    case -4:
+                    case 4:
+                    case -3:
+                    case 3:
+                    case 1:
+                    case -1:
+                    case -2:
+                    case 2:document.write('\xa0\xa0'); break;
+                    case 0: document.write('*'); break;
+                } break;
+            }
+        }document.write("</br>")
+    }
+</script>
+</body>
+</html>

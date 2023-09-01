@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo su kien onclick</title>
+</head>
+<body>
+<p onclick="dosomething()">Click me please</p>
+<p id="demo" onmouseover="mouseover()">CLICK HERE</p>
+<script>
+  function dosomething(){
+    alert("hello");
+  }
+  var demo = document.getElementById("demo")
+  demo.addEventListener("click",clickFunction);
+  function clickFunction(){
+    alert("Chao ban hi hi");
+  }
+  function mouseover(){
+    document.getElementById("demo").style.color="red"
+  }
+</script>
+</body>
+</html>

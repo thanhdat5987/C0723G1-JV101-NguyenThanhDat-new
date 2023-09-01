@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+<script>
+    let myStr = prompt('Nhập vào chuỗi ký tự của bạn')
+    let differentSymbolArr = myStr.split('') // Chuyển chuỗi sang mảng
+    //Xoá ký tự trắng ở đầu
+    while (differentSymbolArr[0] === ' ') {
+        differentSymbolArr.shift()
+    }
+    // Xoá ký tự trắng ở cuối
+    while (differentSymbolArr[differentSymbolArr.length - 1] === ' ') {
+        differentSymbolArr.pop()
+    }
+    // Xoá ký tự trắng ở giữa
+    for (let k = 1; k < differentSymbolArr.length - 1; k++) {
+        if (differentSymbolArr[k] === ' ') {
+            differentSymbolArr.splice(k, 1)
+            k--
+        }
+    }
+    // Kiểm tra các ký tự trùng lặp và xoá chúng đi
+    for (let i = 0; i < differentSymbolArr.length; i++) {
+        for (let j = i + 1; j < differentSymbolArr.length; j++) {
+            if (differentSymbolArr[i] === differentSymbolArr[j]) {
+                differentSymbolArr.splice(i, 1)
+                i--
+            }
+        }
+    }
+    let differentSymbol = differentSymbolArr.join(',') // Chuyển mảng sang chuỗi cho dễ nhìn
+    alert('có ' + differentSymbolArr.length + ' ký tự khác nhau trong chuỗi ' + myStr + ' là: ' + differentSymbol)
+</script>
+</body>
+</html>

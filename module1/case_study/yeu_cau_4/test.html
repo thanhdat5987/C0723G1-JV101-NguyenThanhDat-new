@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str1 = prompt("Chuổi muốn kiểm tra 1");
+    let str2 = prompt("Chuổi muốn kiểm tra 2");
+    let result = countCommonCharacters(str1, str2);
+    function countCommonCharacters(str1, str2) {
+        let charsArray = [];
+
+        for (let i = 0; i < str1.length; i++) {
+            let char = str1[i];
+            if (!charsArray.includes(char)) {
+                charsArray.push(char);
+            }
+        }
+
+        let count = 0;
+        for (let i = 0; i < str2.length; i++) {
+            let char = str2[i];
+            if (charsArray.includes(char)) {
+                count++;
+                charsArray.splice(charsArray.indexOf(char), 1);
+            }
+        }
+
+        return count;
+
+    }
+
+
+    document.write("Chuổi 1 gồm: " + str1 + "<br/>" + "Chuổi 2 gồm:" + str2 + "<br/>" + "Số lượng kí tự chung là:" + result);
+</script>
+</body>
+</html>

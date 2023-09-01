@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+<script>
+    let count = 0;
+    let result = '';
+    let myArray = [10, 8, 7, 9, 6, 11, 15, 19, 2, 22]
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i] >= 10) {
+            count++;
+            result = result + myArray[i] + ' '
+        }
+    }
+    document.write('có ' + count + ' số lớn hơn hoặc bằng 10. Đó là: ' + result)
+</script>
+</body>
+</html>

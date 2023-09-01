@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 9</title>
+</head>
+<body>
+<script>
+    let myArrayA = []
+    let myArrayB = []
+    //Nhập mảng A
+    do {
+        let lengthA = +prompt("Nhập vào số phần tử của mảng A: ")
+        if (lengthA !== isNaN() && lengthA > 0) {
+            for (let i = 0; i < lengthA; i++) {
+                myArrayA[i] = +prompt("Nhập vào phần tử thứ " + (i + 1) + 'của mảng A')
+            }
+            alert('Mảng A vừa tạo là: ' + myArrayA)
+            break;
+        } else {
+            alert('Số liệu bạn nhập ko đúng yêu cầu, hãy nhập lại')
+        }
+    }
+    while (true)
+    // Nhập mảng B
+    do {
+        let lengthB = +prompt('Nhập vào số phần tử của mảng B: ')
+        if (lengthB !== isNaN() && lengthB > 0) {
+            for (let j = 0; j < lengthB; j++) {
+                myArrayB[j] = +prompt('Nhập vào phần tử thứ  ' + (j + 1) + ' của mảng B')
+            }
+            alert('Mảng B vừa tạo là: ' + myArrayB)
+            break;
+        } else {
+            alert('Bạn nhập dữ liệu sai yêu cầu, vui lòng nhập lại')
+        }
+    }
+    while (true)
+    // Nối mảng C = mảng A + mảng B
+    let myArrayC = new Array(myArrayA.length + myArrayB.length);
+    for (let a = 0; a < myArrayA.length; a++) {
+        myArrayC[a] = myArrayA[a]
+    }
+    for (let b = myArrayA.length; b < myArrayC.length; b++) {
+        myArrayC[b] = myArrayB[b - myArrayA.length]
+    }
+    alert('Mảng C sau khi được nối từ A và B là: ' + myArrayC)
+    console.log(myArrayC)
+</script>
+</body>
+</html>

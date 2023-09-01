@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 8</title>
+</head>
+<body>
+<script>
+    changeArray();
+    function changeArray() {
+        let myArray = []
+        do {
+            let n = +prompt("Nhập vào số lượng phần tử trong mảng")
+            if (isNaN(n) === false && n > 0) {
+                for (let i = 0; i < n; i++) {
+                    myArray[i] = +prompt('Nhập vào phần tử thứ ' + (i + 1))
+                }
+                break;
+            } else {
+                alert('Bạn nhập không hợp lệ')
+            }
+        }
+        while (true)
+        alert('Mảng của bạn bây giờ là: ' + myArray)
+        let temp;
+        for (j = 0; j < myArray.length / 2; j++) {
+            temp = myArray[j]
+            myArray[j] = myArray[myArray.length - 1 - j]
+            myArray[myArray.length - 1 - j] = temp
+        }
+        alert('Mảng của bạn sau khi đảo vị trí là: ' + myArray)
+    }
+</script>
+</body>
+</html>

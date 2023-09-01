@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 8</title>
+</head>
+<body>
+<script>
+    let myArray = []
+    do {
+        let n = +prompt('Hãy nhập vào số lượng phần tử của mảng bạn muốn tạo')
+        if (n !== isNaN() && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArray[i] = +prompt('Hãy nhập phần tử thứ: ' + (i + 1))
+            }
+            alert("Mảng của bạn là: " + myArray)
+            break;
+        } else {
+            alert('Bạn nhập sai yêu cầu, vui long nhập lại')
+        }
+    }
+    while (true)
+    let check = 0;
+    for (let j = 0; j < (myArray.length - 1); j++) {
+        for (let k = (j + 1); k < myArray.length; k++) {
+            if (myArray[j] < myArray[k]) {
+                check = myArray[j]
+                myArray[j] = myArray[k];
+                myArray[k] = check;
+            }
+        }
+    }
+    alert('Mảng của bạn sau khi sắp xếp là: ' + myArray)
+</script>
+</body>
+</html>

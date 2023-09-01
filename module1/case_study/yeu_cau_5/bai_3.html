@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 3</title>
+</head>
+<body>
+<script>
+    let row
+    let col
+    do {
+        row = +prompt('nhập vào số lượng hàng của mảng')
+        col = +prompt('nhập vào số lượng cột của mảng')
+        if (row > 0 && col > 0 && isNaN(row) === false && isNaN(col) === false && col % 1 === 0 && row % 1 === 0) {
+            break;
+        } else {
+            alert('Số lượng hàng và cột phải là sô Nguyên và lớn hơn 0')
+        }
+    } while (true)
+
+    // cho nhập vào mảng 2 chiều
+    let myArr2d = new Array(row)
+    for (let row = 0; row < myArr2d.length; row++) {
+        myArr2d[row] = new Array(col)
+        for (let col = 0; col < myArr2d[row].length; col++) {
+            myArr2d[row][col] = +prompt('Nhập vào số nguyên là phần tử [' + row + "][" + col + ']')
+        }
+    }
+    // hiển thị mảng 2 chiều
+    document.write('Mảng 2 chiều vừa tạo là:' + '<br>')
+    for (let row = 0; row < myArr2d.length; row++) {
+        for (let col = 0; col < myArr2d[row].length; col++) {
+            document.write(myArr2d[row][col] + '&nbsp;')
+        }
+        document.write("<br>")
+    }
+
+    // tạo function tìm min trong mảng 2 chiều
+    function minArr2d(arr2d) {
+        let min = arr2d[0][0]
+        for (let row = 0; row < arr2d.length; row++) {
+            for (let col = 0; col < arr2d[row].length; col++) {
+                if (arr2d[row][col] <= min) {
+                    min = arr2d[row][col]
+                }
+            }
+        }
+        document.write('Phần tử nhở nhất trong mảng 2 chiều vùa tạo là:' + min + '<br>');
+    }
+
+    // tạo function tìm max trong mảng 2 chiều
+    function maxArr2d(arr2d) {
+        let max = arr2d[0][0]
+        for (let row = 0; row < arr2d.length; row++) {
+            for (let col = 0; col < arr2d[row].length; col++) {
+                if (arr2d[row][col] >= max) {
+                    max = arr2d[row][col]
+                }
+            }
+        }
+        document.write('Phần tử lớn nhất trong mảng 2 chiều vừa tạo là: ' + max)
+    }
+
+    // fuction tìm min, max kết hợp 2 function trên.
+    function minMaxArr2d(arr2d) {
+        minArr2d(arr2d)
+        maxArr2d(arr2d)
+    }
+
+    // chạy chương trình
+    minMaxArr2d(myArr2d)
+</script>
+</body>
+</html>

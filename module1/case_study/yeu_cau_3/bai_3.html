@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 3</title>
+</head>
+<body>
+<script>
+    let numerators = []
+    let denominators = []
+    let n
+    let m
+    //tao mang 1
+    do {
+        n = +prompt("Hay nhap vao so luong tu so")
+        if (isNaN(n) === false && n > 0 && n%1===0) {
+            for (let i = 0; i < n; i++) {
+                numerators[i] = +prompt('Nhap vao tu so la so Nguyen thu ' + (i + 1))
+                if (numerators[i] % 1 === 0) {
+                    continue;
+                } else {
+                    alert("Ban phai nhap so nguyen")
+                    i--
+                }
+            }
+            break;
+        } else {
+            alert("Ban nhap thong tin sai yeu cau, vui long nhap lai")
+        }
+    } while (true)
+    alert("Mang tu so vua tao la: " + numerators)
+    //tao mang 2
+    do {
+        m = +prompt("Hay nhap vao so luong mau so bang tu so")
+        if (isNaN(m) === false && m > 0&& n ===m && m%1===0) {
+            for (let j = 0; j < m; j++) {
+                denominators[j] = +prompt('Nhap vao mau so (khac 0) la so Nguyen thu ' + (j + 1))
+                if (denominators[j] % 1 === 0 && denominators[j]!==0) {
+                    continue;
+                } else {
+                    alert("Ban phai nhap so nguyen khac 0")
+                    j--
+                }
+            }
+            break;
+        } else {
+            alert("Ban nhap thong tin sai yeu cau, vui long nhap lai")
+        }
+    } while (true)
+    alert("Mang mau so vua tao la: " + denominators)
+    //check phan so lon nhat
+    let max = numerators[0]/denominators[0]
+    console.log(max)
+    let index
+    for(let k=1; k<denominators.length; k++){
+        if((numerators[k]/denominators[k])>max){
+            max = (numerators[k]/denominators[k])
+            index = k
+        }
+    }
+    alert('Voi hai mang: '+ numerators + " va "+ denominators+ ' .Phan so lon nhat la: ' + numerators[index]+'/'+ denominators[index])
+</script>
+</body>
+</html>

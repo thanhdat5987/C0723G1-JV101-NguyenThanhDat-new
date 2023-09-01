@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 1</title>
+</head>
+<body>
+<script>
+    let myArr = []
+    do {
+        let n = +prompt("Hay nhap vao chieu dai mang")
+        if (isNaN(n) === false && n > 0) {
+            for (let i = 0; i < n; i++) {
+                myArr[i] = +prompt('Nhap vao phan tu so Nguyen ' + (i + 1))
+                if (myArr[i] % 1 === 0) {
+                    continue
+                } else {
+                    alert("Ban phai nhap so nguyen")
+                    i--
+                }
+            }
+            break;
+        } else {
+            alert("Ban nhap thong tin sai yeu cau, vui long nhap lai")
+        }
+    } while (true)
+    alert("Mang cua ban vua tao la "+myArr)
+    let myArr2 = []
+    myArr2[0] = myArr[0]
+    for (let j = 1; j < myArr.length; j++) {
+        myArr2[j] = myArr2[j - 1] + myArr[j]
+    }
+    alert('Mang prefix sum cua ' + myArr + ' la ' + myArr2)
+</script>
+</body>
+</html>

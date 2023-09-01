@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thuc hanh</title>
+</head>
+<body>
+<p>Please choose a car name:</p>
+<select id="select">
+<!--    onchange="dosomething()"-->
+  <option value="Audi">Audi</option>
+  <option value="BMW">BMW</option>
+  <option VALUE="Mercedes">Mercedes</option>
+</select>
+<script>
+    // function dosomething(){
+    //     var selectValue = document.getElementById("select").value;
+    //     alert(selectValue)
+    // }
+    var selectElement = document.getElementById("select");
+    selectElement.addEventListener("change", changeFunction);
+    function changeFunction(){
+        var selectValue = document.getElementById("select").value;
+        alert(selectValue)
+    }
+</script>
+</body>
+</html>

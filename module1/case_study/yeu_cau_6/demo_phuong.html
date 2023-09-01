@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+<button>Thêm mới</button>
+<div id="root"></div>
+<script>
+  class Product {
+    constructor(id, code, name) {
+      this.id = id;
+      this.code = code;
+      this.name = name;
+    }
+    getId() {
+      return this.id;
+    }
+
+    getCode() {
+      return this.code;
+    }
+
+    getName() {
+      return this.name;
+    }
+
+    setId(id) {
+      this.id = id;
+    }
+
+    setCode(code) {
+      this.code = code;
+    }
+
+    setName(name) {
+      this.name = name;
+    }
+  }
+
+      let products = [];
+
+  // Khoi tao bang constructor
+  let iphone13 = new Product(7, "IP-1234", "Iphone 13 Pro Max");
+  // Khoi tao bang setter
+  let samsung = new Product();
+  samsung.setId(8);
+  samsung.setCode("SS-1234");
+  samsung.setName("Samsung Galaxy S21");
+
+      let xiaomi = new Product(9, "XM-1234", "Xiaomi mi4");
+
+      products.push(iphone13);
+  products.push(samsung);
+  products.push(xiaomi);
+
+      function displayProducts() {
+        let productTable = `<table border="1">
+        <thead>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Xóa</th>
+          <th>Sửa</th>
+        </thead>
+        <tbody>`;
+        for (let i = 0; i < products.length; i++) {
+          const product = products[i];
+          productTable += `<tr>
+            <td>${product.getId()}</td>
+            <td>${product.getCode()}</td>
+            <td>${product.getName()}</td>
+            <th>
+                <button onclick="deleteProduct(products[i].id)">Xóa</button>
+            </th>
+            <th>
+              <button onclick="editProduct(${product.getId()})">Sửa</button>
+            </th>
+          </tr>`;
+        }
+        productTable += `</tbody>
+      </table>`;
+        document.getElementById("root").innerHTML = productTable;
+      }
+
+      function deleteProduct(id) {
+        let index = -1;
+        for (let i = 0; i < products.length; i++) {
+          const product = products[i];
+          if (product.getId() === +id) {
+            index = i;
+          }
+        }
+        const confirmDelete = confirm(
+                `Bạn có muốn xóa sản phẩm có tên là ${products[index].getName()} không?`
+        );
+        if (confirmDelete) {
+          products.splice(index, 1);
+          displayProducts();
+        }
+      }
+
+      function editProduct(id) {
+        console.log(id);
+        let product = null;
+        for (let i = 0; i < products.length; i++) {
+          const p = products[i];
+          if (p.getId() === +id) {
+            product = p;
+          }
+        }
+        let code = checkInputRequired("mã sản phẩm");
+        let name = checkName("tên sản phẩm");
+
+        if (code && name) {
+          product.setCode(code);
+          product.setName(name);
+
+          displayProducts();
+        }
+      }
+
+      function checkInputRequired(inputName) {
+        let input = prompt(`Nhập ${inputName}`);
+        while (true) {
+          if (input !== "") {
+            return input;
+          } else {
+            alert(`${inputName} không được để trống!`);
+            input = prompt(`Nhập ${inputName}`);
+          }
+        }
+      }
+
+      function checkName(inputName) {
+        let input = checkInputRequired(inputName);
+        let pattern = /^[a-zA-Z ]+$/;
+        while (true) {
+          if (pattern.test(input)) {
+            return input;
+          } else {
+            alert(`${inputName} phải là chữ cái!`);
+            input = checkInputRequired(inputName);
+          }
+        }
+      }
+
+      displayProducts();
+</script>
+</body>
+</html>

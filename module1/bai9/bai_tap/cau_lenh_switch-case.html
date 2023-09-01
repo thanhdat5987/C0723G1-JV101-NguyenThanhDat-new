@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau lenh switch-case</title>
+</head>
+<body>
+<h2>Hay nhap vao thang de tinh ra so ngay cua thang do</h2>
+<input type="text" id = "input_month">
+<button id="cal" onclick="calNumberDay()">Tinh so ngay</button>
+<h2 id = "display"></h2>
+<script>
+  function calNumberDay(){
+    let month = +document.getElementById("input_month").value;
+    switch (month){
+      case 1 :
+      case 3 :
+      case 5 :
+      case 7 :
+      case 8 :
+      case 10 :
+      case 12 : document.getElementById("display").innerText = "Thang " + month + " co 31 ngay";
+      break;
+      case 4 :
+      case 6 :
+      case 9 :
+      case 11 : document.getElementById("display").innerText = "Thang " + month + " co 30 ngay";
+      break;
+      case 2 : document.getElementById("display").innerText = "Thang " + month + " co 28 hoac 29 ngay";
+      break;
+      default : alert("Thang ban nhap khong hop le")
+  }
+  }
+</script>
+</body>
+</html>

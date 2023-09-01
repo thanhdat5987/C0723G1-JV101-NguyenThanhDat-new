@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Nhap so tien</th>
+        <th>Tu loai tien</th>
+        <th>Sang loai tien</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>
+            <input type="text" id="so_tien">
+        </th>
+        <th>
+            <select id="from">
+                <option value="USD">USD</option>
+                <option value="VND">VND</option>
+            </select>
+        </th>
+        <th>
+            <select id="to">
+                <option value="USD">USD</option>
+                <option value="VND">VND</option>
+            </select>
+        </th>
+        <th>
+            <button id="convert" onclick="convertMoney()">Convert</button>
+        </th>
+    </tr>
+</table>
+<h2 id="result"></h2>
+<script>
+    function convertMoney(){
+    let so_tien = +document.getElementById("so_tien").value;
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+    let result;
+    if (from === "USD" && to === "VND"){
+        result = so_tien * 23000;
+    } else if(from === "VND" && to === "USD"){
+        result = so_tien / 23000;
+    } else {
+        result = so_tien;
+    }
+    document.getElementById("result").innerText = result
+    }
+</script>
+</body>
+</html>

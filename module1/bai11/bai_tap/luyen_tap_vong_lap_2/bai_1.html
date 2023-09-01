@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In day fibonacci</title>
+</head>
+<body>
+<script>
+  let n = +prompt("Hãy nhập số lượng các số trong dãy fibonacci mà bạn muốn hiển thị");
+  if(n>0){
+    let a=0;
+    let b=1;
+    let c;
+    let i;
+    for(i = 0; i<n; i++){
+      c = a + b;
+      document.write(a + "</br>")
+      a = b;
+      b = c;
+    }
+  } else {
+    alert("vui lòng nhập số lượng lớn hơn 0")
+  }
+</script>
+</body>
+</html>

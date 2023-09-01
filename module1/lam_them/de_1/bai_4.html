@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Câu 4: Tạo một lớp Máy tính  có:-->
+<!-- - Thuộc tính:-->
+<!--+ Mã máy (string)-->
+<!--+ Tên máy(string)-->
+<!--+ Tên Hãng sản xuất (string)-->
+<!--+ Giá bán (number).-->
+<!-- - Các phương thức getter và setter cho các thuộc tính-->
+<!-- - Phương thức  toString() : phương thức lấy các thông tin của đối tượng.-->
+<!-- -Yêu cầu: Viết chương trình quản lý  Máy tính    với các chức năng sau;-->
+<!--+ Thêm mới 1 máy tính-->
+<!--+ Hiển thị được danh sách máy tính-->
+<h1>Chương trình quản lý máy tính</h1>
+<button onclick="addComputer(computerArr)">Thêm mới</button>
+<button onclick="delComputer(computerArr)">Xoá</button>
+<button onclick="editComputer(computerArr)">Sửa</button>
+<br>
+<br>
+<div id="display"></div>
+
+</body>
+<script>
+    class Computer {
+        constructor(id, name, brand, price) {
+            this.id = id;
+            this.brand = brand
+            this.name = name
+            this.price = price
+        }
+
+        getName() {
+            return this.name
+        }
+
+        setName(newName) {
+            this.name = newName
+            return this.name
+        }
+
+        getId() {
+            return this.id
+        }
+
+        setId(newId) {
+            this.id = newId
+            return this.id
+        }
+
+        getBrand() {
+            return this.brand
+        }
+
+        setBrand(newBrand) {
+            this.brand = newBrand
+            return this.brand
+        }
+
+        setPrice(newPrice) {
+            this.price = newPrice
+            return this.price
+        }
+
+        getPrice() {
+            return this.price
+        }
+    }
+
+    let computer1 = new Computer('001', 'Lenovo ThinkPad', 'Lenovo', 15000000)
+    let computer2 = new Computer('002', 'HP-VIP', 'HP', 20000000)
+    let computerArr = [computer1, computer2]
+
+    function display(arr) {
+        let table = ''
+        table += `<table border="1" style="border-collapse: collapse">
+            <tr>
+                <td>Mã sản phẩm</td>
+                <td>Tên sản phẩm</td>
+                <td>Hãng sản xuất</td>
+                <td>Giá</td>
+            </tr>`
+        for (let i = 0; i < arr.length; i++) {
+            const computer = arr[i]
+            table += `<tr>
+                <td>${computer.getId()}</td>
+                <td>${computer.getName()}</td>
+                <td>${computer.getBrand()}</td>
+                <td>${computer.getPrice()}</td>
+            </tr>`
+        }
+        table += `</table>`
+        document.getElementById('display').innerHTML = table
+    }
+
+    function addComputer(arr) {
+        let newComputer = new Computer()
+        let newId = prompt('Nhap ma san pham')
+        newComputer.setId(newId)
+        let newName = prompt('Nhap ten san pham')
+        newComputer.setName(newName)
+        let newBrand = prompt('Nhap hang san xuat')
+        newComputer.setBrand(newBrand)
+        let newPrice = prompt('Nhap gia san pham')
+        newComputer.setPrice(newPrice)
+        arr.push(newComputer)
+        display(arr)
+    }
+
+    function delComputer(arr) {
+        let delId = prompt('Nhap ma san pham can xoa')
+        let index
+        let check = 0
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].getId() === delId) {
+                index = i
+                check = 1
+            }
+        }
+        if (check === 1) {
+            const confirmDelete = confirm('Ban co chac muon xoa ' + arr[index].getName())
+            if (confirmDelete === true) {
+                arr.splice(index, 1)
+                display(arr)
+            }
+        } else {
+            alert('Ma san pham ban nhap khong co')
+        }
+    }
+
+    display(computerArr)
+
+    function editComputer(arr) {
+        let delId = prompt('Nhap ma san pham can sua')
+        let index
+        let check = 0
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].getId() === delId) {
+                index = i
+                check = 1
+            }
+        }
+        if (check === 1) {
+            const confirmDelete = confirm('Ban co chac muon sua ' + arr[index].getName())
+            if (confirmDelete === true) {
+                let newName = prompt('Nhap ten can sua')
+                arr[index].setName(newName)
+                let newBrand = prompt('Nhap hang sx can sua')
+                arr[index].setBrand(newBrand)
+                let newPrice = prompt('Nhap lai gia')
+                arr[index].setPrice(newPrice)
+                display(arr)
+            }
+        } else {
+            alert('Ma san pham ban nhap khong co')
+        }
+    }
+</script>
+</html>

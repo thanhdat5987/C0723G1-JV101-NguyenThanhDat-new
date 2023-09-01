@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuong trinh tinh tien dien</title>
+</head>
+<body>
+<!--Bậc 1 (0 đến 50kWh): 1.678 VND/kWh.-->
+<!--Bậc 2 (51 đến 100kWh): 1.734 VND/kWh.-->
+<!--Bậc 3 (101 đến 200 kWh): 2.014 VND/kWh.-->
+<!--Bậc 4 (201 đến 300 kWh): 2.536 VND/kWh.-->
+<!--Bậc 5 (301 đến 400 kWh): 2.834 VND/kWh.-->
+<!--Bậc 6 (401 kWh trở lên): 2.927 VND/kWh.-->
+<h2>Chương trình tính tiền điện</h2>
+<tr>
+    <td>Nhập số kWh đã tiêu thụ</td>
+    <td><input type="number" id="total-kwh"></td>
+    <td><button id="calMoney" onclick="calcuMoney()">Tính tiền</button></td>
+    <h3 id = "display"></h3>
+</tr>
+</body>
+<script>
+   function calcuMoney (){
+       let totalPC = document.getElementById("total-kwh").value
+       if (totalPC<0){
+           alert("Dien nang tieu thu phai > 0")
+       } else {
+           let money;
+           if (totalPC<=50){
+               money = totalPC*1678;
+           } else if (totalPC<=100){
+               money = 50*1678 + (totalPC-50)*1734;
+           } else if(totalPC<=200){
+               money = 50*1678 + 50*1734 + (totalPC-100)*2014;
+           } else if(totalPC<=300){
+               money = 50*1678 + 50*1734 + 100*2014 + (totalPC-200)*2536;
+           } else if(totalPC<=400){
+               money = 50*1678 + 50*1734 + 100*2014 + 100*2536 + (totalPC-300)*2834;
+           } else {
+               money = 50*1678 + 50*1734 + 100*2014 + 100*2536 + 100*2834 + (totalPC-400)*2927;
+           }
+           document.getElementById("display").innerText = "Tiền điện phải trả trước thuế là: " + money + " đồng " + "," + " tiền điện sau thuế là: " + 1.1*money + " đồng "
+       }
+   }
+</script>
+</html>

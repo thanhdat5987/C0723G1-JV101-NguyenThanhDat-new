@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 2</title>
+</head>
+<body>
+<script>
+  let inputR = prompt("Nhập đường kính của hình tròn")
+  alert('Diện tích hình tròn là: '+acreage(inputR))
+  alert('Chu vi hình tròn là: '+perimeter(inputR))
+  function acreage(r){
+    let s = r*Math.PI;
+    return s;
+  }
+  function perimeter (r){
+    let p = 2*r*Math.PI;
+    return p;
+  }
+</script>
+</body>
+</html>

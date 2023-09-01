@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 4</title>
+</head>
+<body>
+<script>
+    let arrDrink = ['cafe', 'cam vắt', 'nước ép cà rốt', 'nước ép cà chua', 'nước lọc', 'nước dừa']
+    let arrPrice = [12000, 20000, 22000, 18000, 10000, 24000]
+    let amount = 0
+    do {
+        alert("Hãy chọn các sô tương ưng với các món: 1 (cafe), 2 (cam vắt), 3(nước ép cà rốt), 4(nước ép cà chua), 5(nước lọc), 6(nước dừa), 7(thoát gọi món)")
+        let i = +prompt('Hãy nhập vào số thứ tự của món bạn muốn chọn, hoặc nhập 7 để thoát')
+        if (isNaN(i) === false && i > 1 && i <= 7 && i % 1 === 0) {
+            if (i === 7) {
+                break;
+            } else {
+                let j = i - 1
+                alert('Bạn đã chọn' + arrDrink[j] + ' với giá ' + arrPrice[j])
+                let quantity = prompt('Nhập số lượng bạn muốn mua:')
+                if (isNaN(quantity) === false && quantity > 0 && quantity % 1 === 0) {
+                    amount = arrPrice[j] * quantity
+                    alert('Tổng tiền bạn phải trả là: ' + amount + ' đồng')
+                } else {
+                    alert('Bạn nhập số lượng không hợp lý')
+                }
+            }
+        } else {
+            alert("bạn nhập thông tin sai rồi!")
+        }
+    }
+    while (true)
+</script>
+</body>
+</html>

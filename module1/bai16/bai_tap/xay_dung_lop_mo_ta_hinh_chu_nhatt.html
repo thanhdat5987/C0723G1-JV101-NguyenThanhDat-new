@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mo ta hinh chu nhat</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid black;"></canvas>
+<br>
+<script>
+    class Rectangle {
+        constructor(length, width) {
+            if (length > 0 && width > 0) {
+                this.length = length
+                this.width = width
+            }
+        }
+        getArea() {
+            let area = this.length * this.width
+            document.write('area = ' + area + "</br>")
+        }
+        getPerimeter() {
+            let perimeter = 2 * (this.length + this.width)
+            document.write('perimeter = ' + perimeter + "</br>")
+        }
+    }
+    do {
+        let lengthInput = +prompt("Nhập chiều dài của hình chữ nhật: ")
+        let widthInput = +prompt("Nhập chiều rộng của hình chữ nhật: ")
+        if (lengthInput > 0 && widthInput > 0 && isNaN(lengthInput) === false && isNaN(widthInput) === false) {
+            let rectangle1 = new Rectangle(lengthInput, widthInput)
+            //hiển thị diện tích và chu vi
+            rectangle1.getPerimeter()
+            rectangle1.getArea()
+            //vẽ hình chữ nhật bằng canvas
+            let c = document.getElementById("myCanvas");
+            let ctx = c.getContext("2d");
+            ctx.fillRect(0, 0, lengthInput, widthInput)
+            break;
+        } else {
+            alert("Cạnh của hình chữ nhật phải là số và lớn hơn 0")
+        }
+    } while (true)
+</script>
+</body>
+</html>

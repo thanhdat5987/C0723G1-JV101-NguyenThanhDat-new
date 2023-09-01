@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let row
+    let col
+    do {
+        row = +prompt('nhap vao so hang cua mang')
+        col = +prompt('nhap vao so cot cua mang')
+        if (row > 0 && col > 0 && row % 1 === 0 && col % 1 === 0) {
+            break;
+        } else {
+            alert('Số lượng hàng và cột phải là số nguyên dương')
+        }
+    } while (true)
+    let myArr = new Array(row)
+    for (let row = 0; row < myArr.length; row++) {
+        myArr[row] = new Array(col)
+        for (let col = 0; col < myArr[row].length; col++) {
+            myArr[row][col] = +prompt('Nhap vao phan tu [' + row + '][' + col + ']')
+            if (myArr[row][col] % 1 !== 0) {
+                alert('Phai nhap so nguyen')
+                col--
+            }
+        }
+    }
+    //hien thi
+    for(let row=0; row<myArr.length;row++){
+        for(let col=0; col<myArr[row].length;col++){
+            document.write(myArr[row][col]+'&nbsp')
+        }
+        document.write('<br>')
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xay dung lop mo ta dien thoai</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        constructor(brandName, batteryStatus, draft, inbox, sent, status) {
+            this.brandName = brandName
+            this.batteryStatus = batteryStatus
+            this.draft = draft
+            this.inbox = inbox
+            this.sent = sent
+            this.status = status
+        }
+        checkPhoneStatus() {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    console.log(this.brandName + ' is on')
+                } else {
+                    console.log(this.brandName + ' is off')
+                }
+                this.batteryStatus--;
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        turnOn() {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    console.log("Your phone is on")
+                } else {
+                    this.status = true;
+                    console.log(this.brandName + " Welcome")
+                    this.batteryStatus--;
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        turnOff() {
+            if (this.batteryStatus > 1) {
+                if (!this.status) {
+                    console.log("Your phone is off")
+                } else {
+                    this.status = false;
+                    console.log(this.brandName+ " Goodbye!")
+                    this.batteryStatus--;
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        batteryCharge(newBatteryStatus) {
+            if (newBatteryStatus >= 0 && newBatteryStatus <= 100) {
+                this.batteryStatus = newBatteryStatus
+                console.log(this.brandName + ' battery capacity is ' + this.batteryStatus + " %")
+            }
+        }
+        messageDraft(message) {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    this.draft.unshift(message)
+                    this.batteryStatus--;
+                } else {
+                    console.log("Your phone need to be On to texting")
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        sendMessage(message, device) {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    this.sent.unshift(message)
+                    device.inbox.unshift(message)
+                    this.batteryStatus--
+                } else {
+                    console.log("Your phone need to be On to send message")
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        readInboxMessage() {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    console.log(this.inbox);
+                    this.batteryStatus--
+                } else {
+                    console.log("your phone need to be On to read inbox message")
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        readSentMessage() {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    console.log(this.sent);
+                    this.batteryStatus--
+                } else {
+                    console.log("Your phone need to be On to read sent message")
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+        readDraftMessage() {
+            if (this.batteryStatus > 1) {
+                if (this.status) {
+                    console.log(this.draft);
+                    this.batteryStatus--
+                } else {
+                    console.log("Your phone need to be On to read draft message")
+                }
+            } else {
+                console.log('Battery is empty, please connect to changer')
+            }
+        }
+    }
+    let iphone = new Mobile("Iphone15", 50, [], [], [], false)
+    let nokia = new Mobile("Nokia", 50, [], [], [], false)
+    iphone.turnOn();
+    nokia.turnOn();
+    iphone.sendMessage("Hello", nokia);
+    iphone.sendMessage("How are you", nokia);
+    iphone.sendMessage("I love you", nokia);
+    nokia.readInboxMessage()
+    nokia.batteryCharge(100)
+    nokia.checkPhoneStatus()
+    nokia.turnOff()
+    console.log(nokia.batteryStatus)
+    nokia.turnOn()
+    nokia.messageDraft("welll")
+    nokia.readDraftMessage()
+    nokia.checkPhoneStatus()
+    nokia.turnOff()
+    nokia.readDraftMessage()
+    console.log(nokia.batteryStatus)
+    console.log(iphone.batteryStatus)
+    iphone.readSentMessage()
+    iphone.batteryCharge(1)
+    iphone.readInboxMessage()
+</script>
+</body>
+</html>

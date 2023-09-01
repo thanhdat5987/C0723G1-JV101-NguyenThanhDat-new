@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 3</title>
+</head>
+<body>
+<script>
+    let myArray = [1, 0, 7, 8, 4, 11, 9, 25, 31, 9, 3, 27]
+    let max = myArray[0];
+    let sum = 0;
+    for (let i = 0; i < myArray.length; i++) {
+        sum = sum + myArray[i]
+        if (myArray[i] >= max) {
+            max = myArray[i]
+        }
+    }
+    document.write("Giá trị lơn nhất của mảng là: " + max + ". Giá tri trung bình của các phần tử là: " + sum / myArray.length)
+</script>
+</body>
+</html>

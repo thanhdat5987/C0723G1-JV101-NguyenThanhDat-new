@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam vs Eva</title>
+</head>
+<body>
+<script>
+    class Apple {
+        constructor(weight) {
+            weight = 10
+            this.weight = weight
+        }
+        decrease() {
+            this.weight--;
+            console.log('Apple weight decrease to: ' + this.weight)
+        }
+        isEmpty() {
+            if (this.weight === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        getWeight() {
+            return this.weight;
+        }
+    }
+    class Human {
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+        isMale() {
+            if (this.gender === true) {
+                return true
+            } else {
+                return false
+            }
+        }
+        setGender(newGender) {
+            this.gender = newGender
+            console.log(this.name + ' new gender is ' + this.gender)
+        }
+        checkApple(apple) {
+            if (apple.isEmpty() === true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        eatApple(apple) {
+            if (apple.getWeight() === 0) {
+                console.log("empty apple")
+            } else {
+                this.weight++
+                apple.decrease()
+                console.log(this.name + " after eat, weight is ", +this.weight)
+            }
+        }
+        say(words) {
+            console.log(words)
+        }
+
+        setName(newName) {
+            this.name = newName
+            console.log('new name is ' + this.name)
+        }
+        getName() {
+            console.log('name is ' + this.name)
+        }
+
+        getWeight() {
+            console.log(this.name + ' is weight ' + this.weight)
+        }
+
+        setWeight(newWeight) {
+            this.weight = newWeight
+            console.log(this.name + ' is new weight: ' + this.weight)
+        }
+    }
+    let appleUSA = new Apple(10)
+    let adam = new Human("Adam", true, 70)
+    let eva = new Human("Eva", false, 60)
+    adam.getWeight()
+    eva.getWeight()
+    adam.setWeight(75)
+    eva.setWeight(65)
+    adam.setName('Romeo')
+    eva.setName('Juliet')
+    adam.getName()
+    eva.getName()
+    adam.setGender(false)
+    eva.setGender(true)
+    adam.eatApple(appleUSA)
+    eva.eatApple(appleUSA)
+    adam.say("Apple is so good")
+    eva.say("Yes, my love")
+    adam.eatApple(appleUSA)
+    eva.eatApple(appleUSA)
+    adam.eatApple(appleUSA)
+    eva.eatApple(appleUSA)
+    adam.eatApple(appleUSA)
+    eva.eatApple(appleUSA)
+    adam.say("great")
+    eva.say("great")
+    adam.eatApple(appleUSA)
+    eva.eatApple(appleUSA)
+    adam.eatApple(appleUSA)
+</script>
+</body>
+</html>

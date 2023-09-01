@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="number" id="number1" />
+    <input type="number" id="number2" />
+    <button onclick="handleCong()">Cong</button>
+    <button onclick="handleTru()">Tru</button>
+    <p id="result"></p>
+    <script>
+      function handleCong() {
+        let number1 = +document.getElementById("number1").value;
+        let number2 = +document.getElementById("number2").value;
+        document.getElementById("result").innerText = number1 + number2;
+      }
+      function handleTru() {
+        let number1 = +document.getElementById("number1").value;
+        let number2 = +document.getElementById("number2").value;
+        document.getElementById("result").innerText = number1 - number2;
+      }
+    </script>
+  </body>
+</html>
