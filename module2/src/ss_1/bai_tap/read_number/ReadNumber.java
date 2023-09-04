@@ -268,9 +268,10 @@ public class ReadNumber {
                 case 9:
                     readHundred = "Nine Hundred";
                     break;
-
             }
-            if (tensDigit == 1) {
+            if (tensDigit == 0 && unitDigit == 0) {
+                System.out.println(number + " read as " + readHundred);
+            } else if (tensDigit == 1) {
                 System.out.println(number + " read as " + readHundred + " and " + readTens1);
             } else if (tensDigit == 0) {
                 System.out.println(number + " read as " + readHundred + " and " + readUnit);

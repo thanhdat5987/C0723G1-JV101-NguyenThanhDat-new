@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class DrawShape {
     public static void main(String[] args) {
         int choice = -1;
-        while (choice != 0) {
+        while (choice != 4) {
             System.out.println("Menu");
             System.out.println("1. Print the rectangle");
             System.out.println("2. Print the square triangle (The corner is square at 4 different angles: top-left, top-right, botton-left, botton-right)");
