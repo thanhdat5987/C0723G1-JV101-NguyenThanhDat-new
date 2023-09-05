@@ -45,6 +45,9 @@ public class ReadNumber {
         } else if (number < 20) {
             int unitDigit = number % 10;
             switch (unitDigit) {
+                case 0:
+                    System.out.println(number + " read as Ten");
+                    break;
                 case 1:
                     System.out.println(number + " read as Eleven");
                     break;
