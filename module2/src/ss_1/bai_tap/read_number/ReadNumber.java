@@ -37,15 +37,15 @@ public class ReadNumber {
             } else {
                 readTens = readTensFrom20(tensDigit);
             }
-            String readHundred = readHundred(hundredDigit);
+            String readHundred = readUnitDigit(hundredDigit);
             if (tensDigit == 0 && unitDigit == 0) {
-                System.out.println(number + " read as " + readHundred);
+                System.out.println(number + " read as " + readHundred + " hundred");
             } else if (tensDigit == 1) {
-                System.out.println(number + " read as " + readHundred + " and " + readTens);
+                System.out.println(number + " read as " + readHundred + " hundred" + " and " + readTens);
             } else if (tensDigit == 0) {
-                System.out.println(number + " read as " + readHundred + " and " + readUnit);
+                System.out.println(number + " read as " + readHundred + " hundred" + " and " + readUnit);
             } else {
-                System.out.println(number + " read as " + readHundred + " and " + readTens + " " + readUnit);
+                System.out.println(number + " read as " + readHundred + " hundred" + " and " + readTens + " " + readUnit);
             }
         }
     }
@@ -153,39 +153,5 @@ public class ReadNumber {
                 break;
         }
         return readTens;
-    }
-
-    public static String readHundred(int hundredDigit) {
-        String readHundred = "";
-        switch (hundredDigit) {
-            case 1:
-                readHundred = "One Hundred";
-                break;
-            case 2:
-                readHundred = "Two Hundred";
-                break;
-            case 3:
-                readHundred = "Three Hundred";
-                break;
-            case 4:
-                readHundred = "Four Hundred";
-                break;
-            case 5:
-                readHundred = "Five Hundred";
-                break;
-            case 6:
-                readHundred = "Six Hundred";
-                break;
-            case 7:
-                readHundred = "Seven Hundred";
-                break;
-            case 8:
-                readHundred = "Eight Hundred";
-                break;
-            case 9:
-                readHundred = "Nine Hundred";
-                break;
-        }
-        return readHundred;
     }
 }
