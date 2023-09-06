@@ -32,7 +32,7 @@ public class InsertElement {
             int temp;
             array[array.length - 1] = array[array.length - 2];
             for (int i = array.length - 2; i > indexInsert; i--) {
-                temp = array[i];
+                temp = array[i - 1];
                 array[i - 1] = array[i];
                 array[i] = temp;
             }

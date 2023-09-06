@@ -2,7 +2,7 @@ package ss_2.bai_tap.draw_shape;
 
 import java.util.Scanner;
 
-public class DrawShape {
+public class Shape {
     public static void main(String[] args) {
         int choice = -1;
         while (choice != 4) {
