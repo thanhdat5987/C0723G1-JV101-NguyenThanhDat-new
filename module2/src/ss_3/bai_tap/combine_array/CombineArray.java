@@ -4,12 +4,8 @@ import java.util.Scanner;
 
 public class CombineArray {
     public static void main(String[] args) {
-        int number1;
-        int number2;
-        int[] array1;
-        int[] array2;
-        int[] combineArray;
-        int number;
+        int number1, number2, number;
+        int[] array1, array2, combineArray;
         Scanner scanner = new Scanner(System.in);
         //Enter Array1
         do {

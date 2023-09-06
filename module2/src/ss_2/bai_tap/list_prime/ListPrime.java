@@ -8,8 +8,7 @@ public class ListPrime {
         System.out.print("Enter the quantity of prime: ");
         int n = scanner.nextInt();
         System.out.println("List first "+n+" Prime is: ");
-        int count = 0;
-        int number = 2;
+        int count = 0, number = 2;
         while (count < n) {
             boolean checkP = checkPrime(number);
             if (checkP) {

@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class SumColum {
     public static void main(String[] args) {
-        int row;
-        int col;
+        int row, col;
         float[][] array;
         Scanner scanner = new Scanner(System.in);
         // enter number of array 's row:
@@ -30,16 +29,16 @@ public class SumColum {
         } while (true);
         array = new float[row][col];
         //enter element value of 2d array:
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
                 System.out.print("Please enter value element [" + i + "][" + j + "]: ");
                 array[i][j] = scanner.nextFloat();
             }
         }
         //display 2d array:
         System.out.println("Your array is: ");
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
                 System.out.print(array[i][j] + "  ");
             }
             System.out.println();
@@ -49,7 +48,7 @@ public class SumColum {
         int sumCol = scanner.nextInt();
         float sum = 0;
         if (sumCol >= 0 && sumCol < col) {
-            for (int i = 0; i < row; i++) {
+            for (int i = 0; i < array.length; i++) {
                 sum = sum + array[i][sumCol];
             }
             System.out.println("Sum of element at colum " + sumCol + " is: " + sum);
