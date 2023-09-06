@@ -5,9 +5,17 @@ import java.util.Scanner;
 public class ListPrime {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the quantity of prime: ");
-        int n = scanner.nextInt();
-        System.out.println("List first "+n+" Prime is: ");
+        int n;
+        do {
+            System.out.print("Enter the quantity of prime: ");
+            n = scanner.nextInt();
+            if (n > 0) {
+                break;
+            } else {
+                System.out.println("Quantity must be greater than 0");
+            }
+        } while (true);
+        System.out.println("List first " + n + " Prime is: ");
         int count = 0, number = 2;
         while (count < n) {
             boolean checkP = checkPrime(number);

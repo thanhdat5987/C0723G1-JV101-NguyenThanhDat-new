@@ -30,7 +30,7 @@ public class DelElement {
         System.out.print("Enter the element that you want to delete: ");
         int delElement = scanner.nextInt();
         boolean check = false;
-        int indexDel=-1;
+        int indexDel;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == delElement) {
                 check = true;
