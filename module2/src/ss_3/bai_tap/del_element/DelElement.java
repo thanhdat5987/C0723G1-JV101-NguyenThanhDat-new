@@ -1,5 +1,6 @@
 package ss_3.bai_tap.del_element;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class DelElement {
@@ -31,6 +32,14 @@ public class DelElement {
         int delElement = scanner.nextInt();
         boolean check = false;
         int indexDel;
+        String strDelIndex ="";//Create a string to add index of element that you want to delete (maybe many elements have same value)
+        // Add index of elements that will be deleted.
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == delElement) {
+                strDelIndex = strDelIndex + i +" ";
+            }
+        }
+        //Delete element as request.
         for (int i = 0; i < array.length; i++) {
             if (array[i] == delElement) {
                 check = true;
@@ -47,6 +56,7 @@ public class DelElement {
         }
         //display array after delete delElement
         if (check) {
+            System.out.println("Element "+ delElement+ " at index "+strDelIndex);
             System.out.print("Your array after delete element with value is " + delElement + " is: ");
             for (int i = 0; i < array.length; i++) {
                 System.out.print(array[i] + " ");
