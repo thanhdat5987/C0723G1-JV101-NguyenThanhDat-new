@@ -3,7 +3,8 @@ package ss_4.bai_tap.stop_watch;
 import java.time.LocalTime;
 
 public class StopWatch {
-    private LocalTime startTime, endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     public StopWatch() {
         startTime = LocalTime.now();

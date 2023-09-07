@@ -2,7 +2,7 @@ package ss_3.bai_tap.find_min_in_array;
 
 import java.util.Scanner;
 
-public class FindMinElement {
+public class MinElement {
     public static void main(String[] args) {
         int[] array;
         int number;
