@@ -32,11 +32,11 @@ public class DelElement {
         int delElement = scanner.nextInt();
         boolean check = false;
         int indexDel;
-        String strDelIndex ="";//Create a string to add index of element that you want to delete (maybe many elements have same value)
+        String stringDelIndex = "";//Create a string to add index of element that you want to delete (maybe many elements have same value)
         // Add index of elements that will be deleted.
         for (int i = 0; i < array.length; i++) {
             if (array[i] == delElement) {
-                strDelIndex = strDelIndex + i +" ";
+                stringDelIndex = stringDelIndex + i + " ";
             }
         }
         //Delete element as request.
@@ -50,13 +50,15 @@ public class DelElement {
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
-                array[array.length - 1] = 0;
-                i--;
+                if (array[array.length - 1] != 0) {
+                    array[array.length - 1] = 0;
+                    i--;
+                }
             }
         }
         //display array after delete delElement
         if (check) {
-            System.out.println("Element "+ delElement+ " at index "+strDelIndex);
+            System.out.println("Element " + delElement + " at index " + stringDelIndex);
             System.out.print("Your array after delete element with value is " + delElement + " is: ");
             for (int i = 0; i < array.length; i++) {
                 System.out.print(array[i] + " ");
