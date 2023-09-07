@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class SumColum {
     public static void main(String[] args) {
-        int row, col;
+        int row;
+        int col;
         float[][] array;
         Scanner scanner = new Scanner(System.in);
         // enter number of array 's row:
