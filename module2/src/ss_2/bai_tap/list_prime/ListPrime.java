@@ -16,7 +16,8 @@ public class ListPrime {
             }
         } while (true);
         System.out.println("List first " + n + " Prime is: ");
-        int count = 0, number = 2;
+        int count = 0;
+        int number = 2;
         while (count < n) {
             if (checkPrime(number)) {
                 System.out.println(number);
