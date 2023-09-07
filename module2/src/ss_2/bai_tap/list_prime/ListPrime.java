@@ -17,13 +17,11 @@ public class ListPrime {
         } while (true);
         System.out.println("List first " + n + " Prime is: ");
         int count = 0;
-        int number = 2;
-        while (count < n) {
+        for (int number = 2; count < n; number++) {
             if (checkPrime(number)) {
                 System.out.println(number);
                 count++;
             }
-            number++;
         }
     }
 
