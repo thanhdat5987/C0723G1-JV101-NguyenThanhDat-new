@@ -50,7 +50,7 @@ public class DelElement {
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
-                if (array[array.length - 1] != 0) {
+                if (array[array.length - 1] != 0 || (array[array.length - 1] == 0 && array[0] == 0)) {
                     array[array.length - 1] = 0;
                     i--;
                 }
