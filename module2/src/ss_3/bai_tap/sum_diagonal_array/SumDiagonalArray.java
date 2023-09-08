@@ -47,11 +47,7 @@ public class SumDiagonalArray {
         //calculate sum of element at diagonal of array
         float sum = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (i == j) {
-                    sum = sum + array[i][j];
-                }
-            }
+            sum = sum + array[i][i];
         }
         System.out.println("Sum of element at diagonal of array is: " + sum);
     }
