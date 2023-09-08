@@ -4,10 +4,10 @@ public class Fan {
     final int SLOW = 1;
     final int MEDIUM = 2;
     final int FAST = 3;
-    private int speed;
-    private double radius;
-    private String color;
-    private boolean on;
+    private int speed = SLOW;
+    private double radius = 5;
+    private String color = "Blue";
+    private boolean on = false;
 
 
     public int getSpeed() {
@@ -38,12 +38,12 @@ public class Fan {
         this.on = status;
     }
 
-    public boolean getOn() {
+    public boolean isOn() {
         return on;
     }
 
     public String toString() {
-        if (getOn()) {
+        if (isOn()) {
             return getSpeed() + ", " + getColor() + ", " + getRadius() + ", Fan is on";
         } else {
             return getColor() + ", " + getRadius() + ", Fan is off";
@@ -51,11 +51,6 @@ public class Fan {
     }
 
     public Fan() {
-        speed = SLOW;
-        on = false;
-        radius = 5;
-        color = "blue";
     }
-
 }
 
