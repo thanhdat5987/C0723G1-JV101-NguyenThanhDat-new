@@ -2,12 +2,10 @@ package ss_5.bai_tap.access_modifier_01;
 
 public class Circle {
     private double radius = 1.0;
-    private String color = "Red";
+    private final String color = "Red";
 
     Circle() {
-
     }
-
     Circle(double r) {
         this.radius = r;
     }

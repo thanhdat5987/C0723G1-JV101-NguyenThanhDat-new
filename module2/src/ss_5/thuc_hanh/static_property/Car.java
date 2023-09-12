@@ -1,8 +1,8 @@
 package ss_5.thuc_hanh.static_property;
 
 public class Car {
-    private String name;
-    private String engine;
+    private final String name;
+    private final String engine;
     public static int numberOfCar;
 
     public Car(String name, String engine) {
