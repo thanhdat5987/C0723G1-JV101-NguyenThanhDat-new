@@ -1,6 +1,6 @@
 package ss_7.bai_tap.resizeable_shape;
 
-public class Square extends Shape implements Resizeable {
+public class Square extends Shape {
     private double edge = 1.0;
 
     public Square() {
