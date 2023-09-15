@@ -12,29 +12,29 @@ public class MyList<E> {
         elements = new Object[DEFAULT_CAPACITY];
     }
 
-    private void ensureCapa() {
+    private void ensureCapacity() {
         int newSize = elements.length * (elements.length / 2 + 1);
         elements = Arrays.copyOf(elements, newSize);
     }
 
-    public boolean checkIndex(int index) {
-        if (index >= size || index < 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void add(int index, E element) {
-        if (checkIndex(index)) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
+        } else if (index == size) {
+            ensureCapacity();
             elements[index] = element;
+            size++;
         } else {
-            System.out.println("\n" + "index must be greater than 0 and less than size of array");
+            for (int i = size; i > index; i--) {
+                elements[i] = elements[i - 1];
+            }
+            elements[index] = element;
+            size++;
         }
     }
 
     public E remove(int index) {
-        if (checkIndex(index)) {
+        if (index < size && index >= 0) {
             E temp;
             for (int i = index; i < size - 1; i++) {
                 temp = (E) elements[i + 1];
@@ -75,9 +75,25 @@ public class MyList<E> {
     }
 
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            elements[i] = null;
-        }
+        elements = new Object[DEFAULT_CAPACITY];
         size = 0;
+    }
+
+    public boolean contains(E element) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i] == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int indexOf(E element) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i] == element) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
