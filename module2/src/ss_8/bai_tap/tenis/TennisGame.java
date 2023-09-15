@@ -46,8 +46,8 @@ public class TennisGame {
         return wordScore;
     }
 
-    public static void readEqualScore(int scoreOfPlayer1) {
-        switch (scoreOfPlayer1) {
+    public static void readEqualScore(int equalScore) {
+        switch (equalScore) {
             case 0:
                 screenDisplay = SCORE0 + WORD_ALL;
                 break;
