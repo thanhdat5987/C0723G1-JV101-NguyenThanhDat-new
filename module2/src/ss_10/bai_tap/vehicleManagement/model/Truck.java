@@ -7,8 +7,8 @@ public class Truck extends Vehicle{
         this.truckWeight = truckWeight;
     }
 
-    public Truck(String licensePlate, String brandName, int yearOfManufacture, String ownerName, String truckWeight) {
-        super(licensePlate, brandName, yearOfManufacture, ownerName);
+    public Truck(String licensePlate, String manufacturer, int yearOfManufacture, String ownerName, String truckWeight) {
+        super(licensePlate, manufacturer, yearOfManufacture, ownerName);
         this.truckWeight = truckWeight;
     }
 
@@ -21,7 +21,7 @@ public class Truck extends Vehicle{
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Truck{" +
                 "truckWeight='" + truckWeight + '\'' +
                 "} " + super.toString();

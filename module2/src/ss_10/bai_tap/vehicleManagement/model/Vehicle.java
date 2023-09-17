@@ -2,14 +2,14 @@ package ss_10.bai_tap.vehicleManagement.model;
 
 public class Vehicle {
     private String licensePlate;
-    private String brandName;
+    private String manufacturer;
     private int yearOfManufacture;
     private String ownerName;
     public Vehicle(){}
 
-    public Vehicle(String licensePlate, String brandName, int yearOfManufacture, String ownerName) {
+    public Vehicle(String licensePlate, String manufacturer, int yearOfManufacture, String ownerName) {
         this.licensePlate = licensePlate;
-        this.brandName = brandName;
+        this.manufacturer = manufacturer;
         this.yearOfManufacture = yearOfManufacture;
         this.ownerName = ownerName;
     }
@@ -22,12 +22,12 @@ public class Vehicle {
         this.licensePlate = licensePlate;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public int getYearOfManufacture() {
@@ -47,10 +47,10 @@ public class Vehicle {
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Vehicle{" +
                 "licensePlate='" + licensePlate + '\'' +
-                ", brandName='" + brandName + '\'' +
+                ", brandName='" + manufacturer + '\'' +
                 ", yearOfManufacture=" + yearOfManufacture +
                 ", ownerName='" + ownerName + '\'' +
                 '}';

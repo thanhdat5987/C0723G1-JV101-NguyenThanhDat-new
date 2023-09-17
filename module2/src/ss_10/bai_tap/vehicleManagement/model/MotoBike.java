@@ -1,6 +1,6 @@
 package ss_10.bai_tap.vehicleManagement.model;
 
-public class MotoBike extends Vehicle{
+public class MotoBike extends Vehicle {
     private String engineCapacity;
 
     public String getEngineCapacity() {
@@ -15,13 +15,13 @@ public class MotoBike extends Vehicle{
         this.engineCapacity = engineCapacity;
     }
 
-    public MotoBike(String licensePlate, String brandName, int yearOfManufacture, String ownerName, String engineCapacity) {
-        super(licensePlate, brandName, yearOfManufacture, ownerName);
+    public MotoBike(String licensePlate, String manufacturer, int yearOfManufacture, String ownerName, String engineCapacity) {
+        super(licensePlate, manufacturer, yearOfManufacture, ownerName);
         this.engineCapacity = engineCapacity;
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "MotoBike{" +
                 "engineCapacity='" + engineCapacity + '\'' +
                 "} " + super.toString();
