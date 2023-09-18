@@ -11,7 +11,6 @@ public class MyListTest {
         newList.add(3);
         newList.add(4);
         newList.add(3, 10);
-        newList.add(5, 11);
         System.out.println("size: " + newList.size());
         Object[] newlist1 = (Object[]) newList.clone();
         System.out.println("clone list:" + Arrays.toString(newlist1));
