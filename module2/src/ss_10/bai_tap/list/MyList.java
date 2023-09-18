@@ -18,33 +18,35 @@ public class MyList<E> {
     }
 
     public void add(int index, E element) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
-        } else if (index == size) {
+        if (size == elements.length) {
             ensureCapacity();
-            elements[index] = element;
-            size++;
+        }
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
         } else {
-            for (int i = size; i > index; i--) {
-                elements[i] = elements[i - 1];
+            for (int i = size - 1; i >= index; i--) {
+                elements[i + 1] = elements[i];
             }
             elements[index] = element;
             size++;
         }
     }
 
+
     public E remove(int index) {
-        if (index < size && index >= 0) {
-            E temp;
+        E element = (E) elements[index];
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("index" + index + "out of bounds");
+        } else {
             for (int i = index; i < size - 1; i++) {
-                temp = (E) elements[i + 1];
                 elements[i] = elements[i + 1];
-                elements[i + 1] = temp;
             }
+            elements[size - 1] = null;
             size--;
         }
-        return (E) elements;
+        return element;
     }
+
 
     public int size() {
         return size;
@@ -59,10 +61,9 @@ public class MyList<E> {
 
     public Boolean add(E element) {
         if (size == elements.length) {
-            return false;
+            ensureCapacity();
         }
-        elements[size] = element;
-        size++;
+        elements[size++] = element;
         return true;
     }
 
@@ -81,7 +82,7 @@ public class MyList<E> {
 
     public boolean contains(E element) {
         for (int i = 0; i < size; i++) {
-            if (elements[i] == element) {
+            if (elements[i].equals(element)) {
                 return true;
             }
         }

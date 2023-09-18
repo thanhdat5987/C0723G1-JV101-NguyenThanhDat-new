@@ -10,7 +10,7 @@ public class StudentManagementView {
     private final StudentController studentController = new StudentController();
 
     public int inputOtion() {
-        int option = 0;
+        int option;
         do {
             showStudentManagerView();
             System.out.println("Please select feature: ");
