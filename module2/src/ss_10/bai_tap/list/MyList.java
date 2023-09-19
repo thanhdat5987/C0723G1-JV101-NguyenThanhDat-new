@@ -91,7 +91,7 @@ public class MyList<E> {
 
     public int indexOf(E element) {
         for (int i = 0; i < size; i++) {
-            if (elements[i] == element) {
+            if (elements[i].equals(element)) {
                 return i;
             }
         }
