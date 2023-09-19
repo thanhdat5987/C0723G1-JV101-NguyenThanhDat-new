@@ -1,0 +1,104 @@
+package ss_12.bai_tap.product_manager.view;
+
+import ss_12.bai_tap.product_manager.controller.ProductController;
+import ss_12.bai_tap.product_manager.model.Product;
+
+import java.util.Scanner;
+
+public class ProductManagementView {
+    private Scanner scanner = new Scanner(System.in);
+    private ProductController<Product> productController = new ProductController<>();
+    private int indexName;
+    private int indexId;
+
+    public void displayMenu() {
+        System.out.println("Please choose function:");
+        System.out.println("1. Add a new vehicle");
+        System.out.println("2. Edit a product");
+        System.out.println("3. Delete a product");
+        System.out.println("4. Display product list");
+        System.out.println("5. Search a product by Name");
+        System.out.println("6. Sort product list by price");
+        System.out.println("7. Exit");
+
+        int choose = Integer.parseInt(scanner.nextLine());
+
+        switch (choose) {
+            case 1:
+                addProduct();
+                displayMenu();
+                break;
+            case 2:
+                editProduct();
+                displayMenu();
+                break;
+            case 3:
+                deleteProduct();
+                displayMenu();
+                break;
+            case 4:
+                displayProductList();
+                displayMenu();
+                break;
+//            case 5:
+//                searchProduct();
+//                displayMenu();
+//                break;
+//            case 6:
+//                sortProductList();
+//                displayMenu();
+//                break;
+            case 7:
+                System.exit(7);
+        }
+    }
+
+    private void addProduct() {
+        System.out.println("Please input product's ID: ");
+        int newProductId = Integer.parseInt(scanner.nextLine());
+        System.out.println("Please input product's Name: ");
+        String newProductName = scanner.nextLine();
+        System.out.println("Please input product's Price");
+        int newProductPrice = Integer.parseInt(scanner.nextLine());
+        Product newproduct = new Product(newProductId, newProductName, newProductPrice);
+        productController.addProduct(newproduct);
+    }
+
+    private void editProduct() {
+        System.out.println("Please input ID of product that you want to edit: ");
+        int editingId = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < productController.displayProducts().size(); i++) {
+            if (productController.displayProducts().get(i).getProductId() == editingId) {
+                System.out.println("Please edit name of product with id =" + editingId + ": ");
+                String editingName = scanner.nextLine();
+                productController.displayProducts().get(i).setProductName(editingName);
+                System.out.println("Please edit price of product with id =" + editingId + ": ");
+                int editingPrice = scanner.nextInt();
+                productController.displayProducts().get(i).setProductPrice(editingPrice);
+                Product newproduct = new Product(editingId, editingName, editingPrice);
+                productController.editProduct(i, newproduct);
+                break;
+            }
+        }
+        System.out.println("Can't find ID");
+    }
+
+    private void deleteProduct() {
+        System.out.println("Please input ID of product that you want to delete: ");
+        int deletingId = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < productController.displayProducts().size(); i++) {
+            if (productController.displayProducts().get(i).getProductId() == deletingId) {
+                productController.deleteProduct(i);
+                break;
+            }
+        }
+        System.out.println("Can't find ID");
+    }
+
+    private void displayProductList() {
+        for (int i = 0; i < productController.displayProducts().size(); i++) {
+            System.out.println(productController.displayProducts().get(i));
+        }
+    }
+}
+

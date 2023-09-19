@@ -57,7 +57,6 @@ public class VehicleManagementView {
             case 5:
                 System.exit(5);
         }
-
     }
 
     // Creat
