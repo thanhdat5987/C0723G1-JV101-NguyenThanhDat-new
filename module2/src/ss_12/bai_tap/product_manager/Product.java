@@ -1,4 +1,4 @@
-package ss_12.bai_tap.product_manager.array_list;
+package ss_12.bai_tap.product_manager;
 
 public class Product {
     private int productId;

@@ -1,6 +1,4 @@
-package ss_12.bai_tap.product_manager.array_list;
-
-import java.util.Scanner;
+package ss_12.bai_tap.product_manager;
 
 
 public class Main {
