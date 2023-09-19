@@ -20,12 +20,12 @@ public class VehicleServiceImpl<E> implements IVehicleService<E> {
     }
 
     @Override
-    public void deleteVehicle(String licensePlate) {
-        vehicleRepository.deleteVehicle(licensePlate);
+    public void deleteVehicle(int index) {
+        vehicleRepository.deleteVehicle(index);
     }
 
     @Override
-    public void getVehicle(String licensePlate) {
-        vehicleRepository.getVehicle(licensePlate);
+    public E getVehicle(int index) {
+        return vehicleRepository.getVehicle(index);
     }
 }

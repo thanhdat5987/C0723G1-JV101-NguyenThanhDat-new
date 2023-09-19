@@ -8,6 +8,6 @@ public interface IVehicleRepository<E> {
     void createVehicle(E vehicle);
     ArrayList<E> getVehicleDetail();
 
-    public void deleteVehicle(String licensePlate);
-    public void getVehicle(String licensePlate);
+    public void deleteVehicle(int index);
+    public E getVehicle(int index);
 }

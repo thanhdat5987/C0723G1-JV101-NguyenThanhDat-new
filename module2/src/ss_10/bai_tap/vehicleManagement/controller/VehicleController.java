@@ -16,12 +16,12 @@ public class VehicleController<E> {
         return vehicleService.getVehicleDetail();
     }
 
-    public void deleteVehicle(String licensePlate) {
-        vehicleService.deleteVehicle(licensePlate);
+    public void deleteVehicle(int index) {
+        vehicleService.deleteVehicle(index);
     }
 
 
-    public void getVehicle(String licensePlate) {
-        vehicleService.getVehicle(licensePlate);
+    public E getVehicle(int index) {
+        return vehicleService.getVehicle(index);
     }
 }

@@ -9,6 +9,6 @@ public interface IVehicleService<E> {
     void createVehicle(E vehicle);
     ArrayList<E> getVehicleDetail();
 
-    void deleteVehicle(String licensePlate);
-    void getVehicle(String licensePlate);
+    void deleteVehicle(int index);
+    E getVehicle(int index);
 }

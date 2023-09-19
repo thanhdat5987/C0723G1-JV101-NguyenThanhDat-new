@@ -5,6 +5,7 @@ import ss_10.bai_tap.vehicleManagement.controller.VehicleController;
 import ss_10.bai_tap.vehicleManagement.model.Car;
 import ss_10.bai_tap.vehicleManagement.model.MotoBike;
 import ss_10.bai_tap.vehicleManagement.model.Truck;
+import ss_10.bai_tap.vehicleManagement.model.Vehicle;
 
 import java.util.Scanner;
 
@@ -21,6 +22,9 @@ public class VehicleManagementView {
     private int yearOfManufacture;
 
     private String ownerName;
+    private int carLicensePlateIndex = -1;
+    private int truckLicensePlateIndex = -1;
+    private int motoBikeLicensePlateIndex = -1;
 
 
     public void displayMenu() {
@@ -42,13 +46,21 @@ public class VehicleManagementView {
                 displayVehicle();
                 displayMenu();
                 break;
-            case 4:
+            case 3:
+                deleteVehicle();
+                displayMenu();
                 break;
-
+            case 4:
+                searchVehicle();
+                displayMenu();
+                break;
+            case 5:
+                System.exit(5);
         }
 
     }
 
+    // Creat
     private void addVehicle() {
         System.out.println("Please choose type of vehicle you want to add:");
         System.out.println("1. Add Car");
@@ -68,7 +80,6 @@ public class VehicleManagementView {
                 addMotorCycle();
                 break;
         }
-
     }
 
     private void addVehicleInformation() {
@@ -108,38 +119,125 @@ public class VehicleManagementView {
         MotoBike motoBike = new MotoBike(licensePlate, manufacturer, yearOfManufacture, ownerName, engineCapacity);
         motoBikeController.createVehicle(motoBike);
     }
-    private void displayCars(){
-        for (Car car : carController.getVehicleDetail()){
+
+    //Display
+    private void displayCars() {
+        for (Car car : carController.getVehicleDetail()) {
             System.out.println(car);
         }
     }
 
-    private void displayTrucks(){
-        for (Truck truck : truckController.getVehicleDetail()){
+    private void displayTrucks() {
+        for (Truck truck : truckController.getVehicleDetail()) {
             System.out.println(truck);
         }
     }
 
-    private void displayMotorCycles(){
-        for (MotoBike motorcycle : motoBikeController.getVehicleDetail()){
+    private void displayMotorCycles() {
+        for (MotoBike motorcycle : motoBikeController.getVehicleDetail()) {
             System.out.println(motorcycle);
         }
     }
 
-    private void displayVehicle(){
+    private void displayVehicle() {
         System.out.println("Please choose the vehicle you want to show:");
         System.out.println("1. Show Car list");
         System.out.println("2. Show Truck list");
         System.out.println("3. Show Motorcycle list");
         int choose = Integer.parseInt(scanner.nextLine());
 
-        switch (choose){
-            case 1: displayCars();
+        switch (choose) {
+            case 1:
+                displayCars();
                 break;
-            case 2: displayTrucks();
+            case 2:
+                displayTrucks();
                 break;
-            case 3: displayMotorCycles();
+            case 3:
+                displayMotorCycles();
                 break;
+        }
+    }
+
+    // Find index following license Plate:
+    private void findLicensePlateIndex(String licensePlate) {
+        for (int i = 0; i < carController.getVehicleDetail().size(); i++) {
+            if (carController.getVehicleDetail().get(i).getLicensePlate().equals(licensePlate)) {
+                carLicensePlateIndex = i;
+                break;
+            }
+        }
+        for (int i = 0; i < truckController.getVehicleDetail().size(); i++) {
+            if (truckController.getVehicleDetail().get(i).getLicensePlate().equals(licensePlate)) {
+                truckLicensePlateIndex = i;
+                break;
+            }
+        }
+        for (int i = 0; i < motoBikeController.getVehicleDetail().size(); i++) {
+            if (motoBikeController.getVehicleDetail().get(i).getLicensePlate().equals(licensePlate)) {
+                motoBikeLicensePlateIndex = i;
+                break;
+            }
+        }
+    }
+
+    //delete Vehicle
+    private void deleteVehicle() {
+        System.out.println("Please enter the licensePlate of vehicle that you want to delete ");
+        String deletingLicensePlate = scanner.nextLine();
+        findLicensePlateIndex(deletingLicensePlate);
+        if (carLicensePlateIndex != -1 || truckLicensePlateIndex != -1 || motoBikeLicensePlateIndex != -1) {
+            System.out.println("Do you want to delete the vehicle with License Plate is " + deletingLicensePlate);
+            System.out.println("If Yes, please enter 1. If No, please enter 2");
+            int deleteOption = Integer.parseInt(scanner.nextLine());
+            switch (deleteOption) {
+                case 1:
+                    if (carLicensePlateIndex != -1) {
+                        deleteCar(carLicensePlateIndex);
+                    }
+                    if (truckLicensePlateIndex != -1) {
+                        deleteTruck(truckLicensePlateIndex);
+                    }
+                    if (motoBikeLicensePlateIndex != -1) {
+                        deleteMotoBike(carLicensePlateIndex);
+                    }
+                    System.out.println("Delete successfully!");
+                    break;
+
+                case 2:
+                    displayMenu();
+                    break;
+            }
+        } else {
+            System.out.println("Can't find the License Plate");
+        }
+    }
+
+    private void deleteCar(int carLicensePlateIndex) {
+        carController.deleteVehicle(carLicensePlateIndex);
+    }
+
+    private void deleteTruck(int truckLicensePlateIndex) {
+        carController.deleteVehicle(truckLicensePlateIndex);
+    }
+
+    private void deleteMotoBike(int motoBikeLicensePlateIndex) {
+        carController.deleteVehicle(motoBikeLicensePlateIndex);
+    }
+
+    // Search Vehicle
+    private void searchVehicle() {
+        System.out.println("Please enter the licensePlate of vehicle that you want to find ");
+        String findingLicensePlate = scanner.nextLine();
+        findLicensePlateIndex(findingLicensePlate);
+        if (carLicensePlateIndex != -1) {
+            System.out.println("Car: "+carController.getVehicle(carLicensePlateIndex));
+        } else if (truckLicensePlateIndex != -1) {
+            System.out.println("Truck: "+truckController.getVehicle(truckLicensePlateIndex));
+        } else if (motoBikeLicensePlateIndex != -1) {
+            System.out.println("Motobike: "+motoBikeController.getVehicle(motoBikeLicensePlateIndex));
+        } else {
+            System.out.println("Can't find the Licence Plate");
         }
     }
 

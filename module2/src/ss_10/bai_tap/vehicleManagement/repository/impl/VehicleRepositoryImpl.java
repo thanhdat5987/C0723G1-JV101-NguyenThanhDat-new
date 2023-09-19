@@ -18,12 +18,12 @@ private final ArrayList<E> vehicles= new ArrayList<>();
     }
 
     @Override
-    public void deleteVehicle(String licensePlate) {
-
+    public void deleteVehicle(int index) {
+        vehicles.remove(index);
     }
 
     @Override
-    public void getVehicle(String licensePlate) {
-//return vehicles.get();
+    public  E getVehicle(int index) {
+    return vehicles.get(index);
     }
 }
