@@ -40,10 +40,10 @@ public class ProductManagementView {
                 displayProductList();
                 displayMenu();
                 break;
-//            case 5:
-//                searchProduct();
-//                displayMenu();
-//                break;
+            case 5:
+                searchProduct();
+                displayMenu();
+                break;
 //            case 6:
 //                sortProductList();
 //                displayMenu();
@@ -91,6 +91,7 @@ public class ProductManagementView {
                 productController.deleteProduct(i);
                 break;
             }
+
         }
         System.out.println("Can't find ID");
     }
@@ -99,6 +100,18 @@ public class ProductManagementView {
         for (int i = 0; i < productController.displayProducts().size(); i++) {
             System.out.println(productController.displayProducts().get(i));
         }
+    }
+
+    private void searchProduct() {
+        System.out.println("Please input name of product that you want to search: ");
+        String searchingId = scanner.nextLine();
+        for (int i = 0; i < productController.displayProducts().size(); i++) {
+            if (productController.displayProducts().get(i).getProductName().equals(searchingId)) {
+                System.out.println(productController.getProduct(i));
+                break;
+            }
+        }
+        System.out.println("Can't find product");
     }
 }
 
