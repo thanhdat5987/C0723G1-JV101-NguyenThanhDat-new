@@ -18,6 +18,7 @@ public class Parentheses {
     public static boolean checkParentheses(String mathString) {
         Stack<Character> parenthesesStack = new Stack<>();
         String leftParenthesis = "";
+        String rightParenthesis = "";
         for (int i = 0; i < mathString.length(); i++) {
             if (String.valueOf(mathString.charAt(i)).equals("(")) {
                 parenthesesStack.push(mathString.charAt(i));
@@ -26,11 +27,12 @@ public class Parentheses {
                 if (parenthesesStack.empty()) {
                     return false;
                 } else {
-                    leftParenthesis += String.valueOf(parenthesesStack.peek());
+                    rightParenthesis += ")";
+                    leftParenthesis += String.valueOf(parenthesesStack.pop());
                 }
             }
         }
-        if (leftParenthesis.length() != parenthesesStack.size()) {
+        if (leftParenthesis.length() != rightParenthesis.length()) {
             return false;
         }
         return true;
