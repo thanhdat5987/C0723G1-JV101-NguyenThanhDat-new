@@ -77,7 +77,7 @@ public class VehicleManagementView {
         System.out.println("Add manufacturer:");
         manufacturer = scanner.nextLine();
         System.out.println("Add year:");
-        yearOfManufacture = scanner.nextInt();
+        yearOfManufacture = Integer.parseInt(scanner.nextLine());
         System.out.println("Add owner:");
         ownerName = scanner.nextLine();
     }

@@ -2,14 +2,14 @@ package ss_10.bai_tap.vehicleManagement.model;
 
 public class Car extends Vehicle {
     private int numberOfSeat;
-    private java.lang.String carType;
+    private String carType;
 
-    public Car(int numberOfSeat, java.lang.String carType) {
+    public Car(int numberOfSeat, String carType) {
         this.numberOfSeat = numberOfSeat;
         this.carType = carType;
     }
 
-    public Car(java.lang.String licensePlate, String manufacturer, int yearOfManufacture, java.lang.String ownerName, int numberOfSeat, java.lang.String carType) {
+    public Car(String licensePlate, String manufacturer, int yearOfManufacture, String ownerName, int numberOfSeat, String carType) {
         super(licensePlate, manufacturer, yearOfManufacture, ownerName);
         this.numberOfSeat = numberOfSeat;
         this.carType = carType;
@@ -23,16 +23,16 @@ public class Car extends Vehicle {
         this.numberOfSeat = numberOfSeat;
     }
 
-    public java.lang.String getCarType() {
+    public String getCarType() {
         return carType;
     }
 
-    public void setCarType(java.lang.String carType) {
+    public void setCarType(String carType) {
         this.carType = carType;
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Car{" +
                 "numberOfSeat=" + numberOfSeat +
                 ", carType='" + carType + '\'' +
