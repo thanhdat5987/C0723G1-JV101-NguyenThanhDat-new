@@ -18,8 +18,9 @@ public class ProductManagementView {
         System.out.println("3. Delete a product");
         System.out.println("4. Display product list");
         System.out.println("5. Search a product by Name");
-        System.out.println("6. Sort product list by price");
-        System.out.println("7. Exit");
+        System.out.println("6. Sort product list down by price");
+        System.out.println("7. Sort product list down by price");
+        System.out.println("8. Exit");
 
         int choose = Integer.parseInt(scanner.nextLine());
 
@@ -45,17 +46,27 @@ public class ProductManagementView {
                 displayMenu();
                 break;
             case 6:
-                sortProductList();
+                sortProductListDown();
                 displayMenu();
                 break;
             case 7:
-                System.exit(7);
+                sortProductListUp();
+                displayMenu();
+                break;
+            case 8:
+                System.exit(8);
         }
     }
 
     private void addProduct() {
         System.out.println("Please input product's ID: ");
         int newProductId = Integer.parseInt(scanner.nextLine());
+        for(int i=0; i<productController.displayProducts().size();i++){
+            if(productController.displayProducts().get(i).getProductId()==newProductId){
+                System.out.println("Id has been exist");
+                return;
+            }
+        }
         System.out.println("Please input product's Name: ");
         String newProductName = scanner.nextLine();
         System.out.println("Please input product's Price");
@@ -113,15 +124,29 @@ public class ProductManagementView {
         }
         System.out.println("Can't find product");
     }
-    private void sortProductList(){
-        int minPriceProduct = productController.displayProducts().get(0).getProductPrice();
+
+    private void sortProductListDown() {
         Product tempProduct;
-        for (int i = 0; i < productController.displayProducts().size(); i++){
-            if(productController.displayProducts().get(i).getProductPrice()<=minPriceProduct){
-                tempProduct=productController.displayProducts().get(0);
-                productController.displayProducts().get(0).equals(productController.displayProducts().get(i));
-                productController.displayProducts().get(i).equals(tempProduct);
-            }
+        for (int i = 0; i < productController.displayProducts().size() - 1; i++) {
+            for (int j = i + 1; j < productController.displayProducts().size(); j++)
+                if (productController.displayProducts().get(i).getProductPrice() <= productController.displayProducts().get(j).getProductPrice()) {
+                    tempProduct = productController.displayProducts().get(i);
+                    productController.displayProducts().set(i, productController.displayProducts().get(j));
+                    productController.displayProducts().set(j, tempProduct);
+                }
+        }
+        displayProductList();
+    }
+
+    private void sortProductListUp() {
+        Product tempProduct;
+        for (int i = 0; i < productController.displayProducts().size() - 1; i++) {
+            for (int j = i + 1; j < productController.displayProducts().size(); j++)
+                if (productController.displayProducts().get(i).getProductPrice() >= productController.displayProducts().get(j).getProductPrice()) {
+                    tempProduct = productController.displayProducts().get(i);
+                    productController.displayProducts().set(i, productController.displayProducts().get(j));
+                    productController.displayProducts().set(j, tempProduct);
+                }
         }
         displayProductList();
     }
