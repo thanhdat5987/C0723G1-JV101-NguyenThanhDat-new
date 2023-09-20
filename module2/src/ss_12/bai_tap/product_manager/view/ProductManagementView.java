@@ -13,7 +13,7 @@ public class ProductManagementView {
 
     public void displayMenu() {
         System.out.println("Please choose function:");
-        System.out.println("1. Add a new vehicle");
+        System.out.println("1. Add a new product");
         System.out.println("2. Edit a product");
         System.out.println("3. Delete a product");
         System.out.println("4. Display product list");
@@ -44,10 +44,10 @@ public class ProductManagementView {
                 searchProduct();
                 displayMenu();
                 break;
-//            case 6:
-//                sortProductList();
-//                displayMenu();
-//                break;
+            case 6:
+                sortProductList();
+                displayMenu();
+                break;
             case 7:
                 System.exit(7);
         }
@@ -89,7 +89,7 @@ public class ProductManagementView {
         for (int i = 0; i < productController.displayProducts().size(); i++) {
             if (productController.displayProducts().get(i).getProductId() == deletingId) {
                 productController.deleteProduct(i);
-                break;
+                return;
             }
 
         }
@@ -108,10 +108,22 @@ public class ProductManagementView {
         for (int i = 0; i < productController.displayProducts().size(); i++) {
             if (productController.displayProducts().get(i).getProductName().equals(searchingId)) {
                 System.out.println(productController.getProduct(i));
-                break;
+                return;
             }
         }
         System.out.println("Can't find product");
+    }
+    private void sortProductList(){
+        int minPriceProduct = productController.displayProducts().get(0).getProductPrice();
+        Product tempProduct;
+        for (int i = 0; i < productController.displayProducts().size(); i++){
+            if(productController.displayProducts().get(i).getProductPrice()<=minPriceProduct){
+                tempProduct=productController.displayProducts().get(0);
+                productController.displayProducts().get(0).equals(productController.displayProducts().get(i));
+                productController.displayProducts().get(i).equals(tempProduct);
+            }
+        }
+        displayProductList();
     }
 }
 
