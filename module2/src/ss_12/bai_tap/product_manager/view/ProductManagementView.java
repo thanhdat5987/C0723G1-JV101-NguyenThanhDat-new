@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class ProductManagementView {
     private Scanner scanner = new Scanner(System.in);
     private ProductController<Product> productController = new ProductController<>();
-    private int indexName;
-    private int indexId;
 
     public void displayMenu() {
         System.out.println("Please choose function:");
