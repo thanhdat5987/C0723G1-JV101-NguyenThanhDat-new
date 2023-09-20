@@ -19,7 +19,7 @@ public class ProductManagementView {
         System.out.println("4. Display product list");
         System.out.println("5. Search a product by Name");
         System.out.println("6. Sort product list down by price");
-        System.out.println("7. Sort product list down by price");
+        System.out.println("7. Sort product list up by price");
         System.out.println("8. Exit");
 
         int choose = Integer.parseInt(scanner.nextLine());
