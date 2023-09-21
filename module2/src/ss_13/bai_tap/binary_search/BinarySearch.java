@@ -7,7 +7,7 @@ public class BinarySearch {
         int[] myArray = {1, 3, 2, 4, 5, 9, 7, 8, 6, 10, 12, 15, 17, 19};
         sortArray(myArray);
         System.out.println(Arrays.toString(myArray));
-        System.out.println(searchByBinary(myArray, 8, 0, myArray.length - 1));
+        System.out.println(searchByBinary(myArray, 19, 0, myArray.length - 1));
     }
 
     private static void sortArray(int[] array) {
@@ -25,7 +25,7 @@ public class BinarySearch {
 
     private static int searchByBinary(int[] array, int number, int left, int right) {
         while (right >= left) {
-            int mid = (left + right) / 2;
+            int mid = left +(right - left) / 2;
             if (array[mid] == number) {
                 return mid;
             } else if (number > array[mid]) {
