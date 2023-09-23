@@ -3,7 +3,7 @@ package ss_15.bai_tap.illegal_triangle_exception;
 import java.util.Scanner;
 
 public class Triangle {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public void checkTriangle() {
         do {
