@@ -27,21 +27,23 @@ public class ReadAndWriteFile {
         }
         return numbers;
     }
-    public void writeFile(String filePath, int max){
-        try{
+
+    public void writeFile(String filePath, int max) {
+        try {
             FileWriter writer = new FileWriter(filePath, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write("Max value is: "+max);
+            bufferedWriter.write("Max value is: " + max);
             bufferedWriter.newLine();
             bufferedWriter.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static int findMax(List<Integer> numbers){
+
+    public static int findMax(List<Integer> numbers) {
         int max = numbers.get(0);
-        for(int i =0;i< numbers.size(); i++){
-            if(max<numbers.get(i)){
+        for (int i = 0; i < numbers.size(); i++) {
+            if (max < numbers.get(i)) {
                 max = numbers.get(i);
             }
         }
