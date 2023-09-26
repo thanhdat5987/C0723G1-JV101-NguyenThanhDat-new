@@ -7,15 +7,17 @@ public class Product implements Serializable {
     private String name;
     private int price;
     private String brand;
+    private String description;
 
     public Product() {
     }
 
-    public Product(int id, String name, int price, String brand) {
+    public Product(int id, String name, int price, String brand, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.brand = brand;
+        this.description =description;
     }
 
     public int getId() {
@@ -50,6 +52,14 @@ public class Product implements Serializable {
         this.brand = brand;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -57,6 +67,7 @@ public class Product implements Serializable {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", brand='" + brand + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

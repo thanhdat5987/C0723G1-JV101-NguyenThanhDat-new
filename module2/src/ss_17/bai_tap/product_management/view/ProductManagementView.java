@@ -59,11 +59,21 @@ public class ProductManagementView {
         } while (true);
         System.out.println("Enter name of product:");
         String newName = scanner.nextLine();
-        System.out.println("Enter price of product");
-        int newPrice = Integer.parseInt(scanner.nextLine());
+        int newPrice;
+        do {
+            try {
+                System.out.println("Enter price of product");
+                newPrice = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("NumberFormat Exception: invalid input string, please enter again");
+            }
+        } while (true);
+        System.out.println("Enter brand of product: ");
+        String newBrand = scanner.nextLine();
         System.out.println("Enter product description: ");
         String newProductDescription = scanner.nextLine();
-        Product newProduct = new Product(newId, newName, newPrice, newProductDescription);
+        Product newProduct = new Product(newId, newName, newPrice, newBrand, newProductDescription);
         productController.addProduct(newProduct);
     }
 
@@ -77,21 +87,20 @@ public class ProductManagementView {
         String findingName;
         int productIndex;
         do {
-            try{
+            try {
                 System.out.println("Enter product name that you want to find ");
                 findingName = scanner.nextLine();
-                productIndex=findIndexByName(findingName);
-                if(productIndex==-1){
+                productIndex = findIndexByName(findingName);
+                if (productIndex == -1) {
                     System.out.println("Can't find product");
-                }else {
+                } else {
                     System.out.println(productController.getProduct(productIndex));
                     break;
                 }
-            }catch (NumberFormatException e){
-                System.out.println(e.getMessage()+"please re-enter name of product");
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + "please re-enter name of product");
             }
         } while (true);
-
     }
 
     boolean checkId(int id) {
