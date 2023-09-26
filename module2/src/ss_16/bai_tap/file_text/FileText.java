@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileText {
-    public static final String SOURCE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/source_file.txt";
-    public static final String TARGET_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/target_file11.txt";
+    private static final String SOURCE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/source_file.txt";
+    private static final String TARGET_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/target_file11.txt";
 
     public List<String> readFile(String fileSourcePath) {
         List<String> string = new ArrayList<>();
@@ -17,9 +17,9 @@ public class FileText {
                 throw new FileNotFoundException();
             }
             BufferedReader br = new BufferedReader(new FileReader(fileSource));
-            String character = "";
-            while ((character = br.readLine()) != null) {
-                string.add(character);
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                string.add(line);
             }
             br.close();
         } catch (Exception e) {
