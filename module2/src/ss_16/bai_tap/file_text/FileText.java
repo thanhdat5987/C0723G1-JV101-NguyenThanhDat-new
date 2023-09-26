@@ -7,36 +7,44 @@ import java.util.Scanner;
 
 public class FileText {
     private static final String SOURCE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/source_file.txt";
-    private static final String TARGET_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/target_file11.txt";
+    private static final String TARGET_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_16/bai_tap/file_text/target_file.txt";
 
     public List<String> readFile(String fileSourcePath) {
         List<String> string = new ArrayList<>();
+        BufferedReader bufferedReader = null;
         try {
             File fileSource = new File(fileSourcePath);
             if (!fileSource.exists()) {
                 throw new FileNotFoundException();
             }
-            BufferedReader br = new BufferedReader(new FileReader(fileSource));
+            bufferedReader = new BufferedReader(new FileReader(fileSource));
             String line = "";
-            while ((line = br.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 string.add(line);
             }
-            br.close();
         } catch (Exception e) {
             System.out.println("File is not exist or faulty contents");
+        } finally {
+            try {
+                if (bufferedReader != null)
+                    bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return string;
     }
 
     public void copyFile(String fileTargetPath, List<String> string) {
         int count = 0;
+        BufferedWriter bufferedWriter = null;
         try {
             File fileTarget = new File(fileTargetPath);
             if (fileTarget.exists()) {
                 System.out.println("Target file is exist, We will overwrite on this file");
                 fileTarget.delete();
                 FileWriter writer = new FileWriter(fileTarget, true);
-                BufferedWriter bufferedWriter = new BufferedWriter(writer);
+                bufferedWriter = new BufferedWriter(writer);
                 for (String s : string) {
                     for (int j = 0; j < s.length(); j++) {
                         bufferedWriter.write(s.charAt(j));
@@ -44,13 +52,21 @@ public class FileText {
                     }
                     bufferedWriter.newLine();
                 }
-                bufferedWriter.close();
-                System.out.println("Copy successfully " + count + " characters");
+
             } else {
                 System.out.println("Target file is not exits");
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                    System.out.println("Copy successfully " + count + " characters");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
