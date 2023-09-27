@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ProductRepositoryImpl extends FileUtil implements IProductRepository {
-    final String PRODUCT_LIST_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_17/bai_tap/product_management/model/product_list.txt";
+    private String PRODUCT_LIST_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/ss_17/bai_tap/product_management/model/product_list.txt";
 
     @Override
     public void addProduct(Product product) {

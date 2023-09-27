@@ -3,6 +3,7 @@ package ss_17.bai_tap.product_management.view;
 import ss_17.bai_tap.product_management.controller.ProductController;
 import ss_17.bai_tap.product_management.model.Product;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductManagementView {
@@ -10,38 +11,36 @@ public class ProductManagementView {
     private final ProductController productController = new ProductController();
 
     public void displayMenu() {
-        try {
-            System.out.println("Please enter your choice:");
-            System.out.println("1. Add product");
-            System.out.println("2. Display products list");
-            System.out.println("3. Search product");
-            System.out.println("4. Exit program");
-            int choose = Integer.parseInt(scanner.nextLine());
-            switch (choose) {
-                case 1:
-                    addProduct();
-                    displayMenu();
-                    break;
-                case 2:
-                    displayProductsList();
-                    displayMenu();
-                    break;
-                case 3:
-                    searchProduct();
-                    displayMenu();
-                    break;
-                case 4:
-                    System.exit(4);
-                default:
-                    displayMenu();
-                    break;
+        int choose = 0;
+        while (choose != 4) {
+            try {
+                System.out.println("-----Menu-----");
+                System.out.println("Please enter your choice:");
+                System.out.println("1. Add product");
+                System.out.println("2. Display products list");
+                System.out.println("3. Search product");
+                System.out.println("4. Exit program");
+                choose = Integer.parseInt(scanner.nextLine());
+                switch (choose) {
+                    case 1:
+                        addProduct();
+                        break;
+                    case 2:
+                        displayProductsList();
+                        break;
+                    case 3:
+                        searchProduct();
+                        break;
+                    case 4:
+                        System.exit(4);
+                    default:
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter menu by number");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter menu by number");
-            displayMenu();
         }
     }
-
 
     public void addProduct() {
         int newId;
@@ -78,8 +77,9 @@ public class ProductManagementView {
     }
 
     public void displayProductsList() {
-        for (int i = 0; i < productController.displayProducts().size(); i++) {
-            System.out.println(productController.displayProducts().get(i));
+        List<Product> products = productController.displayProducts();
+        for (Product product : products) {
+            System.out.println(product);
         }
     }
 
@@ -93,6 +93,7 @@ public class ProductManagementView {
                 productIndex = findIndexByName(findingName);
                 if (productIndex == -1) {
                     System.out.println("Can't find product");
+                    return;
                 } else {
                     System.out.println(productController.getProduct(productIndex));
                     break;
@@ -104,8 +105,9 @@ public class ProductManagementView {
     }
 
     boolean checkId(int id) {
-        for (int i = 0; i < productController.displayProducts().size(); i++) {
-            if (productController.displayProducts().get(i).getId() == id) {
+        List<Product> products = productController.displayProducts();
+        for (Product product : products) {
+            if (product.getId() == id) {
                 return true;
             }
         }
@@ -113,8 +115,9 @@ public class ProductManagementView {
     }
 
     int findIndexByName(String name) {
-        for (int i = 0; i < productController.displayProducts().size(); i++) {
-            if (productController.displayProducts().get(i).getName().equals(name)) {
+        List<Product> products = productController.displayProducts();
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getName().equals(name)) {
                 return i;
             }
         }
