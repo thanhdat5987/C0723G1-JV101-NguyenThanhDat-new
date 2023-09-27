@@ -1,15 +1,15 @@
-package ss_19.bai_tap.validate_class_name;
+package ss_19.bai_tap.validate_phone_number;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ClassNameExample {
+public class PhoneNumberExample {
     private static Pattern pattern;
     private Matcher matcher;
-    private static final String CLASS_NAME_REGEX = "^[CAP][0-9]{4}[GHILK]$";
+    private static final String PHONE_NUMBER_REGEX = "^[(][0-9]{2}[)][-][(][0][1-9]{9}[)]$";
 
-    public ClassNameExample() {
-        pattern = Pattern.compile(CLASS_NAME_REGEX);
+    public PhoneNumberExample() {
+        pattern = Pattern.compile(PHONE_NUMBER_REGEX);
     }
 
     public boolean validate(String regex) {
