@@ -3,9 +3,9 @@ package case_study.furama.view;
 import java.util.Scanner;
 
 public class FuramaManagementView {
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public void displayMainMenu() {
+    public static void displayMainMenu() {
         int choice = 0;
         while (choice != 6) {
             try {
@@ -20,7 +20,7 @@ public class FuramaManagementView {
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-                        displayEmployeeManagementMenu();
+                        EmployeeManagementView.displayEmployeeManagementMenu();
                         break;
                     case 2:
                         displayCustomerManagementMenu();
@@ -44,64 +44,9 @@ public class FuramaManagementView {
         }
     }
 
-    //Employee Management
-    public void displayEmployeeManagementMenu() {
-        int employeeManagementChoice = 0;
-        while (employeeManagementChoice != 6) {
-            try {
-                System.out.println("===Employee Management Menu===");
-                System.out.println("1.Display list employees");
-                System.out.println("2.Add new employee");
-                System.out.println("3.Edit employee");
-                System.out.println("4.Delete employee");
-                System.out.println("5.Search by name employee");
-                System.out.println("6.Return main Menu");
-                System.out.println("Please enter your choose");
-                employeeManagementChoice = Integer.parseInt(scanner.nextLine());
-                switch (employeeManagementChoice) {
-                    case 1:
-                        displayListEmployees();
-                        break;
-                    case 2:
-                        addNewEmployee();
-                        break;
-                    case 3:
-                        editEmployee();
-                        break;
-                    case 4:
-                        deleteEmployee();
-                        break;
-                    case 5:
-                        searchByNameEmployee();
-                        break;
-                    case 6:
-                        displayMainMenu();
-                        break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage() + ". Please enter your choice again!");
-            }
-
-        }
-    }
-
-    public void displayListEmployees() {
-    }
-
-    public void addNewEmployee() {
-    }
-
-    public void editEmployee() {
-    }
-
-    public void deleteEmployee() {
-    }
-
-    public void searchByNameEmployee() {
-    }
 
     // Customer Management
-    public void displayCustomerManagementMenu() {
+    public static void displayCustomerManagementMenu() {
         int customerManagementChoice = 0;
         while (customerManagementChoice != 6) {
             try {
@@ -140,22 +85,22 @@ public class FuramaManagementView {
         }
     }
 
-    public void displayListCustomers() {
+    public static void displayListCustomers() {
     }
 
-    public void addNewCustomer() {
+    public static void addNewCustomer() {
     }
 
-    public void editCustomer() {
+    public static void editCustomer() {
     }
 
-    public void deleteCustomer() {
+    public static void deleteCustomer() {
     }
 
-    public void searchByNameCustomer() {
+    public static void searchByNameCustomer() {
     }
 
-    public void displayFacilityManagementMenu() {
+    public static void displayFacilityManagementMenu() {
         int facilityManagementChoice = 0;
         while (facilityManagementChoice != 5) {
             try {
@@ -190,19 +135,19 @@ public class FuramaManagementView {
         }
     }
 
-    public void displayListFacilities() {
+    public static void displayListFacilities() {
     }
 
-    public void addNewFacility() {
+    public static void addNewFacility() {
     }
 
-    public void displayListFacilitiesMaintenance() {
+    public static void displayListFacilitiesMaintenance() {
     }
 
-    public void deleteFacility() {
+    public static void deleteFacility() {
     }
 
-    public void displayBookingManagementMenu() {
+    public static void displayBookingManagementMenu() {
         int bookingManagementChoice = 0;
         while (bookingManagementChoice != 6) {
             try {
@@ -241,22 +186,22 @@ public class FuramaManagementView {
         }
     }
 
-    public void addNewBooking() {
+    public static void addNewBooking() {
     }
 
-    public void displayListBooking() {
+    public static void displayListBooking() {
     }
 
-    public void creatNewContract() {
+    public static void creatNewContract() {
     }
 
-    public void displayListContracts() {
+    public static void displayListContracts() {
     }
 
-    public void editContract() {
+    public static void editContract() {
     }
 
-    public void displayPromotionManagementMenu() {
+    public static void displayPromotionManagementMenu() {
         int promotionManagementChoice = 0;
         while (promotionManagementChoice != 6) {
             try {
@@ -282,10 +227,10 @@ public class FuramaManagementView {
         }
     }
 
-    public void displayListCustomersUseService() {
+    public static void displayListCustomersUseService() {
     }
 
-    public void displayListCustomersGetVoucher() {
+    public static void displayListCustomersGetVoucher() {
     }
 }
 

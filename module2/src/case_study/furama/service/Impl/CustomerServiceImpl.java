@@ -1,32 +1,38 @@
 package case_study.furama.service.Impl;
 
+import case_study.furama.model.Customer;
+import case_study.furama.model.Person;
+import case_study.furama.repository.IPersonRepository;
+import case_study.furama.repository.impl.CustomerRepositoryImpl;
 import case_study.furama.service.IPersonService;
 
 import java.util.List;
 
-public class CustomerServiceImpl implements IPersonService {
-    @Override
-    public void editPerson(String employeeId) {
+public class CustomerServiceImpl implements IPersonService<Customer> {
+    private final IPersonRepository<Customer> customerRepository = new CustomerRepositoryImpl();
 
+    @Override
+    public void editPerson(int index) {
+        customerRepository.editPerson(index);
     }
 
     @Override
-    public void deletePeron(String employeeId) {
-
+    public void deletePerson(int index) {
+        customerRepository.deletePerson(index);
     }
 
     @Override
-    public Object getPerson(int id) {
-        return null;
+    public Customer getPerson(int id) {
+        return customerRepository.getPerson(id);
     }
 
     @Override
-    public void add(Object o) {
-
+    public void add(Customer customer) {
+        customerRepository.add(customer);
     }
 
     @Override
-    public List display() {
-        return null;
+    public List<Customer> display() {
+        return customerRepository.display();
     }
 }

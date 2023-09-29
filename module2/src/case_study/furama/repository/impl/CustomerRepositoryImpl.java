@@ -8,17 +8,17 @@ import java.util.List;
 
 public class CustomerRepositoryImpl implements IPersonRepository<Customer> {
     @Override
-    public void editPerson(String employeeId) {
+    public void editPerson(int index) {
 
     }
 
     @Override
-    public void deletePeron(String employeeId) {
+    public void deletePerson(int index) {
 
     }
 
     @Override
-    public Customer getPerson(int id) {
+    public Customer getPerson(int index) {
         return null;
     }
 
@@ -28,7 +28,7 @@ public class CustomerRepositoryImpl implements IPersonRepository<Customer> {
     }
 
     @Override
-    public List display() {
+    public List<Customer> display() {
         return null;
     }
 }

@@ -8,29 +8,30 @@ import case_study.furama.service.IPersonService;
 import java.util.List;
 
 public class EmployeeServiceImpl implements IPersonService<Employee> {
-    private final IPersonRepository<Employee> personRepository = new EmployeeRepositoryImpl();
-    @Override
-    public void editPerson(String employeeId) {
+    private final IPersonRepository<Employee> employeeRepository = new EmployeeRepositoryImpl();
 
+    @Override
+    public void editPerson(int index) {
+        employeeRepository.editPerson(index);
     }
 
     @Override
-    public void deletePeron(String employeeId) {
-
+    public void deletePerson(int index) {
+        employeeRepository.deletePerson(index);
     }
 
     @Override
     public Employee getPerson(int id) {
-        return null;
+        return employeeRepository.getPerson(id);
     }
 
     @Override
     public void add(Employee employee) {
-
+        employeeRepository.add(employee);
     }
 
     @Override
     public List<Employee> display() {
-        return null;
+        return employeeRepository.display();
     }
 }
