@@ -3,7 +3,6 @@ package case_study.furama.repository.impl;
 import case_study.furama.model.Employee;
 import case_study.furama.repository.IPersonRepository;
 import case_study.furama.util.FileUtil;
-import ss_5.bai_tap.access_modifier_02.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +38,10 @@ public class EmployeeRepositoryImpl implements IPersonRepository<Employee> {
 
     private List<Employee> readEmployeesFromFile() {
         List<String> data = FileUtil.readFile(EMPLOYEE_PATH);
-        return convertStringToStudents(data);
+        return convertStringToEmployee(data);
     }
 
-    private static List<Employee> convertStringToStudents(List<String> data) {
+    private static List<Employee> convertStringToEmployee(List<String> data) {
         List<Employee> employees = new ArrayList<>();
         for (String str : data) {
             String[] splittedStrs = str.split(COMMA);
@@ -63,7 +62,7 @@ public class EmployeeRepositoryImpl implements IPersonRepository<Employee> {
 
     private void writeEmployeesToFile(List<Employee> employees) {
         List<String> data = convertEmployeesToString(employees);
-        FileUtil.writteFile(EMPLOYEE_PATH, data);
+        FileUtil.writeFile(EMPLOYEE_PATH, data);
     }
 
     private static List<String> convertEmployeesToString(List<Employee> employees) {

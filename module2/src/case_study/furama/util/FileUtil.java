@@ -36,7 +36,7 @@ public class FileUtil {
             }
         }
     }
-    public static void writteFile(String pathname, List<String> data){
+    public static void writeFile(String pathname, List<String> data){
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try{

@@ -84,9 +84,9 @@ public class SelectionSort {
                 }
             }
             if(minIndex!=i){
-                temp=array[i];
-                array[i]=array[minIndex];
-                array[minIndex]=temp;
+                temp=array[minIndex];
+                array[minIndex]= array[i];
+                array[i]=temp;
             }
         }
     }
