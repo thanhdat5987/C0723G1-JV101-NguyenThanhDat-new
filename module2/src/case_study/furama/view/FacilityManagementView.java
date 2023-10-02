@@ -30,7 +30,6 @@ public class FacilityManagementView {
                         deleteFacility();
                         break;
                     case 5:
-                        FuramaManagementView.displayMainMenu();
                         break;
                 }
             } catch (NumberFormatException e) {

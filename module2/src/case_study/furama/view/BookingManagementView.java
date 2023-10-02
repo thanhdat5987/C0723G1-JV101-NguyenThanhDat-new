@@ -34,7 +34,6 @@ public class BookingManagementView {
                         editContract();
                         break;
                     case 6:
-                        FuramaManagementView.displayMainMenu();
                         break;
                 }
             } catch (NumberFormatException e) {

@@ -8,7 +8,7 @@ public class SelectionSort {
         System.out.println(Arrays.toString(array));
 //        bubbleSort(array);
 //        sortSelection(array);
-        selectionSort1(array);
+        selectionSort(array);
         System.out.println(Arrays.toString(array));
 
     }
@@ -61,7 +61,7 @@ public class SelectionSort {
 //
 //        }
 //    }
-    public static void bubbleSort1(int []array){
+    public static void bubbleSort(int []array){
         int temp;
         for (int i=0; i<array.length-1; i++){
             for(int j=1; j<array.length-i;j++){
@@ -73,7 +73,7 @@ public class SelectionSort {
             }
         }
     }
-    public static void selectionSort1(int[]array){
+    public static void selectionSort(int[]array){
         int minIndex;
         int temp;
         for(int i=0; i<array.length-1; i++){
@@ -90,7 +90,7 @@ public class SelectionSort {
             }
         }
     }
-    public static void sortInsertion1(int []array){
+    public static void sortInsertion(int []array){
         int x;
         int j;
         for(int i=1; i<array.length; i++){

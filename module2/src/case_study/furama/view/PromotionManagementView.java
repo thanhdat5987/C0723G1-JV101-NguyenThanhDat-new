@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class PromotionManagementView {
     final static private Scanner scanner = new Scanner(System.in);
+
     public static void displayPromotionManagementMenu() {
         int promotionManagementChoice = 0;
         while (promotionManagementChoice != 6) {
@@ -21,7 +22,6 @@ public class PromotionManagementView {
                         displayListCustomersGetVoucher();
                         break;
                     case 3:
-                        FuramaManagementView.displayMainMenu();
                         break;
                 }
             } catch (NumberFormatException e) {

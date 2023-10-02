@@ -9,13 +9,13 @@ import java.util.List;
 
 public class EmployeeRepositoryImpl implements IPersonRepository<Employee> {
 
-    public static final String EMPLOYEE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/case_study/furama/data/employee_list.csv";
+    public static final String EMPLOYEE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/case_study/furama/data/employee1.csv";
     public static final String COMMA = ",";
 
     @Override
-    public void editPerson(int index) {
+    public void editPerson(int index ) {
         List<Employee> employees = readEmployeesFromFile();
-        employees.add(employees.get(index));
+        employees.add(index,employees.get(index));
         writeEmployeesToFile(employees);
     }
 

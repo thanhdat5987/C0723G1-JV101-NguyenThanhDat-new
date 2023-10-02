@@ -34,7 +34,6 @@ public class CustomerManagementView {
                         searchByNameCustomer();
                         break;
                     case 6:
-                        FuramaManagementView.displayMainMenu();
                         break;
                 }
             } catch (NumberFormatException e) {

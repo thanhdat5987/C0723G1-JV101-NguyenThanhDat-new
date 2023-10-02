@@ -2,6 +2,7 @@ package case_study.furama.view;
 
 import case_study.furama.controller.EmployeeController;
 import case_study.furama.model.Employee;
+import case_study.furama.util.Validation;
 
 import java.util.List;
 import java.util.Scanner;
@@ -41,47 +42,29 @@ public class EmployeeManagementView {
                         searchByNameEmployee();
                         break;
                     case 6:
-                        FuramaManagementView.displayMainMenu();
                         break;
                 }
             } catch (NumberFormatException e) {
                 System.out.println(e.getMessage() + ". Please enter your choice again!");
             }
-
         }
     }
 
     public static void displayListEmployees() {
         List<Employee> employees = employeeController.display();
-        for(Employee employee: employees){
+        for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
 
     public static void addNewEmployee() {
-        String newEmployeeId;
-        do {
-            try {
-                System.out.println("Input product Id");
-                newEmployeeId = scanner.nextLine();
-                if (!checkId(newEmployeeId)) {
-                    break;
-                }
-                System.out.println("Id has been exist");
-            } catch (NumberFormatException e) {
-                System.out.println("NumberFormat Exception: invalid input string, please enter again");
-            }
-        } while (true);
-        System.out.println("Enter name of Employee:");
-        String newName = scanner.nextLine();
-        System.out.println("Enter dateOfBirth of Employee:");
-        String newDateOfBirth = scanner.nextLine();
+        String newEmployeeId = checkNewEmployeeId();
+        String newName= Validation.enterPersonName();
+        String newDateOfBirth = Validation.enterDateOfBirth();
         System.out.println("Enter Gender of Employee:");
         String newGender = scanner.nextLine();
-        System.out.println("Enter Citizen Id of Employee:");
-        String newCitizenId = scanner.nextLine();
-        System.out.println("Enter Phone number of Employee:");
-        String newPhoneNumber = scanner.nextLine();
+        String newCitizenId =Validation.enterCitizenId();
+        String newPhoneNumber = Validation.enterPhoneNumber();
         System.out.println("Enter Email of Employee:");
         String newEmail = scanner.nextLine();
         System.out.println("Enter Level of Employee: ");
@@ -103,13 +86,66 @@ public class EmployeeManagementView {
         }
         return false;
     }
+    static String checkNewEmployeeId(){
+        String newEmployeeId;
+        do {
+            newEmployeeId = Validation.enterEmployeeId();
+            if (!checkId(newEmployeeId)) {
+                return newEmployeeId;
+            } else {
+                System.out.println("Id has been exist, please enter again");
+            }
+        } while (true);
+    }
+    static String checkEmployeeId(){
+        String employeeId;
+        do {
+            employeeId = Validation.enterEmployeeId();
+            if (checkId(employeeId)) {
+                return employeeId;
+            } else {
+                System.out.println("Id has not been exist, please enter again");
+            }
+        } while (true);
+    }
 
     public static void editEmployee() {
+        String editingEmployeeId = checkEmployeeId();
+        String editingName= Validation.enterPersonName();
+        System.out.println("Re-Enter Date of Birth of Employee:");
+        String editingDateOfBirth = scanner.nextLine();
+        System.out.println("Re-Enter Gender of Employee:");
+        String editingGender = scanner.nextLine();
+        String editingCitizenId =Validation.enterCitizenId();
+        String editingPhoneNumber = Validation.enterPhoneNumber();
+        System.out.println("Re-Enter Email of Employee:");
+        String editingEmail = scanner.nextLine();
+        System.out.println("Re-Enter Level of Employee: ");
+        String editingLevel = scanner.nextLine();
+        System.out.println("Re-Enter Position of Employee: ");
+        String editingPosition = scanner.nextLine();
+        System.out.println("Re-Enter salary of Employee: ");
+        int editingSalary = Integer.parseInt(scanner.nextLine());
+        Employee editingEmployee = new Employee(editingEmployeeId, editingName, editingDateOfBirth, editingGender, editingCitizenId, editingPhoneNumber, editingEmail, editingLevel, editingPosition, editingSalary);
+        employeeController.editPerson(getIndex(editingEmployeeId));
     }
 
     public static void deleteEmployee() {
+        String deletingEmployeeId = checkEmployeeId();
+        employeeController.deletePerson(getIndex(deletingEmployeeId));
+    }
+    static int getIndex(String employeeId) {
+        List<Employee> employees = employeeController.display();
+        int findingId =-1;
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getEmployeeId().equals(employeeId)) {
+                findingId =i;
+            }
+        }
+        return findingId;
     }
 
     public static void searchByNameEmployee() {
     }
+
 }
