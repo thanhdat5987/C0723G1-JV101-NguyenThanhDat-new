@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CustomerRepositoryImpl implements IPersonRepository<Customer> {
     @Override
-    public void editPerson(int index) {
+    public void editPerson(int index, Customer customer) {
 
     }
 

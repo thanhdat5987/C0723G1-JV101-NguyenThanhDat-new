@@ -11,8 +11,8 @@ public class EmployeeServiceImpl implements IPersonService<Employee> {
     private final IPersonRepository<Employee> employeeRepository = new EmployeeRepositoryImpl();
 
     @Override
-    public void editPerson(int index) {
-        employeeRepository.editPerson(index);
+    public void editPerson(int index, Employee employee) {
+        employeeRepository.editPerson(index, employee);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class EmployeeServiceImpl implements IPersonService<Employee> {
     }
 
     @Override
-    public Employee getPerson(int id) {
-        return employeeRepository.getPerson(id);
+    public Employee getPerson(int index) {
+        return employeeRepository.getPerson(index);
     }
 
     @Override

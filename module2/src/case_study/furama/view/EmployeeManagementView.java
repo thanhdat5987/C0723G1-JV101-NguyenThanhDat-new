@@ -4,6 +4,7 @@ import case_study.furama.controller.EmployeeController;
 import case_study.furama.model.Employee;
 import case_study.furama.util.Validation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,7 +45,8 @@ public class EmployeeManagementView {
                     case 6:
                         break;
                 }
-            } catch (NumberFormatException e) {
+            }
+            catch (NumberFormatException e) {
                 System.out.println(e.getMessage() + ". Please enter your choice again!");
             }
         }
@@ -71,8 +73,7 @@ public class EmployeeManagementView {
         String newLevel = scanner.nextLine();
         System.out.println("Enter Position of Employee: ");
         String newPosition = scanner.nextLine();
-        System.out.println("Enter salary of Employee: ");
-        int newSalary = Integer.parseInt(scanner.nextLine());
+        int newSalary = Validation.enterSalary();
         Employee newEmployee = new Employee(newEmployeeId, newName, newDateOfBirth, newGender, newCitizenId, newPhoneNumber, newEmail, newLevel, newPosition, newSalary);
         employeeController.add(newEmployee);
     }
@@ -111,9 +112,9 @@ public class EmployeeManagementView {
 
     public static void editEmployee() {
         String editingEmployeeId = checkEmployeeId();
+        int editingIndex = getIndexById(editingEmployeeId);
         String editingName= Validation.enterPersonName();
-        System.out.println("Re-Enter Date of Birth of Employee:");
-        String editingDateOfBirth = scanner.nextLine();
+        String editingDateOfBirth = Validation.enterDateOfBirth();
         System.out.println("Re-Enter Gender of Employee:");
         String editingGender = scanner.nextLine();
         String editingCitizenId =Validation.enterCitizenId();
@@ -125,16 +126,16 @@ public class EmployeeManagementView {
         System.out.println("Re-Enter Position of Employee: ");
         String editingPosition = scanner.nextLine();
         System.out.println("Re-Enter salary of Employee: ");
-        int editingSalary = Integer.parseInt(scanner.nextLine());
-        Employee editingEmployee = new Employee(editingEmployeeId, editingName, editingDateOfBirth, editingGender, editingCitizenId, editingPhoneNumber, editingEmail, editingLevel, editingPosition, editingSalary);
-        employeeController.editPerson(getIndex(editingEmployeeId));
+        int editingSalary = Validation.enterSalary();
+        Employee editingEmployee = new Employee(editingEmployeeId,editingName,editingDateOfBirth,editingGender,editingCitizenId,editingPhoneNumber,editingEmail,editingLevel,editingPosition,editingSalary);
+        employeeController.editPerson(editingIndex, editingEmployee);
     }
 
     public static void deleteEmployee() {
         String deletingEmployeeId = checkEmployeeId();
-        employeeController.deletePerson(getIndex(deletingEmployeeId));
+        employeeController.deletePerson(getIndexById(deletingEmployeeId));
     }
-    static int getIndex(String employeeId) {
+    static int getIndexById(String employeeId) {
         List<Employee> employees = employeeController.display();
         int findingId =-1;
         for (int i = 0; i < employees.size(); i++) {
@@ -144,8 +145,23 @@ public class EmployeeManagementView {
         }
         return findingId;
     }
-
-    public static void searchByNameEmployee() {
+    static List<Integer> getIndexByName(String name) {
+        List<Employee> employees = employeeController.display();
+        List<Integer> indexList = new ArrayList<>();
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getName().equals(name)) {
+                indexList.add(i);
+            }
+        }
+        return indexList;
     }
 
+    public static void searchByNameEmployee() {
+        List<Employee> employees = employeeController.display();
+        String searchingName = Validation.enterPersonName();
+        List<Integer> indexList = getIndexByName(searchingName);
+        for(int i=0; i<indexList.size();i++){
+            System.out.println(employees.get(indexList.get(i)));
+        }
+    }
 }

@@ -170,4 +170,20 @@ public class Validation {
             return false;
         }
     }
+    public static int enterSalary(){
+        int salary;
+        do{
+            try{
+                System.out.println("Enter salary: (>0)");
+                salary = Integer.parseInt(scanner.nextLine());
+                if(salary>0){
+                    return salary;
+                }else {
+                    System.out.println("Salary must be greater than 0");
+                }
+            }catch (NumberFormatException e){
+                System.out.println(e.getMessage()+". Please enter number>0");
+            }
+        }while (true);
+    }
 }

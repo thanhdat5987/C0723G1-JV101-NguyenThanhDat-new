@@ -8,8 +8,8 @@ import java.util.List;
 
 public class EmployeeController {
     private final IPersonService<Employee> employeeService = new EmployeeServiceImpl();
-    public void editPerson(int index) {
-        employeeService.editPerson(index);
+    public void editPerson(int index, Employee employee) {
+        employeeService.editPerson(index, employee);
     }
 
 
@@ -17,8 +17,8 @@ public class EmployeeController {
         employeeService.deletePerson(index);
     }
 
-    public Employee getPerson(int id) {
-        return employeeService.getPerson(id);
+    public Employee getPerson(int index) {
+        return employeeService.getPerson(index);
     }
 
     public void add(Employee employee) {

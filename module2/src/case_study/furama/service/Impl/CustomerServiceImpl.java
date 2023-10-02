@@ -12,8 +12,8 @@ public class CustomerServiceImpl implements IPersonService<Customer> {
     private final IPersonRepository<Customer> customerRepository = new CustomerRepositoryImpl();
 
     @Override
-    public void editPerson(int index) {
-        customerRepository.editPerson(index);
+    public void editPerson(int index, Customer customer) {
+        customerRepository.editPerson(index, customer);
     }
 
     @Override

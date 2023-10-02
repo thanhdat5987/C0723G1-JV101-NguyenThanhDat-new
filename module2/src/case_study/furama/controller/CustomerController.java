@@ -8,8 +8,8 @@ import java.util.List;
 
 public class CustomerController {
     private final IPersonService<Customer> customerService= new CustomerServiceImpl();
-    public void editPerson(int index) {
-        customerService.editPerson(index);
+    public void editPerson(int index, Customer customer) {
+        customerService.editPerson(index,customer);
     }
 
 
