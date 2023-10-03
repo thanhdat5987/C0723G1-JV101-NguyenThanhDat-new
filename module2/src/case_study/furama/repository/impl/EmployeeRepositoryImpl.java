@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EmployeeRepositoryImpl implements IPersonRepository<Employee> {
 
-    public static final String EMPLOYEE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/case_study/furama/data/employee2.csv";
+    public static final String EMPLOYEE_PATH = "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module2/src/case_study/furama/data/employee.csv";
     public static final String COMMA = ",";
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class EmployeeManagementView {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     static EmployeeController employeeController = new EmployeeController();
 
     public static void displayEmployeeManagementMenu() {
@@ -45,8 +45,7 @@ public class EmployeeManagementView {
                     case 6:
                         break;
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println(e.getMessage() + ". Please enter your choice again!");
             }
         }
@@ -61,11 +60,11 @@ public class EmployeeManagementView {
 
     public static void addNewEmployee() {
         String newEmployeeId = checkNewEmployeeId();
-        String newName= Validation.enterPersonName();
+        String newName = Validation.enterPersonName();
         String newDateOfBirth = Validation.enterDateOfBirth();
         System.out.println("Enter Gender of Employee:");
         String newGender = scanner.nextLine();
-        String newCitizenId =Validation.enterCitizenId();
+        String newCitizenId = Validation.enterCitizenId();
         String newPhoneNumber = Validation.enterPhoneNumber();
         System.out.println("Enter Email of Employee:");
         String newEmail = scanner.nextLine();
@@ -87,7 +86,8 @@ public class EmployeeManagementView {
         }
         return false;
     }
-    static String checkNewEmployeeId(){
+
+    static String checkNewEmployeeId() {
         String newEmployeeId;
         do {
             newEmployeeId = Validation.enterEmployeeId();
@@ -98,7 +98,8 @@ public class EmployeeManagementView {
             }
         } while (true);
     }
-    static String checkEmployeeId(){
+
+    static String checkEmployeeId() {
         String employeeId;
         do {
             employeeId = Validation.enterEmployeeId();
@@ -113,11 +114,11 @@ public class EmployeeManagementView {
     public static void editEmployee() {
         String editingEmployeeId = checkEmployeeId();
         int editingIndex = getIndexById(editingEmployeeId);
-        String editingName= Validation.enterPersonName();
+        String editingName = Validation.enterPersonName();
         String editingDateOfBirth = Validation.enterDateOfBirth();
         System.out.println("Re-Enter Gender of Employee:");
         String editingGender = scanner.nextLine();
-        String editingCitizenId =Validation.enterCitizenId();
+        String editingCitizenId = Validation.enterCitizenId();
         String editingPhoneNumber = Validation.enterPhoneNumber();
         System.out.println("Re-Enter Email of Employee:");
         String editingEmail = scanner.nextLine();
@@ -127,41 +128,49 @@ public class EmployeeManagementView {
         String editingPosition = scanner.nextLine();
         System.out.println("Re-Enter salary of Employee: ");
         int editingSalary = Validation.enterSalary();
-        Employee editingEmployee = new Employee(editingEmployeeId,editingName,editingDateOfBirth,editingGender,editingCitizenId,editingPhoneNumber,editingEmail,editingLevel,editingPosition,editingSalary);
+        Employee editingEmployee = new Employee(editingEmployeeId, editingName, editingDateOfBirth, editingGender, editingCitizenId, editingPhoneNumber, editingEmail, editingLevel, editingPosition, editingSalary);
         employeeController.editPerson(editingIndex, editingEmployee);
     }
 
     public static void deleteEmployee() {
         String deletingEmployeeId = checkEmployeeId();
         employeeController.deletePerson(getIndexById(deletingEmployeeId));
+        System.out.println("Delete successfully!");
     }
+
     static int getIndexById(String employeeId) {
         List<Employee> employees = employeeController.display();
-        int findingId =-1;
+        int findingId = -1;
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getEmployeeId().equals(employeeId)) {
-                findingId =i;
+                findingId = i;
             }
         }
         return findingId;
     }
-    static List<Integer> getIndexByName(String name) {
+
+    private static List<Integer> indexList;
+
+    static void getIndexByName(String name) {
         List<Employee> employees = employeeController.display();
-        List<Integer> indexList = new ArrayList<>();
+        indexList = new ArrayList<>();
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getName().equals(name)) {
                 indexList.add(i);
             }
         }
-        return indexList;
     }
 
     public static void searchByNameEmployee() {
         List<Employee> employees = employeeController.display();
         String searchingName = Validation.enterPersonName();
-        List<Integer> indexList = getIndexByName(searchingName);
-        for(int i=0; i<indexList.size();i++){
-            System.out.println(employees.get(indexList.get(i)));
+        getIndexByName(searchingName);
+        if(!indexList.isEmpty()){
+            for (int i = 0; i < indexList.size(); i++) {
+                System.out.println(employees.get(indexList.get(i)));
+            }
+        }else {
+            System.out.println("Can't find the name " + searchingName);
         }
     }
 }

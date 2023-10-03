@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validation {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     public static final String EMPLOYEE_ID_REGEX = "^NV-[0-9]{4}$";
     public static final String CUSTOMER_ID_REGEX = "^KH-[0-9]{4}$";
 
