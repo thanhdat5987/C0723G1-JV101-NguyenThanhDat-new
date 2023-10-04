@@ -1,8 +1,5 @@
 package case_study.furama.util;
 
-import case_study.furama.model.Employee;
-
-import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +13,12 @@ public class Validation {
     public static final String PERSON_CITIZEN_ID_REGEX = "^([0-9]{9}|[0-9]{12})$";
     public static final String PHONE_NUMBER_REGEX = "^0[0-9]{9}$";
     public static final String DATE_OF_BIRTH_REGEX = "^(((0+[1-9]|[12][0-9]|3[0])[/]((0+[4|6|9])|1[1])[/]\\d{4}))|(((0+[1-9]|[12][0-9]|[3][0|1])[/]((0+[1|3|5|7|8])|1+[0|2])[/]\\d{4}))|(((0+[1-9]|[12][0-9]))[/]02)[/]\\d{4}$";
+
+    public static final String VILLA_SERVICE_ID_REGEX = "^SVVL-[0-9]{4}$";
+    public static final String HOUSE_SERVICE_ID_REGEX = "^SVHO-[0-9]{4}$";
+    public static final String ROOM_SERVICE_ID_REGEX = "^SVRO-[0-9]{4}$";
+    public static final String SERVICE_NAME_REGEX = "^[A-Z]([a-z]+)((\\s*[a-z]+))*$";
+
     public static boolean validateEmployeeId(String regex) {
         Pattern pattern = Pattern.compile(EMPLOYEE_ID_REGEX);
         Matcher matcher = pattern.matcher(regex);
@@ -50,6 +53,158 @@ public class Validation {
         Pattern pattern = Pattern.compile(DATE_OF_BIRTH_REGEX);
         Matcher matcher = pattern.matcher(regex);
         return matcher.matches();
+    }
+
+    public static boolean validateFacility(String facilityId, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(facilityId);
+        return matcher.matches();
+    }
+
+    public static String enterVillaServiceId() {
+        do {
+            System.out.println("Input Villa Service ID with format SVVL-xxxx (x is number)");
+            String villaServiceId = scanner.nextLine();
+            if (validateFacility(villaServiceId, VILLA_SERVICE_ID_REGEX)) {
+                return villaServiceId;
+            } else {
+                System.out.println("Please following format SVVL-xxxx");
+            }
+        } while (true);
+    }
+
+    public static String enterHouseServiceId() {
+        do {
+            System.out.println("Input House Service ID with format SVHO-xxxx (x is number)");
+            String houseServiceId = scanner.nextLine();
+            if (validateFacility(houseServiceId, HOUSE_SERVICE_ID_REGEX)) {
+                return houseServiceId;
+            } else {
+                System.out.println("Please following format SVHO-xxxx");
+            }
+        } while (true);
+    }
+
+    public static String enterRoomServiceId() {
+        do {
+            System.out.println("Input Room Service ID with format SVRO-xxxx (x is number)");
+            String roomServiceId = scanner.nextLine();
+            if (validateFacility(roomServiceId, ROOM_SERVICE_ID_REGEX)) {
+                return roomServiceId;
+            } else {
+                System.out.println("Please following format SVRO-xxxx");
+            }
+        } while (true);
+    }
+
+    public static String enterServiceName() {
+        do {
+            System.out.println("Input Service Name starting with Upper case letter, remain letter is lower case ");
+            String serviceName = scanner.nextLine();
+            if (validateFacility(serviceName, SERVICE_NAME_REGEX)) {
+                return serviceName;
+            } else {
+                System.out.println("Please following format: Service Name starting with Upper case letter, remain letter is lower case");
+            }
+        } while (true);
+    }
+
+    public static float enterUsableArea() {
+        do {
+            try {
+                System.out.println("Enter usable Area(m2 and >=30)");
+                float usableArea = Float.parseFloat(scanner.nextLine());
+                if (usableArea >= 30) {
+                    return usableArea;
+                } else {
+                    System.out.println("usable Area must be >=30");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ", please re-enter");
+            }
+        } while (true);
+    }
+    public static float enterSwimmingPoolArea() {
+        do {
+            try {
+                System.out.println("Enter Swimming pool area(m2 and >=30)");
+                float area = Float.parseFloat(scanner.nextLine());
+                if (area >= 30) {
+                    return area;
+                } else {
+                    System.out.println("Swimming pool Area must be >=30");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ", please re-enter");
+            }
+        } while (true);
+    }
+    public static int enterRentalCost(){
+        do {
+            try {
+                System.out.println("Enter rental cost >0");
+                int rentalCost = Integer.parseInt(scanner.nextLine());
+                if (rentalCost >0) {
+                    return rentalCost;
+                } else {
+                    System.out.println("rental cost must be >0");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ", please re-enter");
+            }
+        } while (true);
+    }
+    public static int enterCapacity(){
+        do {
+            try {
+                System.out.println("Enter capacity");
+                int capacity = Integer.parseInt(scanner.nextLine());
+                if (capacity >0&& capacity<20) {
+                    return capacity;
+                } else {
+                    System.out.println("capacity must be >0 and <20");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ", please re-enter");
+            }
+        } while (true);
+    }
+    public static int enterNumberOfFloor(){
+        do {
+            try {
+                System.out.println("Enter number of floor >0");
+                int numberOfFloor = Integer.parseInt(scanner.nextLine());
+                if (numberOfFloor >0) {
+                    return numberOfFloor;
+                } else {
+                    System.out.println("number of floor >0");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ", please re-enter");
+            }
+        } while (true);
+    }
+    public static String enterRoomStandard(){
+        do {
+            System.out.println("Enter room standard, starting with Upper case letter, remain letter is lower case ");
+            String roomStandard = scanner.nextLine();
+            if (validateFacility(roomStandard, SERVICE_NAME_REGEX)) {
+                return roomStandard;
+            } else {
+                System.out.println("Please following format: Room Standard starting with Upper case letter, remain letter is lower case");
+            }
+        } while (true);
+    }
+    public static String enterRentalType(){
+        do {
+            System.out.println("Enter rental type, starting with Upper case letter, remain letter is lower case ");
+            String rentalType = scanner.nextLine();
+            if (validateFacility(rentalType, SERVICE_NAME_REGEX)) {
+                return rentalType;
+            } else {
+                System.out.println("Please following format: rental type starting with Upper case letter, remain letter is lower case");
+            }
+        } while (true);
     }
 
     public static String enterEmployeeId() {
@@ -122,9 +277,9 @@ public class Validation {
             System.out.println("Enter date of birth, with format dd/mm/yyyy");
             dateOfBirth = scanner.nextLine();
             if (validateDateOfBirth(dateOfBirth)) {
-                if(checkLeapBirthYear(dateOfBirth)){
+                if (checkLeapBirthYear(dateOfBirth)) {
                     return dateOfBirth;
-                }else {
+                } else {
                     System.out.println("Please check year of birth if it is leap year or not");
                 }
             } else {
@@ -139,7 +294,7 @@ public class Validation {
             if (Integer.parseInt(spittedDateOfBirth[1]) == 2) {
                 if (Integer.parseInt(spittedDateOfBirth[0]) == 29) {
                     return true;
-                }else {
+                } else {
                     return false;
                 }
             }
@@ -147,7 +302,7 @@ public class Validation {
             if (Integer.parseInt(spittedDateOfBirth[1]) == 2) {
                 if (Integer.parseInt(spittedDateOfBirth[0]) == 28) {
                     return true;
-                }else {
+                } else {
                     return false;
                 }
             }
@@ -170,20 +325,21 @@ public class Validation {
             return false;
         }
     }
-    public static int enterSalary(){
+
+    public static int enterSalary() {
         int salary;
-        do{
-            try{
+        do {
+            try {
                 System.out.println("Enter salary: (>0)");
                 salary = Integer.parseInt(scanner.nextLine());
-                if(salary>0){
+                if (salary > 0) {
                     return salary;
-                }else {
+                } else {
                     System.out.println("Salary must be greater than 0");
                 }
-            }catch (NumberFormatException e){
-                System.out.println(e.getMessage()+". Please enter number>0");
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage() + ". Please enter number>0");
             }
-        }while (true);
+        } while (true);
     }
 }

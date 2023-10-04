@@ -1,6 +1,6 @@
 package case_study.furama.model;
 
-public class Villa extends Facility{
+public class Villa extends Facility {
     private String roomStandards;
     private float poolArea;
     private int numberOfFloor;

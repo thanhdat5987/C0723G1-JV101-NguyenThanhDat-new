@@ -1,6 +1,6 @@
 package case_study.furama.model;
 
-public class Room extends Facility{
+public class Room extends Facility {
     private String freeService;
 
     public Room(String serviceId, String serviceName, float usableArea, int rentalCost, int capacity, String rentalType, String freeService) {

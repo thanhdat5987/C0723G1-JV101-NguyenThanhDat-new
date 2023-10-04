@@ -1,8 +1,11 @@
 package case_study.furama.repository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface IFacilityRepository<E>extends IRepository<E>{
-List<E> displayFacilityMaintenance();
-void deleteFacility(int index);
+LinkedHashMap<E,Integer> displayFacilityMaintenance();
+void deleteFacility(E facility);
+LinkedHashMap<E,Integer> displayFacility();
+
 }
