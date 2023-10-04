@@ -2,6 +2,8 @@ package case_study.furama.view;
 
 import case_study.furama.controller.FacilityController;
 import case_study.furama.model.Facility;
+import case_study.furama.model.House;
+import case_study.furama.model.Room;
 import case_study.furama.model.Villa;
 import case_study.furama.util.Validation;
 
@@ -51,7 +53,7 @@ public class FacilityManagementView {
     public static void displayListFacilities() {
         LinkedHashMap<Facility, Integer> facilityList = facilityController.displayFacility();
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
-            System.out.println(entry.getKey() +", using time: "+entry.getValue());
+            System.out.println(entry.getKey() + ", using time: " + entry.getValue());
         }
     }
 
@@ -73,7 +75,7 @@ public class FacilityManagementView {
                         addNewHouse();
                         break;
                     case 3:
-                        addNewRom();
+                        addNewRoom();
                         break;
                     case 4:
                         break;
@@ -108,29 +110,70 @@ public class FacilityManagementView {
     }
 
     public static void addNewHouse() {
+        House newHouse = new House();
+        String houseServiceId = enterNewHouseServiceId();
+        newHouse.setServiceId(houseServiceId);
+        String houseServiceName = Validation.enterServiceName();
+        newHouse.setServiceName(houseServiceName);
+        float houseUsableArea = Validation.enterUsableArea();
+        newHouse.setUsableArea(houseUsableArea);
+        int rentalCost = Validation.enterRentalCost();
+        newHouse.setRentalCost(rentalCost);
+        int houseCapacity = Validation.enterCapacity();
+        newHouse.setCapacity(houseCapacity);
+        String rentalType = Validation.enterRentalType();
+        newHouse.setRentalType(rentalType);
+        String roomStandards = Validation.enterRoomStandard();
+        newHouse.setRoomStandards(roomStandards);
+        int numberOfFloor = Validation.enterNumberOfFloor();
+        newHouse.setNumberOfFloor(numberOfFloor);
+        facilityController.add(newHouse);
     }
 
-    public static void addNewRom() {
+    public static void addNewRoom() {
+        Room newRoom = new Room();
+        String roomServiceId = enterNewRoomServiceId();
+        newRoom.setServiceId(roomServiceId);
+        String houseServiceName = Validation.enterServiceName();
+        newRoom.setServiceName(houseServiceName);
+        float houseUsableArea = Validation.enterUsableArea();
+        newRoom.setUsableArea(houseUsableArea);
+        int rentalCost = Validation.enterRentalCost();
+        newRoom.setRentalCost(rentalCost);
+        int houseCapacity = Validation.enterCapacity();
+        newRoom.setCapacity(houseCapacity);
+        String rentalType = Validation.enterRentalType();
+        newRoom.setRentalType(rentalType);
+        String freeService = enterFreeService();
+        newRoom.setFreeService(freeService);
+        facilityController.add(newRoom);
     }
-
 
 
     public static void displayListFacilitiesMaintenance() {
         LinkedHashMap<Facility, Integer> facilityList = facilityController.displayFacility();
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
-            if(entry.getValue()>=5){
-                System.out.println(entry.getKey() +", using time: "+entry.getValue());
+            if (entry.getValue() >= 5) {
+                System.out.println(entry.getKey() + ", using time: " + entry.getValue());
             }
         }
     }
 
     public static void deleteFacility() {
-        String deletingFacilityId = checkVillaServiceId();
-        getKeyById(deletingFacilityId);
-        facilityController.deleteFacility(findingFacility);
+        String deletingFacilityId = checkServiceId();
+        final String confirm;
+        System.out.println("Are you sure? Enter Y to confirm");
+        confirm =scanner.nextLine();
+        if(confirm.equals("Y")){
+            getKeyById(deletingFacilityId);
+            facilityController.deleteFacility(findingFacility);
+            System.out.println("Delete successfully");
+        }
     }
-    private  static Facility findingFacility;
-    public static void getKeyById(String facilityServiceId){
+
+    private static Facility findingFacility;
+
+    public static void getKeyById(String facilityServiceId) {
         LinkedHashMap<Facility, Integer> facilityList = facilityController.displayFacility();
         for (Map.Entry<Facility, Integer> entry : facilityList.entrySet()) {
             if (entry.getKey().getServiceId().equals(facilityServiceId)) {
@@ -148,26 +191,58 @@ public class FacilityManagementView {
         }
         return false;
     }
-    public static String enterNewVillaServiceId(){
-        do{
+
+    public static String enterNewVillaServiceId() {
+        do {
             String newVillaServiceId;
             newVillaServiceId = Validation.enterVillaServiceId();
-            if(!checkFacilityServiceId(newVillaServiceId)){
+            if (!checkFacilityServiceId(newVillaServiceId)) {
                 return newVillaServiceId;
-            }else {
+            } else {
                 System.out.println("VillaService Id has been exist, please enter again");
             }
-        }while (true);
+        } while (true);
     }
-    public static String checkVillaServiceId(){
-        do{
-            String villaServiceId;
-            villaServiceId = Validation.enterVillaServiceId();
-            if(checkFacilityServiceId(villaServiceId)){
-                return villaServiceId;
-            }else {
-                System.out.println("VillaService Id has not been exist, please enter again");
+
+    public static String enterNewHouseServiceId() {
+        do {
+            String newHouseServiceId;
+            newHouseServiceId = Validation.enterHouseServiceId();
+            if (!checkFacilityServiceId(newHouseServiceId)) {
+                return newHouseServiceId;
+            } else {
+                System.out.println("HouseService Id has been exist, please enter again");
             }
-        }while (true);
+        } while (true);
+    }
+    public static String enterNewRoomServiceId() {
+        do {
+            String newRoomServiceId;
+            newRoomServiceId = Validation.enterHouseServiceId();
+            if (!checkFacilityServiceId(newRoomServiceId)) {
+                return newRoomServiceId;
+            } else {
+                System.out.println("Room Service Id has been exist, please enter again");
+            }
+        } while (true);
+    }
+    public static String enterFreeService(){
+        String freeService;
+        System.out.println("Enter Free service of room: ");
+        freeService = scanner.nextLine();
+        return freeService;
+    }
+
+    public static String checkServiceId() {
+        do {
+            String serviceId;
+            System.out.println("Enter service Id");
+            serviceId =scanner.nextLine();
+            if (checkFacilityServiceId(serviceId)) {
+                return serviceId;
+            } else {
+                System.out.println("Service Id has not been exist, please enter again");
+            }
+        } while (true);
     }
 }

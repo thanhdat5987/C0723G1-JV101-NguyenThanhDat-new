@@ -1,6 +1,8 @@
 package case_study.furama.repository.impl;
 
 import case_study.furama.model.Facility;
+import case_study.furama.model.House;
+import case_study.furama.model.Room;
 import case_study.furama.model.Villa;
 import case_study.furama.repository.IFacilityRepository;
 
@@ -16,6 +18,12 @@ public class FacilityRepositoryImpl implements IFacilityRepository<Facility> {
         facilityLinkedHashMap.put(villa2,5);
         Villa villa3 = new Villa("SVVL-0003","Thue",30,100,15,"Week","Normal",40,3);
         facilityLinkedHashMap.put(villa3,2);
+        House house1 = new House("SVHO-0001","Thue",30,100,15,"Week","Normal",3);
+        facilityLinkedHashMap.put(house1,5);
+        House house2 = new House("SVHO-0001","Thue",30,100,15,"Week","Normal",3);
+        facilityLinkedHashMap.put(house2,1);
+        Room room1 = new Room("SVRO-0001","Thue",30,100,15,"Week","Massage");
+        facilityLinkedHashMap.put(room1,1);
     }
     @Override
     public LinkedHashMap<Facility, Integer> displayFacilityMaintenance() {
