@@ -16,12 +16,12 @@ CREATE TABLE teacher (
     teacher_age INT,
     teacher_country VARCHAR(50)
 );
-insert into student(student_name,student_age, student_country) value ("Dat", 18, "Viet Nam");
-insert into student(student_name,student_age, student_country) value ("Toai", 20, "Viet Nam");
-insert into class(class_name) value ("C0723G1");
-insert into class(class_name) value ("C0823G1");
-insert into teacher(teacher_name, teacher_age, teacher_country)value("Phuong",25,"USA");
-insert into teacher(teacher_name, teacher_age, teacher_country)value("Chanh",35,"USA");
+insert into student(student_name,student_age, student_country) value("Dat", 18, "Viet Nam");
+insert into student(student_name,student_age, student_country) value("Toai", 20, "Viet Nam");
+insert into class(class_name) value("C0723G1");
+insert into class(class_name) value("C0823G1");
+insert into teacher(teacher_name, teacher_age, teacher_country) value("Phuong",25,"USA");
+insert into teacher(teacher_name, teacher_age, teacher_country) value("Chanh",35,"USA");
 SELECT 
     *
 FROM
