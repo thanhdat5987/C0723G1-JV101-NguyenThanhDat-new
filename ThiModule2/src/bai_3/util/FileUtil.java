@@ -1,6 +1,4 @@
-package de_mo.thuc_hanh_mvc1.util;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+package bai_3.util;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,28 +36,29 @@ public class FileUtil {
             }
         }
     }
-    public static void writeFile(List<String> data, String path){
+
+    public static void writeFile(List<String> data, String path) {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
-        try{
+        try {
             File file = new File(path);
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
-            for(String str : data){
+            for (String str : data) {
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
             }
-        }catch (IOException e){
-            throw new RuntimeException(e);
-        }finally {
-            try{
-                if(bufferedWriter!=null){
+        } catch (IOException e) {
+            throw new RuntimeException();
+        } finally {
+            try {
+                if (bufferedWriter != null) {
                     bufferedWriter.close();
                 }
-                if(fileWriter!=null){
+                if (fileWriter != null) {
                     fileWriter.close();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }

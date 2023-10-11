@@ -1,4 +1,4 @@
-package de_mo.thuc_hanh_mvc1.util;
+package de_mo.thuc_hanh_mvc2.util;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
@@ -7,33 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-    public static List<String> readFile(String path) {
+    public static List<String> readFile(String path){
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
-        try {
+        try{
             File file = new File(path);
-            if (!file.exists()) {
+            if(!file.exists()){
                 return new ArrayList<>();
             }
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
             List<String> data = new ArrayList<>();
             String str;
-            while ((str = bufferedReader.readLine()) != null) {
+            while ((str = bufferedReader.readLine())!=null){
                 data.add(str);
-            }
-            return data;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (bufferedReader != null) {
+            }return data;
+        }catch (IOException e){
+            throw new RuntimeException();
+        }finally {
+            try{
+                if(bufferedReader!=null){
                     bufferedReader.close();
                 }
-                if (fileReader != null) {
+                if(fileReader!=null){
                     fileReader.close();
                 }
-            } catch (IOException e) {
+            }catch (IOException e){
                 throw new RuntimeException(e);
             }
         }
@@ -45,7 +44,7 @@ public class FileUtil {
             File file = new File(path);
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
-            for(String str : data){
+            for(String str:data){
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
             }
@@ -60,7 +59,7 @@ public class FileUtil {
                     fileWriter.close();
                 }
             }catch (IOException e){
-                throw new RuntimeException(e);
+                throw new RuntimeException();
             }
         }
     }

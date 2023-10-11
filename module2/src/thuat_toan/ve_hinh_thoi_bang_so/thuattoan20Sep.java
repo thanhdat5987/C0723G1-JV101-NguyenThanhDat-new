@@ -7,15 +7,17 @@ import java.util.Objects;
 
 public class thuattoan20Sep {
     public static void main(String[] args) {
+       String result= solution("NguyenThanhDat");
+        System.out.println(result);
 
     }
 
-    String solution(String s) {
+   static String solution(String s) {
 
         String[] array = s.split("");
         String string = array[0].toLowerCase();
         for (int i = 1; i < array.length; i++) {
-            if (array[i] == array[i].toLowerCase()) {
+            if (array[i].equals(array[i].toLowerCase())) {
                 string += array[i];
             } else {
                 string += " " + array[i].toLowerCase();

@@ -1,20 +1,19 @@
 package de_mo;
 
+import com.sun.org.apache.xpath.internal.objects.XBoolean;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Test {
     public static void main(String[] args) {
-        int a = 5;
-        int b=0;
-
-        if(a == 5) {
-
-            ++a;
-
-            b = a++*5;
-
-        }
-
-        System.out.println(a);
-
-        System.out.println(b);
+        String a ="dat";
+        String b ="dat";
+        String c = new String("dat");
+        System.out.println(a==b);
+        System.out.println(a==c);
+        float d=5.5f;
+        int e=(int)d;
     }
+
 }

@@ -1,6 +1,5 @@
 package ss_7.bai_tap.colorable_shape;
-
-public abstract class Shape {
+ public abstract class Shape {
     private String color = "green";
     private boolean filled = true;
 

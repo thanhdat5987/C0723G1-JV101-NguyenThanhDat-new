@@ -13,7 +13,7 @@ public class Student {
         this.className = className;
     }
 
-    public Student() {
+     Student() {
     }
 
     public int getId() {

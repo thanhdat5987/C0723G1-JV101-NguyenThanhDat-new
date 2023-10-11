@@ -218,7 +218,7 @@ public class FacilityManagementView {
     public static String enterNewRoomServiceId() {
         do {
             String newRoomServiceId;
-            newRoomServiceId = Validation.enterHouseServiceId();
+            newRoomServiceId = Validation.enterRoomServiceId();
             if (!checkFacilityServiceId(newRoomServiceId)) {
                 return newRoomServiceId;
             } else {
