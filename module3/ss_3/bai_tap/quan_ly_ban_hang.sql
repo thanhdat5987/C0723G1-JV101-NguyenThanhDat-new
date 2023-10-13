@@ -40,25 +40,44 @@ SELECT
 FROM
     `order`;
 /*Hiển thị danh sách các khách hàng đã mua hàng */
-select distinct customer.* 
-from customer 
-join `order` on customer.customer_id = `order`.customer_id;
+SELECT DISTINCT
+    customer.*
+FROM
+    customer
+        JOIN
+    `order` ON customer.customer_id = `order`.customer_id;
 
 /* và danh sách sản phẩm được mua bởi các khách */
-select distinct product.* 
-from product
-join order_detail on product.product_id = order_detail.product_id;
+SELECT DISTINCT
+    product.*
+FROM
+    product
+        JOIN
+    order_detail ON product.product_id = order_detail.product_id;
 
 /*Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào*/
-select customer_name from customer
-customer 
-where customer_id not in(select customer_id from `order`);
+
+SELECT 
+    customer_name
+FROM
+    customer customer
+WHERE
+    customer_id NOT IN (SELECT 
+            customer_id
+        FROM
+            `order`);
 
 /*Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn (giá một hóa đơn được tính bằng tổng giá bán của từng loại mặt hàng xuất hiện trong hóa đơn. 
 Giá bán của từng loại được tính = odQTY*pPrice)
 */
 
-select order_detail.order_id, `order`.order_date, order_detail.order_quantity*product.product_price as amount
-from order_detail
-join product on order_detail.product_id = product.product_id
-join `order` on `order`.order_id = order_detail.order_id;
+SELECT 
+    order_detail.order_id,
+    `order`.order_date,
+    order_detail.order_quantity * product.product_price AS amount
+FROM
+    order_detail
+        JOIN
+    product ON order_detail.product_id = product.product_id
+        JOIN
+    `order` ON `order`.order_id = order_detail.order_id;
