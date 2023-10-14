@@ -1,5 +1,6 @@
 create database if not exists quan_ly_furama;
 use quan_ly_furama;
+drop database quan_ly_furama;
 CREATE TABLE vi_tri (
     ma_vi_tri INT PRIMARY KEY AUTO_INCREMENT,
     ten_vi_tri VARCHAR(45) NOT NULL UNIQUE
@@ -106,6 +107,8 @@ CREATE TABLE hop_dong_chi_tiet (
         REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem),
     so_luong INT NOT NULL
 );
+
+/*Task 1*/
 INSERT INTO vi_tri (ten_vi_tri)
 VALUES
 ('Quản Lý'),
@@ -153,3 +156,109 @@ VALUES
 ( 'Nguyễn Thị Hào', '1999-04-08', 0, '965656433', '0763212345', 'haohao99@gmail.com', '55 Nguyễn Văn Linh, Kon Tum',3),
 ( 'Trần Đại Danh', '1994-07-01', 1, '432341235', '0643343433', 'danhhai99@gmail.com', '24 Lý Thường Kiệt, Quảng Ngãi',1),
 ( 'Nguyễn Tâm Đắc', '1989-07-01', 1, '344343432', '0987654321', 'dactam@gmail.com', '22 Ngô Quyền, Đà Nẵng',2);
+insert into kieu_thue(ten_kieu_thue) value ('year'),('month'),('day'),('hour');
+insert into loai_dich_vu(ten_loai_dich_vu) value('villa'),('room'),('house');
+INSERT INTO dich_vu(ten_dich_vu, dien_tich, chi_phi_thue, so_nguoi_toi_da, ma_kieu_thue, ma_loai_dich_vu, tieu_chuan_phong, mo_ta_tien_nghi_khac, dien_tich_ho_boi, so_tang, dich_vu_mien_phi_di_kem)
+VALUES
+('Villa Beach Front', 25000, 1000000, 10, 3, 1, 'vip', 'Có hồ bơi', 500, 4, null),
+('House Princess 01', 14000, 5000000, 7, 2, 2, 'vip', 'Có thêm bếp nướng', null, 3, null),
+('Room Twin 01', 5000, 1000000, 2, 4, 3, 'normal', 'Có tivi', null, null, '1 Xe máy, 1 Xe đạp'),
+('Villa No Beach Front', 22000, 9000000, 8, 3, 1, 'normal', 'Có hồ bơi', 300, 3, null),
+('House Princess 02', 10000, 4000000, 5, 3, 2, 'normal', 'Có thêm bếp nướng', null, 2, null),
+('Room Twin 02', 3000, 900000, 2, 4, 3, 'normal', 'Có tivi', null, null, '1 Xe máy');
+INSERT INTO dich_vu_di_kem (ten_dich_vu_di_kem, gia, don_vi, trang_thai)
+VALUES
+('Karaoke', 10000, 'giờ', 'tiện nghi, hiện tại'),
+('Thuê xe máy', 10000, 'chiếc', 'hỏng 1 xe'),
+('Thuê xe đạp', 20000, 'chiếc', 'tốt'),
+('Buffet buổi sáng', 15000, 'suất', 'đầy đủ đồ ăn, tráng miệng'),
+('Buffet buổi trưa', 90000, 'suất', 'đầy đủ đồ ăn, tráng miệng'),
+('Buffet buổi tối', 16000, 'suất', 'đầy đủ đồ ăn, tráng miệng');
+
+insert into hop_dong (ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu)
+values
+('2020-12-08', '2020-12-08', 0, 3, 1, 3),
+('2020-07-14', '2020-07-21', 200000, 7, 3, 1),
+('2021-03-15', '2021-03-17', 50000, 3, 4, 2),
+('2021-01-14', '2021-01-18', 100000, 7, 5, 5),
+('2021-07-14', '2021-07-15', 0, 7, 2, 6),
+('2021-06-01', '2021-06-03', 0, 7, 7, 6),
+('2021-09-02', '2021-09-05', 100000, 7, 4, 4),
+('2021-06-17', '2021-06-18', 150000, 3, 4, 1),
+('2020-11-19', '2020-11-19', 0, 3, 4, 3),
+('2021-04-12', '2021-04-14', 0, 10, 3, 5),
+('2021-04-25', '2021-04-25', 0, 2, 2, 1),
+('2021-05-25', '2021-05-27', 0, 7, 10, 1);
+
+insert into hop_dong_chi_tiet (so_luong, ma_hop_dong, ma_dich_vu_di_kem)
+values
+(5, 2, 4),
+(8, 2, 5),
+(15, 2, 6),
+(1, 3, 1),
+(11, 3, 2),
+(1, 1, 3),
+(2, 1, 2),
+(2, 12, 2);
+
+/* 2.Hiển thị thông tin của tất cả nhân viên có trong hệ thống có TÊN (không phải là họ) bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 kí tự.*/
+SELECT 
+    *
+FROM
+    nhan_vien
+WHERE
+    (ho_ten REGEXP '\sH\w*$'
+        OR ho_ten REGEXP '\sT\w*$'
+        OR ho_ten REGEXP '\sK\w*$')
+        AND LENGTH(ho_ten) <= 15;
+
+/* 3.Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.*/
+SELECT 
+    *
+FROM
+    khach_hang
+WHERE
+    ((YEAR(CURDATE()) - YEAR(ngay_sinh)) BETWEEN 18 AND 50)
+        AND (dia_chi LIKE '% Đà Nẵng'
+        OR dia_chi LIKE '% Quảng Trị');
+
+/* 4.Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.*/
+SELECT 
+    khach_hang.ho_ten, COUNT(ma_hop_dong) AS so_lan_dat_phong
+FROM
+    khach_hang
+        JOIN
+    hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+        JOIN
+    loai_khach ON loai_khach.ma_loai_khach = khach_hang.ma_loai_khach
+WHERE
+    loai_khach.ten_loai_khach = 'Diamond'
+GROUP BY khach_hang.ma_khach_hang
+ORDER BY so_lan_dat_phong ASC;
+
+/*5.Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien 
+(Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) 
+cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra). */
+
+SELECT 
+    khach_hang.ma_khach_hang,
+    khach_hang.ho_ten,
+    loai_khach.ten_loai_khach,
+    hop_dong.ma_hop_dong,
+    hop_dong.ngay_lam_hop_dong,
+    hop_dong.ngay_ket_thuc,
+    (dich_vu.chi_phi_thue + dich_vu_di_kem.gia * hop_dong_chi_tiet.so_luong) AS tong_tien
+FROM
+    khach_hang
+        JOIN
+    loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+        LEFT JOIN
+    hop_dong ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+        LEFT JOIN
+    dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+        LEFT JOIN
+    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+        LEFT JOIN
+    dich_vu_di_kem ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem;
+
+
