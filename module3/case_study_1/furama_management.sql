@@ -1,6 +1,6 @@
 create database if not exists quan_ly_furama;
 use quan_ly_furama;
-drop database quan_ly_furama;
+/*drop database quan_ly_furama;*/
 CREATE TABLE vi_tri (
     ma_vi_tri INT PRIMARY KEY AUTO_INCREMENT,
     ten_vi_tri VARCHAR(45) NOT NULL UNIQUE
@@ -218,7 +218,7 @@ SELECT
 FROM
     khach_hang
 WHERE
-    ((YEAR(CURDATE()) - YEAR(ngay_sinh)) BETWEEN 18 AND 50)
+    ((YEAR(CURDATE()) - YEAR(ngay_sinh)) - (RIGHT(CURDATE(), 5) < RIGHT(ngay_sinh, 5)) BETWEEN 18 AND 50)
         AND (dia_chi LIKE '% Đà Nẵng'
         OR dia_chi LIKE '% Quảng Trị');
 
@@ -244,21 +244,26 @@ SELECT
     khach_hang.ma_khach_hang,
     khach_hang.ho_ten,
     loai_khach.ten_loai_khach,
-    hop_dong.ma_hop_dong,
     hop_dong.ngay_lam_hop_dong,
     hop_dong.ngay_ket_thuc,
-    (dich_vu.chi_phi_thue + dich_vu_di_kem.gia * hop_dong_chi_tiet.so_luong) AS tong_tien
+    (dich_vu.chi_phi_thue + ifnull(temp.tong_tien_dich_vu,0)) AS tong_tien
 FROM
-    khach_hang
+khach_hang
         JOIN
     loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
         LEFT JOIN
     hop_dong ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
         LEFT JOIN
     dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+		LEFT JOIN
+     (SELECT 
+    hop_dong_chi_tiet.ma_hop_dong AS ma_hop_dong,
+    SUM(dich_vu_di_kem.gia * hop_dong_chi_tiet.so_luong) AS tong_tien_dich_vu
+FROM
+    hop_dong_chi_tiet
         LEFT JOIN
-    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-        LEFT JOIN
-    dich_vu_di_kem ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem;
-
+    dich_vu_di_kem ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+GROUP BY hop_dong_chi_tiet.ma_hop_dong
+    ) AS temp ON hop_dong.ma_hop_dong = temp.ma_hop_dong;
+  
 

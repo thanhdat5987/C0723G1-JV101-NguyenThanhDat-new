@@ -74,10 +74,12 @@ Giá bán của từng loại được tính = odQTY*pPrice)
 SELECT 
     order_detail.order_id,
     `order`.order_date,
-    order_detail.order_quantity * product.product_price AS amount
+    SUM(order_detail.order_quantity * product.product_price) AS amount
 FROM
     order_detail
         JOIN
     product ON order_detail.product_id = product.product_id
         JOIN
-    `order` ON `order`.order_id = order_detail.order_id;
+    `order` ON `order`.order_id = order_detail.order_id
+GROUP BY `order`.order_id;
+    
