@@ -207,9 +207,9 @@ SELECT
 FROM
     nhan_vien
 WHERE
-    (ho_ten REGEXP '\sH\w*$'
-        OR ho_ten REGEXP '\sT\w*$'
-        OR ho_ten REGEXP '\sK\w*$')
+    (ho_ten REGEXP '\\sH\\w*$'
+        OR ho_ten REGEXP '\\sT\\w*$'
+        OR ho_ten REGEXP '\\sK\\w*$')
         AND LENGTH(ho_ten) <= 15;
 
 /* 3.Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.*/
@@ -237,8 +237,8 @@ GROUP BY khach_hang.ma_khach_hang
 ORDER BY so_lan_dat_phong ASC;
 
 /*5.Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien 
-(Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) 
-cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra). */
+(Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, 
+hop_dong_chi_tiet) cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra). */
 
 SELECT 
     khach_hang.ma_khach_hang,
@@ -265,6 +265,7 @@ FROM
     dich_vu_di_kem ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
 GROUP BY hop_dong_chi_tiet.ma_hop_dong
     ) AS temp ON hop_dong.ma_hop_dong = temp.ma_hop_dong;
+    
   /*6.Hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu 
   của tất cả các loại dịch vụ chưa từng được khách hàng thực hiện đặt từ quý 1 của năm 2021 (Quý 1 là tháng 1, 2, 3).
   */
@@ -283,7 +284,7 @@ FROM
   join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu 
   where(year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))) 
   and hop_dong.ngay_lam_hop_dong not in(select hop_dong.ngay_lam_hop_dong
-										classwhere (year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))))
+										class where (year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))))
   group by dich_vu.ma_dich_vu;
 
 /*7. Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu của tất cả các loại dịch vụ 
@@ -362,3 +363,28 @@ FROM
         LEFT JOIN
     hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
 GROUP BY hop_dong.ma_hop_dong;
+
+/* 11.	Hiển thị thông tin các dịch vụ đi kèm đã được sử dụng bởi những khách hàng có ten_loai_khach là “Diamond” 
+và có dia_chi ở “Vinh” hoặc “Quảng Ngãi”.*/
+SELECT 
+    dich_vu_di_kem.*
+FROM
+    dich_vu_di_kem
+        JOIN
+    hop_dong_chi_tiet ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+        JOIN
+    hop_dong ON hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+        JOIN
+    khach_hang ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+        JOIN
+    loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+WHERE
+    loai_khach.ten_loai_khach = 'Diamond'
+        AND (khach_hang.dia_chi LIKE '% Quảng Ngãi'
+        OR khach_hang.dia_chi LIKE '% Vinh')
+;
+/*12.	Hiển thị thông tin ma_hop_dong, ho_ten (nhân viên), ho_ten (khách hàng), so_dien_thoai (khách hàng), ten_dich_vu, 
+so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở dich_vu_di_kem), tien_dat_coc của tất cả các dịch vụ 
+đã từng được khách hàng đặt vào 3 tháng cuối năm 2020 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2021.*/
+
+select hop_dong.ma_hop_dong, nhan_vien.ho_ten, khach_hang.ho_ten, khach_hang.so_dien_thoai, loai_dich_vu.ten_dich_vu, sum(dich_vu_di_kem.ma_dich_vu_di_kem) as so_luong_dich_vu_di_kem
