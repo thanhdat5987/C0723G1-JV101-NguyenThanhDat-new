@@ -449,53 +449,54 @@ HAVING tong_so_luong_dvdk >= ALL (SELECT
         hop_dong_chi_tiet
     GROUP BY ma_dich_vu_di_kem);
 
-    /* 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
+    /* 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+    Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
     (được tính dựa trên việc count các ma_dich_vu_di_kem).*/
     SELECT 
     hop_dong.ma_hop_dong,
-    nhan_vien.ho_ten,
-    khach_hang.ho_ten,
-    khach_hang.so_dien_thoai,
-    loai_dich_vu.ten_loai_dich_vu,
-    SUM(dich_vu_di_kem.ma_dich_vu_di_kem) AS so_luong_dich_vu_di_kem,
-    hop_dong.tien_dat_coc
-FROM
-    hop_dong
-        LEFT JOIN
-    nhan_vien ON hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
-        LEFT JOIN
-    khach_hang ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
-        LEFT JOIN
-    dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-        LEFT JOIN
-    loai_dich_vu ON dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
-        LEFT JOIN
-    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-        LEFT JOIN
-    dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem;
+	loai_dich_vu.ten_loai_dich_vu,
+    dich_vu_di_kem.ten_dich_vu_di_kem,
+	sum(hop_dong_chi_tiet.so_luong) as so_lan_su_dung 
+    from hop_dong
+    join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+	join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+    join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+    join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+    group by hop_dong_chi_tiet.ma_dich_vu_di_kem
+    having so_lan_su_dung =1
+    ;
     
     /*15.	Hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, 
     so_dien_thoai, dia_chi mới chỉ lập được tối đa 3 hợp đồng từ năm 2020 đến 2021.*/
-    
-    SELECT 
-    hop_dong.ma_hop_dong,
+SELECT 
+    nhan_vien.ma_nhan_vien,
     nhan_vien.ho_ten,
-    khach_hang.ho_ten,
-    khach_hang.so_dien_thoai,
-    loai_dich_vu.ten_loai_dich_vu,
-    SUM(dich_vu_di_kem.ma_dich_vu_di_kem) AS so_luong_dich_vu_di_kem,
-    hop_dong.tien_dat_coc
+    trinh_do.ten_trinh_do,
+    bo_phan.ten_bo_phan,
+    nhan_vien.so_dien_thoai,
+    nhan_vien.dia_chi
 FROM
-    hop_dong
-        LEFT JOIN
-    nhan_vien ON hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
-        LEFT JOIN
-    khach_hang ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
-        LEFT JOIN
-    dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-        LEFT JOIN
-    loai_dich_vu ON dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
-        LEFT JOIN
-    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-        LEFT JOIN
-    dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem;
+    nhan_vien
+        JOIN
+    trinh_do ON nhan_vien.ma_trinh_do = trinh_do.ma_trinh_do
+        JOIN
+    bo_phan ON nhan_vien.ma_bo_phan = bo_phan.ma_bo_phan
+WHERE
+    nhan_vien.ma_nhan_vien IN (SELECT 
+            ma_nhan_vien
+        FROM
+            hop_dong
+        WHERE
+            (YEAR(ngay_lam_hop_dong) IN (2020 , 2021)))
+        AND nhan_vien.ma_nhan_vien IN (SELECT 
+            ma_nhan_vien
+        FROM
+            hop_dong
+        GROUP BY ma_nhan_vien
+        HAVING COUNT(ma_hop_dong) <= 3)
+    ;
+    
+    
+    
+    
+    
