@@ -212,7 +212,8 @@ WHERE
         OR ho_ten REGEXP '\\sK\\w*$')
         AND LENGTH(ho_ten) <= 15;
 
-/* 3.Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.*/
+/* 3.Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi 
+và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.*/
 SELECT 
     *
 FROM
@@ -222,7 +223,9 @@ WHERE
         AND (dia_chi LIKE '% Đà Nẵng'
         OR dia_chi LIKE '% Quảng Trị');
 
-/* 4.Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.*/
+/* 4.Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. 
+Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng.
+ Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.*/
 SELECT 
     khach_hang.ho_ten, COUNT(ma_hop_dong) AS so_lan_dat_phong
 FROM
@@ -267,7 +270,8 @@ GROUP BY hop_dong_chi_tiet.ma_hop_dong
     ) AS temp ON hop_dong.ma_hop_dong = temp.ma_hop_dong;
     
   /*6.Hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu 
-  của tất cả các loại dịch vụ chưa từng được khách hàng thực hiện đặt từ quý 1 của năm 2021 (Quý 1 là tháng 1, 2, 3).
+  của tất cả các loại dịch vụ chưa từng được khách hàng thực hiện đặt từ quý 1 của năm 2021 
+  (Quý 1 là tháng 1, 2, 3).
   */
   SELECT 
     dich_vu.ma_dich_vu,
@@ -280,11 +284,10 @@ FROM
   left join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
   left join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
   where (dich_vu.ma_dich_vu not in(select dich_vu.ma_dich_vu 
-  from dich_vu 
-  join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu 
-  where(year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))) 
-  and hop_dong.ngay_lam_hop_dong not in(select hop_dong.ngay_lam_hop_dong
-										class where (year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))))
+									from dich_vu 
+									join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu 
+									where(year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))) 
+		)
   group by dich_vu.ma_dich_vu;
 
 /*7. Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu của tất cả các loại dịch vụ 
