@@ -283,7 +283,7 @@ FROM
   join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu 
   where(year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))) 
   and hop_dong.ngay_lam_hop_dong not in(select hop_dong.ngay_lam_hop_dong
-										where (year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))))
+										classwhere (year(ngay_lam_hop_dong)=2021 and month(ngay_lam_hop_dong)in (1,2,3))))
   group by dich_vu.ma_dich_vu;
 
 /*7. Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu của tất cả các loại dịch vụ 
