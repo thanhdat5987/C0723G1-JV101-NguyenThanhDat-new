@@ -502,7 +502,62 @@ WHERE
         HAVING COUNT(ma_hop_dong) <= 3)
     ;
     
-    
+    /*16.Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2019 đến năm 2021.*/
+    -- set sql_safe_updates =0;
+CREATE VIEW w_nhan_vien_co_duoc_hop_dong AS
+    SELECT DISTINCT
+        nhan_vien.ma_nhan_vien AS ma_nhan_vien
+    FROM
+        nhan_vien
+            JOIN
+        hop_dong ON hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
+    WHERE
+        YEAR(hop_dong.ngay_lam_hop_dong) IN (2019 , 2020, 2021);
+DELETE FROM nhan_vien 
+WHERE
+    ma_nhan_vien NOT IN (SELECT 
+        ma_nhan_vien
+    FROM
+        w_nhan_vien_co_duoc_hop_dong);
+/* 17.	Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond,
+ chỉ cập nhật những khách hàng đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ. */
+CREATE VIEW w_khach_hang_01 AS
+    SELECT 
+        khach_hang.ma_khach_hang,
+        khach_hang.ho_ten,
+        khach_hang.ma_Loai_khach,
+        loai_khach.ten_loai_khach,
+        SUM((dich_vu.chi_phi_thue + IFNULL(temp.tong_tien_dich_vu, 0))) AS tong_tien
+    FROM
+        khach_hang
+            JOIN
+        loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+            LEFT JOIN
+        hop_dong ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+            LEFT JOIN
+        dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+            LEFT JOIN
+        (SELECT 
+            hop_dong_chi_tiet.ma_hop_dong AS ma_hop_dong,
+                SUM(dich_vu_di_kem.gia * hop_dong_chi_tiet.so_luong) AS tong_tien_dich_vu
+        FROM
+            hop_dong_chi_tiet
+        LEFT JOIN dich_vu_di_kem ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+        GROUP BY hop_dong_chi_tiet.ma_hop_dong) AS temp ON hop_dong.ma_hop_dong = temp.ma_hop_dong
+    WHERE
+        YEAR(ngay_lam_hop_dong) = 2021
+            AND loai_khach.ten_loai_khach = 'Platinium'
+    GROUP BY (khach_hang.ma_khach_hang)
+    HAVING tong_tien > 1000000
+    ;
+UPDATE khach_hang 
+SET 
+    ma_loai_khach = 1
+WHERE
+    ma_khach_hang IN (SELECT 
+            ma_khach_hang
+        FROM
+            w_khach_hang_01);
     
     
     
