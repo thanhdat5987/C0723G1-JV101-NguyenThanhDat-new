@@ -452,18 +452,24 @@ HAVING tong_so_luong_dvdk >= ALL (SELECT
     /* 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
     Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
     (được tính dựa trên việc count các ma_dich_vu_di_kem).*/
-    SELECT 
+    SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+SELECT 
     hop_dong_chi_tiet.ma_hop_dong,
-	loai_dich_vu.ten_loai_dich_vu,
-    dich_vu_di_kem.ten_dich_vu_di_kem
-	-- count(hop_dong_chi_tiet.so_luong) as so_lan_su_dung 
-    from hop_dong
-    join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-	join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-    join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
-    join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
-    -- group by hop_dong_chi_tiet.ma_dich_vu_di_kem
-    -- having count(hop_dong_chi_tiet.so_luong) =1
+    loai_dich_vu.ten_loai_dich_vu,
+    dich_vu_di_kem.ten_dich_vu_di_kem,
+    COUNT(hop_dong_chi_tiet.ma_dich_vu_di_kem) AS so_lan_su_dung
+FROM
+    hop_dong
+        JOIN
+    dich_vu ON hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+        JOIN
+    hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+        JOIN
+    loai_dich_vu ON dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
+        JOIN
+    dich_vu_di_kem ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem
+HAVING so_lan_su_dung = 1
     ;
     
     /*15.	Hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, 
