@@ -453,17 +453,17 @@ HAVING tong_so_luong_dvdk >= ALL (SELECT
     Thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
     (được tính dựa trên việc count các ma_dich_vu_di_kem).*/
     SELECT 
-    hop_dong.ma_hop_dong,
+    hop_dong_chi_tiet.ma_hop_dong,
 	loai_dich_vu.ten_loai_dich_vu,
-    dich_vu_di_kem.ten_dich_vu_di_kem,
-	sum(hop_dong_chi_tiet.so_luong) as so_lan_su_dung 
+    dich_vu_di_kem.ten_dich_vu_di_kem
+	-- count(hop_dong_chi_tiet.so_luong) as so_lan_su_dung 
     from hop_dong
     join dich_vu on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
 	join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
     join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu
     join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
-    group by hop_dong_chi_tiet.ma_dich_vu_di_kem
-    having so_lan_su_dung =1
+    -- group by hop_dong_chi_tiet.ma_dich_vu_di_kem
+    -- having count(hop_dong_chi_tiet.so_luong) =1
     ;
     
     /*15.	Hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, 
