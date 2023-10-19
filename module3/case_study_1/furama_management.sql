@@ -560,12 +560,40 @@ WHERE
             w_khach_hang_01);
             
 /*18.Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).*/
-create VIEW khach_hang_02 as
-select distinct khach_hang.ma_khach_hang
-from khach_hang 
-join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
-where year(hop_dong.ngay_lam_hop_dong)<2021;
-delete from khach_hang where ma_khach_hang in (select ma_khach_hang from khach_hang_02);
+CREATE VIEW khach_hang_02 AS
+    SELECT DISTINCT
+        khach_hang.ma_khach_hang
+    FROM
+        khach_hang
+            JOIN
+        hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+    WHERE
+        YEAR(hop_dong.ngay_lam_hop_dong) < 2021;
+DELETE FROM khach_hang 
+WHERE
+    ma_khach_hang IN (SELECT 
+        ma_khach_hang
+    FROM
+        khach_hang_02);
+/* 19.	Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.*/
+CREATE VIEW w_dvdk_su_dung_tren_10_lan AS
+    SELECT 
+        dich_vu_di_kem.ma_dich_vu_di_kem
+    FROM
+        dich_vu_di_kem
+            JOIN
+        hop_dong_chi_tiet ON dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+    GROUP BY (dich_vu_di_kem.ma_dich_vu_di_kem)
+    HAVING SUM(hop_dong_chi_tiet.so_luong) > 10
+;
+UPDATE dich_vu_di_kem 
+SET 
+    gia = gia * 2
+WHERE
+    ma_dich_vu_di_kem IN (SELECT 
+            ma_dich_vu_di_kem
+        FROM
+            w_dvdk_su_dung_tren_10_lan);
 
 /*20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
  thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.*/
