@@ -679,6 +679,7 @@ call sp_them_moi_hop_dong_2('2023-10-16','2023-10-19',100,1,2,3);
 
 /* 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
 Lưu ý: Đối với MySQL thì sử dụng SIGNAL hoặc ghi log thay cho việc ghi ở console.*/
+
 CREATE TABLE lich_su_xoa_hop_dong (
     id INT AUTO_INCREMENT PRIMARY KEY,
     remain_records INT,
@@ -695,7 +696,4 @@ select count(ma_hop_dong) into total_records from hop_dong;
 insert into lich_su_xoa_hop_dong(remain_records, update_day) value (total_records,now() );
 end //
 delimiter ;
-DELETE FROM hop_dong 
-WHERE
-    ma_hop_dong = 20;
-drop trigger tr_xoa_hop_dong;
+
