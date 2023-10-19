@@ -616,3 +616,76 @@ UNION SELECT
 FROM
     khach_hang;
     
+/*21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Gia Lai” 
+và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “2020-12-08”.*/    
+
+CREATE VIEW v_nhan_vien AS
+    SELECT 
+        nhan_vien.*
+    FROM
+        nhan_vien
+            JOIN
+        hop_dong ON nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+    WHERE
+        dia_chi LIKE '% Gia Lai'
+            AND DATE(hop_dong.ngay_lam_hop_dong) = '2020-12-08';
+            
+/*
+22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” 
+đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
+*/
+update v_nhan_vien set dia_chi ="Liên Chiểu";
+/*23.Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang 
+được truyền vào như là 1 tham số của sp_xoa_khach_hang.*/
+delimiter //
+create procedure sp_xoa_khach_hang (id int)
+begin
+delete from khach_hang where ma_khach_hang = id;
+end //
+delimiter ;
+call sp_xoa_khach_hang(1);
+/*
+24.	Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong với yêu cầu sp_them_moi_hop_dong 
+phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, với nguyên tắc không được trùng khóa chính 
+và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+*/
+
+-- c1
+delimiter //
+create procedure sp_them_moi_hop_dong(nlhd DATETIME,nkt DATETIME,tdc DOUBLE ,mnv INT ,mkh INT ,mdv INT )
+    begin
+    if (exists (select ma_nhan_vien from nhan_vien where ma_nhan_vien = mnv) and exists (select ma_khach_hang from khach_hang where ma_khach_hang = mkh) and exists  (select ma_dich_vu from dich_vu where ma_dich_vu = mdv))
+    then insert into hop_dong (ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu) 
+	values(nlhd, nkt, tdc, mnv, mkh, mdv);
+    end if ;
+    end //
+delimiter ;
+call sp_them_moi_hop_dong('2023-10-10','2023-10-19',100,1,2,1);
+-- c2
+delimiter //
+create procedure sp_them_moi_hop_dong_2(nlhd DATETIME,nkt DATETIME,tdc DOUBLE ,mnv INT ,mkh INT ,mdv INT )
+    begin
+    if (mnv in (select ma_nhan_vien from nhan_vien) and mkh in (select ma_khach_hang from khach_hang) and mdv in (select ma_dich_vu from dich_vu))
+    then insert into hop_dong (ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu) 
+	values(nlhd, nkt, tdc, mnv, mkh, mdv);
+	else 
+	select 'du lieu khong hop le';
+    end if ;
+    end //
+delimiter ;
+call sp_them_moi_hop_dong_2('2023-10-16','2023-10-19',100,1,2,3);
+
+/* 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
+Lưu ý: Đối với MySQL thì sử dụng SIGNAL hoặc ghi log thay cho việc ghi ở console.*/
+create table lich_su_xoa_hop_dong
+
+delimiter //
+create trigger tr_xoa_hop_dong
+after delete on hop_dong
+for each row
+begin
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Đã xoá 1 bản ghi!';
+end //
+delimiter ;
+delete from hop_dong where ma_hop_dong =14;
+drop trigger tr_xoa_hop_dong;
