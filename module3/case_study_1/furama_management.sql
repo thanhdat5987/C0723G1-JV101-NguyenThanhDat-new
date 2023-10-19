@@ -26,11 +26,11 @@ CREATE TABLE nhan_vien (
     ma_trinh_do INT NOT NULL,
     ma_bo_phan INT NOT NULL,
     FOREIGN KEY (ma_vi_tri)
-        REFERENCES vi_tri (ma_vi_tri),
+        REFERENCES vi_tri (ma_vi_tri)on delete cascade on update cascade,
     FOREIGN KEY (ma_trinh_do)
-        REFERENCES trinh_do (ma_trinh_do),
+        REFERENCES trinh_do (ma_trinh_do)on delete cascade on update cascade,
     FOREIGN KEY (ma_bo_phan)
-        REFERENCES bo_phan (ma_bo_phan)
+        REFERENCES bo_phan (ma_bo_phan)on delete cascade on update cascade
 );
 CREATE TABLE loai_khach (
     ma_loai_khach INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,7 +40,7 @@ CREATE TABLE khach_hang (
     ma_khach_hang INT PRIMARY KEY AUTO_INCREMENT,
     ma_loai_khach INT NOT NULL,
     FOREIGN KEY (ma_loai_khach)
-        REFERENCES loai_khach (ma_loai_khach),
+        REFERENCES loai_khach (ma_loai_khach)on delete cascade on update cascade,
     ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE NOT NULL,
     gioi_tinh BIT(1) NOT NULL,
@@ -66,9 +66,9 @@ CREATE TABLE dich_vu (
     ma_kieu_thue INT NOT NULL,
     ma_loai_dich_vu INT NOT NULL,
     FOREIGN KEY (ma_kieu_thue)
-        REFERENCES kieu_thue (ma_kieu_thue),
+        REFERENCES kieu_thue (ma_kieu_thue)on delete cascade on update cascade,
     FOREIGN KEY (ma_loai_dich_vu)
-        REFERENCES loai_dich_vu (ma_loai_dich_vu),
+        REFERENCES loai_dich_vu (ma_loai_dich_vu)on delete cascade on update cascade,
     tieu_chuan_phong VARCHAR(45) NOT NULL,
     mo_ta_tien_nghi_khac VARCHAR(45),
     dien_tich_ho_boi DOUBLE,
@@ -84,11 +84,11 @@ CREATE TABLE hop_dong (
     ma_khach_hang INT NOT NULL,
     ma_dich_vu INT NOT NULL,
     FOREIGN KEY (ma_nhan_vien)
-        REFERENCES nhan_vien (ma_nhan_vien),
+        REFERENCES nhan_vien (ma_nhan_vien)on delete cascade on update cascade,
     FOREIGN KEY (ma_khach_hang)
-        REFERENCES khach_hang (ma_khach_hang),
+        REFERENCES khach_hang (ma_khach_hang)on delete cascade on update cascade,
     FOREIGN KEY (ma_dich_vu)
-        REFERENCES dich_vu (ma_dich_vu)
+        REFERENCES dich_vu (ma_dich_vu)on delete cascade on update cascade
 );
 CREATE TABLE dich_vu_di_kem (
     ma_dich_vu_di_kem INT AUTO_INCREMENT PRIMARY KEY,
@@ -102,9 +102,9 @@ CREATE TABLE hop_dong_chi_tiet (
     ma_hop_dong INT NOT NULL,
     ma_dich_vu_di_kem INT NOT NULL,
     FOREIGN KEY (ma_hop_dong)
-        REFERENCES hop_dong (ma_hop_dong),
+        REFERENCES hop_dong (ma_hop_dong)on delete cascade on update cascade,
     FOREIGN KEY (ma_dich_vu_di_kem)
-        REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem),
+        REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem)on delete cascade on update cascade,
     so_luong INT NOT NULL
 );
 
@@ -558,6 +558,14 @@ WHERE
             ma_khach_hang
         FROM
             w_khach_hang_01);
+            
+/*18.Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).*/
+create VIEW khach_hang_02 as
+select distinct khach_hang.ma_khach_hang
+from khach_hang 
+join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+where year(hop_dong.ngay_lam_hop_dong)<2021;
+delete from khach_hang where ma_khach_hang in (select ma_khach_hang from khach_hang_02);
 
 /*20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
  thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.*/
