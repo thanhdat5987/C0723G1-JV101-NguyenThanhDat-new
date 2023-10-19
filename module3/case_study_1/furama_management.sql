@@ -634,7 +634,9 @@ CREATE VIEW v_nhan_vien AS
 22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” 
 đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
 */
-update v_nhan_vien set dia_chi ="Liên Chiểu";
+UPDATE v_nhan_vien 
+SET 
+    dia_chi = 'Liên Chiểu'
 /*23.Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang 
 được truyền vào như là 1 tham số của sp_xoa_khach_hang.*/
 delimiter //
@@ -677,15 +679,23 @@ call sp_them_moi_hop_dong_2('2023-10-16','2023-10-19',100,1,2,3);
 
 /* 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
 Lưu ý: Đối với MySQL thì sử dụng SIGNAL hoặc ghi log thay cho việc ghi ở console.*/
-create table lich_su_xoa_hop_dong
+CREATE TABLE lich_su_xoa_hop_dong (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    remain_records INT,
+    update_day DATETIME
+);
 
 delimiter //
 create trigger tr_xoa_hop_dong
 after delete on hop_dong
 for each row
 begin
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Đã xoá 1 bản ghi!';
+declare total_records int;
+select count(ma_hop_dong) into total_records from hop_dong;
+insert into lich_su_xoa_hop_dong(remain_records, update_day) value (total_records,now() );
 end //
 delimiter ;
-delete from hop_dong where ma_hop_dong =14;
+DELETE FROM hop_dong 
+WHERE
+    ma_hop_dong = 20;
 drop trigger tr_xoa_hop_dong;
