@@ -11,13 +11,15 @@
     align-content: center;
     padding-left: 50px;
 }
-.navbar{
+
+.navbar {
     background: #F5F5F5;
     height: 8%;
     justify-content: center;
     display: flex;
     margin-bottom: 5px;
 }
+
 .main {
     min-height: 84%;
 }
@@ -36,7 +38,7 @@
 .right {
     background: #F1F1F1;
     padding: 1%;
-    justify-content:center;
+    justify-content: center;
 }
 
 
