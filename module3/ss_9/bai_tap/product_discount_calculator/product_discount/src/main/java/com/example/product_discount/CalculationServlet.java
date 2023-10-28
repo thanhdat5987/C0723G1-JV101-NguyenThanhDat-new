@@ -21,6 +21,7 @@ public class CalculationServlet extends HttpServlet {
         req.setAttribute("description", description);
         req.setAttribute("price", price);
         req.setAttribute("discount_percent", discount_percent);
+        req.setAttribute("discount_amount", discount_amount);
         req.setAttribute("discount_price", discount_price);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/result.jsp");
         requestDispatcher.forward(req, resp);
