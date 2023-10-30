@@ -1,4 +1,4 @@
-package com.example.hien_thi_danh_sach_khach_hang;
+package com.example.danh_sach_khach_hang;
 
 import java.io.*;
 import javax.servlet.http.*;
