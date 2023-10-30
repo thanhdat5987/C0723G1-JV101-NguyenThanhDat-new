@@ -4,5 +4,6 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/module1/bai4/bai_tap/su_dung_git/GitProject" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/module1/bai4/bai_tap/su_dung_git/GitProject/C0723G1-JV101-NguyenThanhDat" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/module3/Case study/Index" vcs="Git" />
   </component>
 </project>
