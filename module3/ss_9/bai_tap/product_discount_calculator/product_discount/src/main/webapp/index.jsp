@@ -10,7 +10,7 @@
     <br>
     <input type="number" name="price" placeholder="Enter List Price" required min="0">
     <br>
-    <input type="number" name="discount_percent" placeholder="Enter Discount Percent" required min="0">
+    <input type="number" name="discountPercent" placeholder="Enter Discount Percent" required min="0">
     <br>
     <button type="submit">Send</button>
 </form>

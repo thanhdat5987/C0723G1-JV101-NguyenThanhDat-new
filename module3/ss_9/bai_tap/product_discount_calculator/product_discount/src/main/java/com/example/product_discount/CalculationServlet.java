@@ -15,14 +15,14 @@ public class CalculationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String description = req.getParameter("description");
         int price = Integer.parseInt(req.getParameter("price"));
-        int discount_percent = Integer.parseInt(req.getParameter("discount_percent"));
-        double discount_amount = price * discount_percent * 0.01;
-        double discount_price = price - discount_amount;
+        int discountPercent = Integer.parseInt(req.getParameter("discountPercent"));
+        double discountAmount = price * discountPercent * 0.01;
+        double discountPrice = price - discountAmount;
         req.setAttribute("description", description);
         req.setAttribute("price", price);
-        req.setAttribute("discount_percent", discount_percent);
-        req.setAttribute("discount_amount", discount_amount);
-        req.setAttribute("discount_price", discount_price);
+        req.setAttribute("discountPercent", discountPercent);
+        req.setAttribute("discountAmount", discountAmount);
+        req.setAttribute("discountPrice", discountPrice);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/result.jsp");
         requestDispatcher.forward(req, resp);
     }
