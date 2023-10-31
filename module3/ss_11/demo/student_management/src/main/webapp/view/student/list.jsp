@@ -21,7 +21,7 @@
 <c:import url="/navbar.jsp"></c:import>
 <h1>Trang danh sách sinh viên</h1>
 <a href="/student?action=add">Them moi</a>
-<p><%=request.getParameter("mess")%>
+<p style="display: none"><%=request.getParameter("mess")%>
 </p>
 <table class="table table-stripped">
     <tr>
