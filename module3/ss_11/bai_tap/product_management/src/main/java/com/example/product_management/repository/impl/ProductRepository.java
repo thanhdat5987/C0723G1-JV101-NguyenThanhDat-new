@@ -33,11 +33,22 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public void update(int id, Product product) {
-        productList.add(id, product);
+        productList.set(id, product);
     }
 
     @Override
     public void remove(int id) {
         productList.remove(id);
+    }
+
+    @Override
+    public List<Product> findByName(String name) {
+        List<Product> products = new ArrayList<>();
+        for (Product product: productList){
+            if(product.getName().contains(name)){
+                products.add(product);
+            }
+        }
+        return products;
     }
 }

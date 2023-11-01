@@ -13,8 +13,10 @@
 <body>
 <h1>Danh sách sản phẩm</h1>
 <a href="/product?action=add">Thêm mới</a>
-<p><%=request.getParameter("mess")%>
-</p>
+<form action="/product">
+    <input hidden="hidden" type="text" name="action" value="find">
+    <input type="text" name="name"><button>Tìm sản phẩm</button>
+</form>
 <table class="table table-stripped">
     <tr>
         <td>Mã sản phẩm</td>
@@ -22,6 +24,7 @@
         <td>Giá</td>
         <td>Mô tả chi tiết sản phẩm</td>
         <td>Chỉnh sửa</td>
+        <td>Chi tiết</td>
     </tr>
     <c:forEach items="${productList}" var="product">
         <tr>
@@ -30,8 +33,11 @@
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>
-                <button>Chỉnh sửa</button>
-                <button>Xoá</button>
+                <button><a href="/product?action=edit&id=${product.getId()}">Chỉnh sửa</a></button>
+                <button><a href="/product?action=delete&id=${product.getId()}">Xoá</a></button>
+            </td>
+            <td>
+                <button><a href="/product?action=view&id=${product.getId()}">Thông tin chi tiết</a></button>
             </td>
         </tr>
     </c:forEach>
