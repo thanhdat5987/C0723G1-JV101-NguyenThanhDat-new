@@ -17,36 +17,39 @@
     </style>
 </head>
 <body>
-<h1>User Management</h1>
-<form action="/users">
-    <input hidden="hidden" type="text" name="action" value="findByCountry">
-    <input type="text" name="name">
-    <button class="btn btn-primary">Find by country</button>
-</form>
-<button class="btn btn-primary"><a href="/users?action=create">Add New User</a></button>
-<button class="btn btn-primary"><a href="/users?action=sortByName">Sort by name</a></button>
-<button class="btn btn-primary"><a href="/users">Cancel Sort</a></button>
-<h2>List of Users</h2>
-<table class="table table-success table-striped " style="width: 60%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Country</th>
-        <th>Actions</th>
-    </tr>
-    <c:forEach var="user" items="${listUser}">
+<div class="container">
+    <h1>User Management</h1>
+    <form action="/users">
+        <input hidden="hidden" type="text" name="action" value="findByCountry">
+        <input type="text" name="name">
+        <button class="btn btn-primary">Find by country</button>
+    </form>
+    <button class="btn btn-primary"><a href="/users?action=create">Add New User</a></button>
+    <button class="btn btn-primary"><a href="/users?action=sortByName">Sort by name</a></button>
+    <button class="btn btn-primary"><a href="/users">Cancel Sort</a></button>
+    <h2>List of Users</h2>
+    <table class="table table-success table-striped " style="width: 60%">
         <tr>
-            <td><c:out value="${user.id}"/></td>
-            <td><c:out value="${user.name}"/></td>
-            <td><c:out value="${user.email}"/></td>
-            <td><c:out value="${user.country}"/></td>
-            <td>
-                <a href="/users?action=edit&id=${user.id}">Edit</a>
-                <a href="/users?action=delete&id=${user.id}">Delete</a>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Country</th>
+            <th>Actions</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="user" items="${listUser}">
+            <tr>
+                <td><c:out value="${user.id}"/></td>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.email}"/></td>
+                <td><c:out value="${user.country}"/></td>
+                <td>
+                    <a href="/users?action=edit&id=${user.id}">Edit</a>
+                    <a href="/users?action=delete&id=${user.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+
 </body>
 </html>
