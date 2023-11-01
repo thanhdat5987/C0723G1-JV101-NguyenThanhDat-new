@@ -19,6 +19,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private IUserService userService = new UserService();
+
     public void init() {
         userService = new UserService();
     }
@@ -83,6 +84,7 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/list.jsp");
         dispatcher.forward(request, response);
     }
+
     private void listUserSortingByName(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<User> listUserSorting = userService.sortUsersByName();
@@ -90,6 +92,7 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/list.jsp");
         dispatcher.forward(request, response);
     }
+
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/user/create.jsp");
@@ -104,6 +107,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
+
     private void showFindingResultForm(HttpServletRequest req, HttpServletResponse resp) {
         String country = req.getParameter("name");
         List<User> userList = userService.findByCountry(country);
