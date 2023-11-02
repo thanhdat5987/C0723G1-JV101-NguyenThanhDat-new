@@ -21,5 +21,11 @@ public interface IUserRepository {
 
     void insertUserStore(User user) throws SQLException;
     void addUserTransaction(User user, List<Integer> permission);
+    public void insertUpdateWithoutTransaction();
 
+    public void insertUpdateUseTransaction();
+    public List<User> selectAllUserStore();
+    public boolean deleteUserStore(int id) throws SQLException;
+
+    public boolean updateUserStore(User user) throws SQLException;
 }

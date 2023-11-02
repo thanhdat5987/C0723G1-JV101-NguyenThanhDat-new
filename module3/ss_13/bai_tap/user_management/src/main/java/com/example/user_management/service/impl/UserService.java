@@ -60,4 +60,30 @@ public class UserService implements IUserService {
     public void addUserTransaction(User user, List<Integer> permission) {
 userRepository.addUserTransaction(user,permission);
     }
+
+    @Override
+    public void insertUpdateWithoutTransaction() {
+        userRepository.insertUpdateWithoutTransaction();
+    }
+
+    @Override
+    public void insertUpdateUseTransaction() {
+        userRepository.insertUpdateUseTransaction();
+    }
+
+    @Override
+    public List<User> selectAllUserStore() {
+        return userRepository.selectAllUserStore();
+    }
+
+    @Override
+    public boolean deleteUserStore(int id) throws SQLException {
+        return userRepository.deleteUserStore(id);
+    }
+
+    @Override
+    public boolean updateUserStore(User user) throws SQLException {
+        return userRepository.updateUserStore(user);
+    }
+
 }

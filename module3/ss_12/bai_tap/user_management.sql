@@ -47,3 +47,32 @@ insert into Permision(id, name) values(2, 'edit');
 insert into Permision(id, name) values(3, 'delete');
 
 insert into Permision(id, name) values(4, 'view');
+create table Employee ( 
+            id int(3) NOT NULL AUTO_INCREMENT, 
+            name varchar(120) NOT NULL, 
+            salary int(220) NOT NULL, 
+            created_Date datetime, 
+            PRIMARY KEY (id) 
+);
+DELIMITER $$
+CREATE PROCEDURE get_all_user()
+BEGIN
+ SELECT *
+ FROM users;
+ END$$
+DELIMITER ;
+call get_all_user()
+
+DELIMITER $$
+CREATE PROCEDURE delete_user(user_id int)
+BEGIN
+Delete from users where id =user_id;
+ END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE update_user(new_name varchar(120),new_email varchar(220),new_country varchar(120),user_id int)
+BEGIN
+update users set name = new_name,email= new_email, country =new_country where id = user_id; 
+END$$
+DELIMITER ;
