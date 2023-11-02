@@ -13,10 +13,10 @@
 <body>
 <h1>Danh sách sản phẩm</h1>
 <a href="/product?action=add">Thêm mới</a>
-<form action="/product">
+<bform action="/product">
     <input hidden="hidden" type="text" name="action" value="find">
     <input type="text" name="name"><button>Tìm sản phẩm</button>
-</form>
+</bform>
 <table class="table table-stripped">
     <tr>
         <td>Mã sản phẩm</td>

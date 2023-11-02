@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserService implements IUserService {
-private final IUserRepository userRepository = new UserRepository();
+    private final IUserRepository userRepository = new UserRepository();
+
     @Override
     public void insertUser(User user) throws SQLException {
         userRepository.insertUser(user);
@@ -43,5 +44,15 @@ private final IUserRepository userRepository = new UserRepository();
     @Override
     public List<User> sortUsersByName() {
         return userRepository.sortUsersByName();
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userRepository.getUserById(id);
+    }
+
+    @Override
+    public void insertUserStore(User user) throws SQLException {
+        userRepository.insertUserStore(user);
     }
 }

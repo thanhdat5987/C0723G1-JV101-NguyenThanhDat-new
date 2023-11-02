@@ -18,4 +18,7 @@ public interface IUserService {
     List<User> findByCountry(String country);
     public List<User> sortUsersByName();
 
+    User getUserById(int id);
+
+    void insertUserStore(User user) throws SQLException;
 }

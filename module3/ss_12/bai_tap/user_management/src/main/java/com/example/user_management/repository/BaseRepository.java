@@ -1,5 +1,4 @@
-package com.codegym.demo_mvc.repository;
-
+package com.example.user_management.repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

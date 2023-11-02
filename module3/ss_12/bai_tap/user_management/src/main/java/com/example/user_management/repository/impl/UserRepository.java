@@ -14,6 +14,7 @@ public class UserRepository implements IUserRepository {
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
+    private static final String SELECT_USER_BY_COUNTRY = "select id,name,email,country from users where country like ?";
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String SORT_USERS_BY_NAME = "select * from users order by name";
 
@@ -112,13 +113,33 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+//    public List<User> findByCountry(String country) {
+//        List<User> listUser = new ArrayList<>();
+//        List<User> users = selectAllUsers();
+//        for(User user :users){
+//            if(user.getCountry().contains(country)){
+//                listUser.add(user);
+//            }
+//        }
+//        return listUser;
+//    }
     public List<User> findByCountry(String country) {
         List<User> listUser = new ArrayList<>();
-        List<User> users = selectAllUsers();
-        for(User user :users){
-            if(user.getCountry().contains(country)){
-                listUser.add(user);
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
+            preparedStatement.setString(1, country);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                country = rs.getString("country");
+                listUser.add(new User(id, name, email, country));
             }
+        } catch (SQLException e) {
+            printSQLException(e);
         }
         return listUser;
     }
@@ -142,6 +163,44 @@ public class UserRepository implements IUserRepository {
             printSQLException(e);
         }
         return users;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = null;
+        String query = "{CALL get_user_by_id(?)}";
+
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, id);
+            ResultSet rs = callableStatement.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                user = new User(id, name, email, country);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return user;
+    }
+
+    @Override
+    public void insertUserStore(User user) throws SQLException {
+        String query = "{CALL insert_user(?,?,?)}";
+
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query);) {
+            callableStatement.setString(1, user.getName());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getCountry());
+            System.out.println(callableStatement);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
     }
 
     private void printSQLException(SQLException ex) {
