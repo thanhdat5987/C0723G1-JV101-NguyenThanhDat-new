@@ -115,9 +115,10 @@ public class UserRepository implements IUserRepository {
     @Override
     public List<User> findByCountry(String country) {
         List<User> listUser = new ArrayList<>();
+        String findingCountry = "%"+country+"%";
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);) {
-            preparedStatement.setString(1, country);
+            preparedStatement.setString(1, findingCountry);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
