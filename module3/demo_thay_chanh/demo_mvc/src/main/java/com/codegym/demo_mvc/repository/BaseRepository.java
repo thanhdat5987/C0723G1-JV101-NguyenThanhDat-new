@@ -1,12 +1,13 @@
-package com.example.user_management.repository;
+package com.codegym.demo_mvc.repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BaseRepository {
-    private static final String URL ="jdbc:mysql://localhost:3306/pet_store"; // sửa lại tên của csdl
+    private static final String URL ="jdbc:mysql://localhost:3306/c0723g1"; // sửa lại tên của csdl
     private static final String USER ="root";// mặc định của mysql
-    private static final String PASS ="12345678";// do cài đặt khi cài đặt mysql
+    private static final String PASS ="codegym";// do cài đặt khi cài đặt mysql
     public static Connection getConnectDB(){
         Connection connection = null;
         try {

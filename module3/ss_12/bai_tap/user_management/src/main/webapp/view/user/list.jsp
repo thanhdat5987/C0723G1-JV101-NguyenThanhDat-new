@@ -28,7 +28,7 @@
     <button class="btn btn-primary"><a href="/users?action=sortByName">Sort by name</a></button>
     <button class="btn btn-primary"><a href="/users">Cancel Sort</a></button>
     <h2>List of Users</h2>
-    <table class="table table-success table-striped " style="width: 60%">
+    <table class="table table-success table-striped " style="cwidth: 60%">
         <tr>
             <th>ID</th>
             <th>Name</th>

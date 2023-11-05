@@ -1,4 +1,5 @@
-package com.example.user_management.repository;
+package com.example.quan_ly_booking.repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
