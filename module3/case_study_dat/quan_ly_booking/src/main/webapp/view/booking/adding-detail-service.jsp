@@ -38,7 +38,6 @@
                             <option value="${service.serviceId}">${service.serviceName}</option>
                         </c:forEach>
                     </select>
-
                 </td>
             </tr>
             <tr>

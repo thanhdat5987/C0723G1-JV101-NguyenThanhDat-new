@@ -3,7 +3,6 @@ package com.example.quan_ly_booking.repository;
 import com.example.quan_ly_booking.model.*;
 
 import java.sql.SQLException;
-import java.util.EnumMap;
 import java.util.List;
 
 public interface IBookingRepository {
@@ -19,4 +18,6 @@ boolean updateBooking(Booking booking) throws SQLException;
 void insertCustomerBooking(Booking booking) throws SQLException;
 void insertDetailService(DetailService detailService) throws SQLException;
 List<Service> selectServiceList() throws SQLException;
+List<DetailServiceBookingDTO> selectDetailServiceList(int id) throws SQLException;
+DetailServiceDTO selectDetailService(int id) throws SQLException;
 }

@@ -33,8 +33,24 @@ public class BookingRepository implements IBookingRepository {
     private static final String SELECT_PET_CUSTOMER_LIST = "select pet.id_pet, concat(pet.name_pet ,\" - KH \", customer.name_customer) as pet_name \n" +
             "from pet\n" +
             "join customer on pet.id_pet = customer.id_customer";
-    private static final String INSERT_DETAIL_SERVICE ="INSERT INTO detail_service (id_booking,id_service,quantity) VALUES (?, ?, ?)";
-private static final String SELECT_SERVICE_LIST ="select service.id_service, service.service_name from service";
+    private static final String INSERT_DETAIL_SERVICE = "INSERT INTO detail_service (id_booking,id_service,quantity) VALUES (?, ?, ?)";
+    private static final String SELECT_SERVICE_LIST = "select service.id_service, service.service_name from service";
+    private static final String SELECT_DETAIL_SERVICE_BY_BOOKING_ID = "select detail_service.id_detail_service, pet.name_pet, customer.name_customer, employees.employee_name, booking.start_time, booking.end_time, service.service_name, detail_service.quantity, service.service_price,(service.service_price*detail_service.quantity) as total, booking.customer_comment\n" +
+            "from booking join\n" +
+            "pet on booking.id_pet = pet.id_pet\n" +
+            "join customer on customer.id_customer = pet.id_customer\n" +
+            "left join employees on booking.id_employee = employees.id_employee\n" +
+            "join detail_service on detail_service.id_booking = booking.id_booking\n" +
+            "join service on service.id_service = detail_service.id_service\n" +
+            "where booking.delete_booking =0 and booking.id_booking =?;";
+private static final String SELECT_DETAIL_SERVICE_BY_ID ="select detail_service.id_detail_service, pet.name_pet, customer.name_customer, employees.employee_name, booking.start_time, booking.end_time, service.service_name, detail_service.quantity, service.service_price, (service.service_price*detail_service.quantity) as total, booking.customer_comment\n" +
+        "from booking join\n" +
+        "pet on booking.id_pet = pet.id_pet\n" +
+        "join customer on customer.id_customer = pet.id_customer\n" +
+        "left join employees on booking.id_employee = employees.id_employee\n" +
+        "join detail_service on detail_service.id_booking = booking.id_booking\n" +
+        "join service on service.id_service = detail_service.id_service\n" +
+        "where detail_service.id_detail_service =?";
     @Override
     public void insertBooking(Booking booking) {
         Connection connection = BaseRepository.getConnectDB();
@@ -172,7 +188,7 @@ private static final String SELECT_SERVICE_LIST ="select service.id_service, ser
     public boolean updateBooking(Booking booking) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = BaseRepository.getConnectDB(); PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING);) {
-            statement.setInt(1,booking.getEmployeeId());
+            statement.setInt(1, booking.getEmployeeId());
             statement.setString(2, booking.getStartTime());
             statement.setString(3, booking.getEndTime());
             statement.setInt(4, booking.getStatusId());
@@ -201,24 +217,72 @@ private static final String SELECT_SERVICE_LIST ="select service.id_service, ser
     public void insertDetailService(DetailService detailService) throws SQLException {
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_DETAIL_SERVICE);
-        preparedStatement.setInt(1,detailService.getBookingId());
-        preparedStatement.setInt(2,detailService.getServiceId());
-        preparedStatement.setInt(3,detailService.getQuantity());
+        preparedStatement.setInt(1, detailService.getBookingId());
+        preparedStatement.setInt(2, detailService.getServiceId());
+        preparedStatement.setInt(3, detailService.getQuantity());
         System.out.println(preparedStatement);
         preparedStatement.execute();
     }
 
     @Override
     public List<Service> selectServiceList() throws SQLException {
-        List<Service> serviceList =new ArrayList<>();
+        List<Service> serviceList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
-        PreparedStatement preparedStatement =connection.prepareStatement(SELECT_SERVICE_LIST);
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SERVICE_LIST);
         ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
             int serviceId = rs.getInt("id_service");
             String serviceName = rs.getString("service_name");
             serviceList.add(new Service(serviceId, serviceName));
         }
         return serviceList;
+    }
+
+    @Override
+    public List<DetailServiceBookingDTO> selectDetailServiceList(int id) throws SQLException {
+        List<DetailServiceBookingDTO> detailServiceList = new ArrayList<>();
+        Connection connection =BaseRepository.getConnectDB();
+        PreparedStatement preparedStatement =connection.prepareStatement(SELECT_DETAIL_SERVICE_BY_BOOKING_ID);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()){
+            int detailServiceId = rs.getInt("id_detail_service");
+            String petName = rs.getString("name_pet");
+            String customerName = rs.getString("name_customer");
+            String employeeName = rs.getString("employee_name");
+            String startTime = rs.getString("start_time");
+            String endTime = rs.getString("end_time");
+            String serviceName = rs.getString("service_name");
+            int quantity = rs.getInt("quantity");
+            int price = rs.getInt("service_price");
+            int total = rs.getInt("total");
+            String customerComment = rs.getString("customer_comment");
+            detailServiceList.add(new DetailServiceBookingDTO(detailServiceId,petName,customerName,employeeName,startTime,endTime,serviceName,quantity,price,total,customerComment));
+        }
+        return detailServiceList;
+    }
+
+    @Override
+    public DetailServiceDTO selectDetailService(int id) throws SQLException {
+        DetailServiceDTO detailService = null;
+        Connection connection = BaseRepository.getConnectDB();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_DETAIL_SERVICE_BY_ID);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            int detailServiceId = rs.getInt("id_detail_service");
+            String petName = rs.getString("name_pet");
+            String customerName = rs.getString("name_customer");
+            String employeeName = rs.getString("employee_name");
+            String startTime = rs.getString("start_time");
+            String endTime = rs.getString("end_time");
+            String serviceName = rs.getString("service_name");
+            int quantity = rs.getInt("quantity");
+            int price = rs.getInt("service_price");
+            int total = rs.getInt("total");
+            String customerComment = rs.getString("customer_comment");
+            detailService = new DetailServiceDTO(detailServiceId,petName,customerName,employeeName,startTime,endTime,serviceName,quantity,price,total,customerComment);
+        }
+        return detailService;
     }
 }

@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <a href="/booking-management?action=addingDetailService&id=${booking.bookingId}">Thêm</a>
-                    <a href="#">Chi tiết</a>
+                    <a href="/booking-management?action=listDetailService&id=${booking.bookingId}">Chi tiết</a>
                 </td>
             </tr>
         </c:forEach>

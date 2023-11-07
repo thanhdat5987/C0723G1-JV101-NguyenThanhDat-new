@@ -70,5 +70,15 @@ bookingRepository.insertDetailService(detailService);
         return bookingRepository.selectServiceList();
     }
 
+    @Override
+    public List<DetailServiceBookingDTO> selectDetailServiceList(int id) throws SQLException {
+        return bookingRepository.selectDetailServiceList(id);
+    }
+
+    @Override
+    public DetailServiceDTO selectDetailService(int id) throws SQLException {
+        return bookingRepository.selectDetailService(id);
+    }
+
 
 }

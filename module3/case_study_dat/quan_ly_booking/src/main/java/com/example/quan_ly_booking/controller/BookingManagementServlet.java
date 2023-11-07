@@ -73,7 +73,7 @@ public class BookingManagementServlet extends HttpServlet {
         int quantity= Integer.parseInt(req.getParameter("quantity"));
         DetailService detailService = new DetailService(bookingId,serviceId, quantity);
         bookingService.insertDetailService(detailService);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/adding-detail-service.jsp");
         dispatcher.forward(req, resp);
     }
     private void insertCustomerBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
@@ -109,6 +109,12 @@ public class BookingManagementServlet extends HttpServlet {
                     break;
                 case "addingDetailService":
                     showAddingDetailServiceForm(req, resp);
+                    break;
+                case "listDetailService":
+                    listDetailService(req, resp);
+                    break;
+                case "detailService":
+                    showDetailService(req, resp);
                     break;
                 default:
                     listBooking(req, resp);
@@ -167,6 +173,21 @@ public class BookingManagementServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/adding-detail-service.jsp");
         req.setAttribute("existingBooking", existingBooking);
         req.setAttribute("serviceList", serviceList);
+        dispatcher.forward(req, resp);
+    }
+    private void listDetailService(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        List<DetailServiceBookingDTO> detailServiceList = bookingService.selectDetailServiceList(id);
+        req.setAttribute("detailServiceList", detailServiceList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/show-detail-service.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void showDetailService(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        DetailServiceDTO detailService = bookingService.selectDetailService(id);
+        req.setAttribute("detailService", detailService);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/show-detail-service-by-id.jsp");
         dispatcher.forward(req, resp);
     }
 }

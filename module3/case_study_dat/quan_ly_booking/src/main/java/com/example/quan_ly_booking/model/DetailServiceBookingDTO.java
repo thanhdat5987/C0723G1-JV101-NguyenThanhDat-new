@@ -1,29 +1,7 @@
 package com.example.quan_ly_booking.model;
 
-public class DetailServiceDTO {
-    private int detailServiceId;
-    private String petName;
-    private String customerName;
-    private String employeeName;
-    private String startTime;
-    private String endTime;
-    private String serviceName;
-    private int quantity;
-    private int price;
+public class DetailServiceBookingDTO {
 
-    public DetailServiceDTO(int detailServiceId, String petName, String customerName, String employeeName, String startTime, String endTime, String serviceName, int quantity, int price, int total, String customerComment) {
-        this.detailServiceId = detailServiceId;
-        this.petName = petName;
-        this.customerName = customerName;
-        this.employeeName = employeeName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.serviceName = serviceName;
-        this.quantity = quantity;
-        this.price = price;
-        this.total = total;
-        this.customerComment = customerComment;
-    }
 
     public int getDetailServiceId() {
         return detailServiceId;
@@ -32,6 +10,27 @@ public class DetailServiceDTO {
     public void setDetailServiceId(int detailServiceId) {
         this.detailServiceId = detailServiceId;
     }
+    private int detailServiceId;
+    private int bookingId;
+    private String petName;
+    private String customerName;
+    private String employeeName;
+    private String startTime;
+
+    private String endTime;
+    private String serviceName;
+    private int quantity;
+    private int price;
+    private int total;
+    private String customerComment;
+    public int getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
+    }
+
 
     public String getPetName() {
         return petName;
@@ -113,6 +112,17 @@ public class DetailServiceDTO {
         this.customerComment = customerComment;
     }
 
-    private int total;
-    private String customerComment;
+    public DetailServiceBookingDTO(int detailServiceId, String petName, String customerName, String employeeName, String startTime, String endTime, String serviceName, int quantity, int price, int total, String customerComment) {
+        this.detailServiceId = detailServiceId;
+        this.petName = petName;
+        this.customerName = customerName;
+        this.employeeName = employeeName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.serviceName = serviceName;
+        this.quantity = quantity;
+        this.price = price;
+        this.total = total;
+        this.customerComment = customerComment;
+    }
 }
