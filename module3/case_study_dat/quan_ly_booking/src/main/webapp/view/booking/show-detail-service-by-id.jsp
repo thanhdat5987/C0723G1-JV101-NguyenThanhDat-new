@@ -65,6 +65,10 @@
             <td>Thành tiền (1000 đồng)</td>
             <td>${detailService.total}</td>
         </tr>
+        <tr>
+            <td>Khách hàng Comment khi Booking</td>
+            <td>${detailService.customerComment}</td>
+        </tr>
     </table>
 </div>
 </body>
