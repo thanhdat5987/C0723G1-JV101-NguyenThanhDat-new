@@ -35,6 +35,9 @@ public class BookingManagementServlet extends HttpServlet {
                 case "edit":
                     updateBooking(req, resp);
                     break;
+                case "addingDetailService":
+                    addDetailService(req, resp);
+                    break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -64,11 +67,20 @@ public class BookingManagementServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
         dispatcher.forward(req, resp);
     }
+    private void addDetailService(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int bookingId = Integer.parseInt(req.getParameter("bookingId"));
+        int serviceId = Integer.parseInt(req.getParameter("serviceId"));
+        int quantity= Integer.parseInt(req.getParameter("quantity"));
+        DetailService detailService = new DetailService(bookingId,serviceId, quantity);
+        bookingService.insertDetailService(detailService);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
+        dispatcher.forward(req, resp);
+    }
     private void insertCustomerBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int petId = Integer.parseInt(req.getParameter("petId"));
         String estimatedTimeOfArrival = req.getParameter("estimatedTimeOfArrival");
         String customerComment = req.getParameter("customerComment");
-        Booking newBooking = new Booking(petId, estimatedTimeOfArrival,customerComment);
+        Booking newBooking = new Booking(petId, estimatedTimeOfArrival, customerComment);
         bookingService.insertCustomerBooking(newBooking);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/booking-customer.jsp");
         dispatcher.forward(req, resp);
@@ -94,6 +106,9 @@ public class BookingManagementServlet extends HttpServlet {
                     break;
                 case "delete":
                     deleteBooking(req, resp);
+                    break;
+                case "addingDetailService":
+                    showAddingDetailServiceForm(req, resp);
                     break;
                 default:
                     listBooking(req, resp);
@@ -125,7 +140,7 @@ public class BookingManagementServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/edit.jsp");
         req.setAttribute("editingBooking", existingBooking);
         req.setAttribute("bookingStatusList", bookingStatusList);
-        req.setAttribute("employeeList",employeeList);
+        req.setAttribute("employeeList", employeeList);
         dispatcher.forward(req, resp);
     }
 
@@ -137,10 +152,21 @@ public class BookingManagementServlet extends HttpServlet {
         req.setAttribute("petList", petList);
         dispatcher.forward(req, resp);
     }
+
     private void showNewOnlineForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         List<Pet> petList = bookingService.selectPetOfCustomerList();
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/booking-customer.jsp");
         req.setAttribute("petList", petList);
+        dispatcher.forward(req, resp);
+    }
+
+    private void showAddingDetailServiceForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Booking existingBooking = bookingService.selectBooking(id);
+        List<Service> serviceList = bookingService.selectServiceList();
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/adding-detail-service.jsp");
+        req.setAttribute("existingBooking", existingBooking);
+        req.setAttribute("serviceList", serviceList);
         dispatcher.forward(req, resp);
     }
 }

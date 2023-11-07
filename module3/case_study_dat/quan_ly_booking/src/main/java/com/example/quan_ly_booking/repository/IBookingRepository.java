@@ -18,4 +18,5 @@ boolean deleteBooking(int id) throws SQLException;
 boolean updateBooking(Booking booking) throws SQLException;
 void insertCustomerBooking(Booking booking) throws SQLException;
 void insertDetailService(DetailService detailService) throws SQLException;
+List<Service> selectServiceList() throws SQLException;
 }

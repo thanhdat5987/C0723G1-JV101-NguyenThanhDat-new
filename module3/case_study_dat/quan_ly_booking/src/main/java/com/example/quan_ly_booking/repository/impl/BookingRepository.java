@@ -33,7 +33,8 @@ public class BookingRepository implements IBookingRepository {
     private static final String SELECT_PET_CUSTOMER_LIST = "select pet.id_pet, concat(pet.name_pet ,\" - KH \", customer.name_customer) as pet_name \n" +
             "from pet\n" +
             "join customer on pet.id_pet = customer.id_customer";
-
+    private static final String INSERT_DETAIL_SERVICE ="INSERT INTO detail_service (id_booking,id_service,quantity) VALUES (?, ?, ?)";
+private static final String SELECT_SERVICE_LIST ="select service.id_service, service.service_name from service";
     @Override
     public void insertBooking(Booking booking) {
         Connection connection = BaseRepository.getConnectDB();
@@ -194,5 +195,30 @@ public class BookingRepository implements IBookingRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void insertDetailService(DetailService detailService) throws SQLException {
+        Connection connection = BaseRepository.getConnectDB();
+        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_DETAIL_SERVICE);
+        preparedStatement.setInt(1,detailService.getBookingId());
+        preparedStatement.setInt(2,detailService.getServiceId());
+        preparedStatement.setInt(3,detailService.getQuantity());
+        System.out.println(preparedStatement);
+        preparedStatement.execute();
+    }
+
+    @Override
+    public List<Service> selectServiceList() throws SQLException {
+        List<Service> serviceList =new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        PreparedStatement preparedStatement =connection.prepareStatement(SELECT_SERVICE_LIST);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()){
+            int serviceId = rs.getInt("id_service");
+            String serviceName = rs.getString("service_name");
+            serviceList.add(new Service(serviceId, serviceName));
+        }
+        return serviceList;
     }
 }

@@ -23,6 +23,12 @@ public class DetailService {
         this.quantity = quantity;
     }
 
+    public DetailService(int bookingId, int serviceId, int quantity) {
+        this.bookingId = bookingId;
+        this.serviceId = serviceId;
+        this.quantity = quantity;
+    }
+
     public int getDetailServiceId() {
         return detailServiceId;
     }

@@ -60,5 +60,15 @@ private IBookingRepository bookingRepository = new BookingRepository();
         bookingRepository.insertCustomerBooking(booking);
     }
 
+    @Override
+    public void insertDetailService(DetailService detailService) throws SQLException {
+bookingRepository.insertDetailService(detailService);
+    }
+
+    @Override
+    public List<Service> selectServiceList() throws SQLException {
+        return bookingRepository.selectServiceList();
+    }
+
 
 }

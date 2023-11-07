@@ -61,7 +61,7 @@
                     <a href="/booking-management?action=delete&id=${booking.bookingId}">Xoá</a>
                 </td>
                 <td>
-                    <a href="#">Thêm</a>
+                    <a href="/booking-management?action=addingDetailService&id=${booking.bookingId}">Thêm</a>
                     <a href="#">Chi tiết</a>
                 </td>
             </tr>

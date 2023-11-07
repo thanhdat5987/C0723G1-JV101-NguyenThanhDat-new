@@ -17,5 +17,8 @@ public interface IBookingService {
     List<Pet> selectPetOfCustomerList() throws SQLException;
 
     void insertCustomerBooking(Booking booking) throws SQLException;
+    void insertDetailService(DetailService detailService) throws SQLException;
+    List<Service> selectServiceList() throws SQLException;
+
 
 }
