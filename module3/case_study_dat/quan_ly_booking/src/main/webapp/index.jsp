@@ -11,6 +11,6 @@
 <br/>
 <br/>
 <br/>
-<button><a href=#>BOOKING FOR CUSTOMER</a></button>
+<button><a href="/booking-management?action=createBookingOnline">BOOKING FOR CUSTOMER</a></button>
 </body>
 </html>

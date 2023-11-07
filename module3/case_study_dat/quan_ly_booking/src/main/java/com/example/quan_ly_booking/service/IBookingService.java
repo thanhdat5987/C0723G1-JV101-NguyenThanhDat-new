@@ -1,7 +1,6 @@
 package com.example.quan_ly_booking.service;
 
-import com.example.quan_ly_booking.model.Booking;
-import com.example.quan_ly_booking.model.BookingDTO;
+import com.example.quan_ly_booking.model.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,4 +11,11 @@ public interface IBookingService {
     List<BookingDTO> selectAllBooking() throws SQLException;
     boolean deleteBooking(int id) throws SQLException;
     boolean updateBooking(Booking booking) throws SQLException;
+    List<BookingStatus> selectBookingStatus() throws SQLException;
+    List<Employee> selectEmployeelist() throws SQLException;
+    List<Pet> selectPetList() throws SQLException;
+    List<Pet> selectPetOfCustomerList() throws SQLException;
+
+    void insertCustomerBooking(Booking booking) throws SQLException;
+
 }

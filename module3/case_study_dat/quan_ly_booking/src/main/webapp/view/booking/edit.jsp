@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Pet Management Application</title>
 </head>
 <body>
 <center>
-    <h1>User Management</h1>
+    <h1>Chỉnh sửa Booking</h1>
     <h2>
         <a href="booking-management">Quay về trang quản lý Booking</a>
     </h2>
@@ -23,34 +23,47 @@
             <c:if test="${editingBooking != null}">
                 <input type="hidden" name="bookingId" value="<c:out value='${editingBooking.bookingId}' />"/>
                 <input type="hidden" name="petId" value="<c:out value='${editingBooking.petId}' />"/>
-                <input type="hidden" name="employeeId" value="<c:out value='${editingBooking.employeeId}' />"/>
                 <input type="hidden" name="bookingTime" value="<c:out value='${editingBooking.bookingTime}' />"/>
-                <input type="hidden" name="estimateTimeOfArrival" value="<c:out value='${editingBooking.estimatedTimeOfArrival}' />"/>
+                <input type="hidden" name="estimateTimeOfArrival"
+                       value="<c:out value='${editingBooking.estimatedTimeOfArrival}' />"/>
             </c:if>
+            <tr>
+                <th>Chọn nhân viên:</th>
+                <td>
+                    <select required name="employeeId" id="employeeId">
+                        <c:forEach var="employee" items="${employeeList}">
+                            <option value="${employee.employeeId}">${employee.employeeName}</option>
+                        </c:forEach>
+                    </select>
+
+                </td>
+            </tr>
             <tr>
                 <th>Thời gian bắt đầu:</th>
                 <td>
-                    <input type="datetime-local" name="startTime" size="45"
-                           value="<c:out value='${editingBooking.startTime}' />"
-
+                    <input required type="datetime-local" name="startTime" size="45"
+                           value="<c:out value='${editingBooking.startTime}'/>"
                     />
                 </td>
             </tr>
             <tr>
                 <th>Thời gian kết thúc:</th>
                 <td>
-                    <input type="datetime-local" name="endTime" size="45"
+                    <input required type="datetime-local" name="endTime" size="45"
                            value="<c:out value='${editingBooking.endTime}' />"
-
                     />
                 </td>
+            </tr>
             </tr>
             <tr>
                 <th>Thạng thái booking:</th>
                 <td>
-                    <input type="text" name="bookingStatusId" size="15"
-                           value="<c:out value='${editingBooking.statusId}' />"
-                    />
+                    <select required name="bookingStatusId" id="status-select">
+                    <c:forEach var="status" items="${bookingStatusList}">
+                        <option value="${status.bookingStatusId}">${status.bookingStatusName}</option>
+                    </c:forEach>
+                    </select>
+
                 </td>
             </tr>
             <tr>

@@ -1,7 +1,6 @@
 package com.example.quan_ly_booking.controller;
 
-import com.example.quan_ly_booking.model.Booking;
-import com.example.quan_ly_booking.model.BookingDTO;
+import com.example.quan_ly_booking.model.*;
 import com.example.quan_ly_booking.service.IBookingService;
 import com.example.quan_ly_booking.service.impl.BookingService;
 
@@ -30,6 +29,9 @@ public class BookingManagementServlet extends HttpServlet {
                 case "create":
                     insertBooking(req, resp);
                     break;
+                case "createBookingOnline":
+                    insertCustomerBooking(req, resp);
+                    break;
                 case "edit":
                     updateBooking(req, resp);
                     break;
@@ -39,7 +41,7 @@ public class BookingManagementServlet extends HttpServlet {
         }
     }
 
-    private void updateBooking(HttpServletRequest req, HttpServletResponse resp)  throws SQLException, IOException, ServletException{
+    private void updateBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int bookingId = Integer.parseInt(req.getParameter("bookingId"));
         int petId = Integer.parseInt(req.getParameter("petId"));
         int employeeId = Integer.parseInt(req.getParameter("employeeId"));
@@ -48,19 +50,28 @@ public class BookingManagementServlet extends HttpServlet {
         String startTime = req.getParameter("startTime");
         String endTime = req.getParameter("endTime");
         int bookingStatusId = Integer.parseInt(req.getParameter("bookingStatusId"));
-        Booking editingBooking = new Booking(bookingId,petId,employeeId,bookingTime,estimateTimeOfArrival,startTime,endTime,bookingStatusId);
+        Booking editingBooking = new Booking(bookingId, petId, employeeId, bookingTime, estimateTimeOfArrival, startTime, endTime, bookingStatusId);
         bookingService.updateBooking(editingBooking);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/edit.jsp");
         dispatcher.forward(req, resp);
     }
 
-    private void insertBooking(HttpServletRequest req, HttpServletResponse resp)  throws SQLException, IOException, ServletException{
-            int petId = Integer.parseInt(req.getParameter("petId"));
-            int employeeId = Integer.parseInt(req.getParameter("employeeId"));
-            Booking newBooking = new Booking(petId, employeeId);
-            bookingService.insertBooking(newBooking);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
-            dispatcher.forward(req, resp);
+    private void insertBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int petId = Integer.parseInt(req.getParameter("petId"));
+        int employeeId = Integer.parseInt(req.getParameter("employeeId"));
+        Booking newBooking = new Booking(petId, employeeId);
+        bookingService.insertBooking(newBooking);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
+        dispatcher.forward(req, resp);
+    }
+    private void insertCustomerBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        int petId = Integer.parseInt(req.getParameter("petId"));
+        String estimatedTimeOfArrival = req.getParameter("estimatedTimeOfArrival");
+        String customerComment = req.getParameter("customerComment");
+        Booking newBooking = new Booking(petId, estimatedTimeOfArrival,customerComment);
+        bookingService.insertCustomerBooking(newBooking);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/booking-customer.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -74,6 +85,9 @@ public class BookingManagementServlet extends HttpServlet {
             switch (action) {
                 case "create":
                     showNewForm(req, resp);
+                    break;
+                case "createBookingOnline":
+                    showNewOnlineForm(req, resp);
                     break;
                 case "edit":
                     showEditForm(req, resp);
@@ -90,34 +104,43 @@ public class BookingManagementServlet extends HttpServlet {
         }
     }
 
-    private void listBooking(HttpServletRequest req, HttpServletResponse resp)  throws SQLException, IOException, ServletException{
+    private void listBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         List<BookingDTO> bookingList = bookingService.selectAllBooking();
         req.setAttribute("bookingList", bookingList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/list.jsp");
         dispatcher.forward(req, resp);
     }
 
-    private void deleteBooking(HttpServletRequest req, HttpServletResponse resp)  throws SQLException, IOException, ServletException {
+    private void deleteBooking(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
         bookingService.deleteBooking(id);
-        listBooking(req,resp);
-//        List<BookingDTO> listBooking = bookingService.selectAllBooking();
-//        req.setAttribute("lbookingList", listBooking);
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/list.jsp");
-//        dispatcher.forward(req, resp);
+        listBooking(req, resp);
     }
 
-    private void showEditForm(HttpServletRequest req, HttpServletResponse resp)  throws SQLException, IOException, ServletException{
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
+        List<BookingStatus> bookingStatusList = bookingService.selectBookingStatus();
+        List<Employee> employeeList = bookingService.selectEmployeelist();
         Booking existingBooking = bookingService.selectBooking(id);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/edit.jsp");
         req.setAttribute("editingBooking", existingBooking);
+        req.setAttribute("bookingStatusList", bookingStatusList);
+        req.setAttribute("employeeList",employeeList);
         dispatcher.forward(req, resp);
     }
 
     private void showNewForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
-            dispatcher.forward(req, resp);
+        List<Employee> employeeList = bookingService.selectEmployeelist();
+        List<Pet> petList = bookingService.selectPetList();
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
+        req.setAttribute("employeeList", employeeList);
+        req.setAttribute("petList", petList);
+        dispatcher.forward(req, resp);
     }
-
+    private void showNewOnlineForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
+        List<Pet> petList = bookingService.selectPetOfCustomerList();
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/booking-customer.jsp");
+        req.setAttribute("petList", petList);
+        dispatcher.forward(req, resp);
+    }
 }

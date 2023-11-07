@@ -10,6 +10,28 @@ public class Booking {
     private String endTime;
     private int statusId;
     private int deleteStatus;
+    private String customerComment;
+
+    public String getCustomerComment() {
+        return customerComment;
+    }
+
+    public void setCustomerComment(String customerComment) {
+        this.customerComment = customerComment;
+    }
+
+    public Booking(int bookingId, int petId, int employeeId, String bookingTime, String estimatedTimeOfArrival, String startTime, String endTime, int statusId, int deleteStatus, String customerComment) {
+        this.bookingId = bookingId;
+        this.petId = petId;
+        this.employeeId = employeeId;
+        this.bookingTime = bookingTime;
+        this.estimatedTimeOfArrival = estimatedTimeOfArrival;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.statusId = statusId;
+        this.deleteStatus = deleteStatus;
+        this.customerComment = customerComment;
+    }
 
     public int getDeleteStatus() {
         return deleteStatus;
@@ -44,6 +66,12 @@ public class Booking {
     public Booking(int petId, int employeeId) {
         this.petId = petId;
         this.employeeId = employeeId;
+    }
+
+    public Booking(int petId, String estimatedTimeOfArrival, String customerComment ) {
+        this.petId = petId;
+        this.estimatedTimeOfArrival = estimatedTimeOfArrival;
+        this.customerComment = customerComment;
     }
 
     public String getBookingTime() {

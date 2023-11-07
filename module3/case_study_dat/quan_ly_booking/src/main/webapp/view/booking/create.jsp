@@ -13,25 +13,38 @@
     <title>Create</title>
 </head>
 <body>
+<center>
     <h1>Thêm mới booking</h1>
     <h2>
-        <a href="booking-management?action=booking">Quay về Trang quản lý Booking</a>
+        <a href="booking-management">Quay về trang quản lý Booking</a>
     </h2>
+</center>
+<div align="center">
     <form method="post">
-        <table>
+        <table border="1" cellpadding="5">
+            <caption>
+                <h2>
+                    Thêm mới Booking
+                </h2>
+            </caption>
             <tr>
-                <td>Nhập Id pet</td>
+                <th>Thêm Pet:</th>
                 <td>
-                    <input type="text" name="petId" id="petId" size="45"/>
+                    <select required name="petId" id="petId">
+                        <c:forEach var="status" items="${petList}">
+                            <option value="${status.petId}">${status.petName}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td>Nhập Id nhân viên</td>
+                <th>Thêm nhân viên:</th>
                 <td>
-                    <select>
-                        <option></option>
+                    <select required name="employeeId" id="employeeId">
+                        <c:forEach var="status" items="${employeeList}">
+                            <option value="${status.employeeId}">${status.employeeName}</option>
+                        </c:forEach>
                     </select>
-                    <input type="text" name="employeeId" id="employeeId" size="45"/>
                 </td>
             </tr>
             <tr>
