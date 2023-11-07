@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <input required type="number" name="quantity" size="45"
-                           value="<c:out value='${editingBooking.quantity}' />"
+                           value="<c:out value='${existingDetailService.quantity}' />"
                     />
                 </td>
             </tr>
