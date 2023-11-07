@@ -51,6 +51,7 @@ private static final String SELECT_DETAIL_SERVICE_BY_ID ="select detail_service.
         "join detail_service on detail_service.id_booking = booking.id_booking\n" +
         "join service on service.id_service = detail_service.id_service\n" +
         "where detail_service.id_detail_service =?";
+private static final String UPDATE_DETAIL_SERVICE ="update detail_service set quantity =? where id_detail_service =?";
     @Override
     public void insertBooking(Booking booking) {
         Connection connection = BaseRepository.getConnectDB();
@@ -187,7 +188,8 @@ private static final String SELECT_DETAIL_SERVICE_BY_ID ="select detail_service.
     @Override
     public boolean updateBooking(Booking booking) throws SQLException {
         boolean rowUpdated;
-        try (Connection connection = BaseRepository.getConnectDB(); PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING);) {
+        try (Connection connection = BaseRepository.getConnectDB();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING);) {
             statement.setInt(1, booking.getEmployeeId());
             statement.setString(2, booking.getStartTime());
             statement.setString(3, booking.getEndTime());
@@ -284,5 +286,17 @@ private static final String SELECT_DETAIL_SERVICE_BY_ID ="select detail_service.
             detailService = new DetailServiceDTO(detailServiceId,petName,customerName,employeeName,startTime,endTime,serviceName,quantity,price,total,customerComment);
         }
         return detailService;
+    }
+
+    @Override
+    public boolean updateDetailService(DetailService detailService) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = BaseRepository.getConnectDB();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_DETAIL_SERVICE);) {
+            statement.setInt(1, detailService.getQuantity());
+            statement.setInt(2, detailService.getDetailServiceId());
+            rowUpdated = statement.executeUpdate() > 0;
+        }
+        return rowUpdated;
     }
 }

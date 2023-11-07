@@ -80,5 +80,10 @@ bookingRepository.insertDetailService(detailService);
         return bookingRepository.selectDetailService(id);
     }
 
+    @Override
+    public boolean updateDetailService(DetailService detailService) throws SQLException {
+        return bookingRepository.updateDetailService(detailService);
+    }
+
 
 }

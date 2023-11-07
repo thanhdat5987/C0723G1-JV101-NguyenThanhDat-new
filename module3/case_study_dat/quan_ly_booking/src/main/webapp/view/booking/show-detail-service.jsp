@@ -56,7 +56,7 @@
                     <a href="/booking-management?action=detailService&id=${detailService.detailServiceId}">Chi tiết</a>
                 </td>
                 <td>
-                    <a href="#">Chỉnh sửa</a>
+                    <a href="/booking-management?action=updateDetailService&id=${detailService.detailServiceId}">Chỉnh sửa</a>
                 </td>
             </tr>
         </c:forEach>

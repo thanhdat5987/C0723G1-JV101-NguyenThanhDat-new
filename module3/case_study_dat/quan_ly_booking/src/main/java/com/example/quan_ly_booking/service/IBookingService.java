@@ -21,6 +21,6 @@ public interface IBookingService {
     List<Service> selectServiceList() throws SQLException;
     List<DetailServiceBookingDTO> selectDetailServiceList(int id) throws SQLException;
     DetailServiceDTO selectDetailService(int id) throws SQLException;
-
+    boolean updateDetailService(DetailService detailService) throws SQLException;
 
 }

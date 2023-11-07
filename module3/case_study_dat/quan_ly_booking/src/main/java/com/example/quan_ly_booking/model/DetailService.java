@@ -29,6 +29,11 @@ public class DetailService {
         this.quantity = quantity;
     }
 
+    public DetailService(int detailServiceId, int quantity) {
+        this.detailServiceId = detailServiceId;
+        this.quantity = quantity;
+    }
+
     public int getDetailServiceId() {
         return detailServiceId;
     }
