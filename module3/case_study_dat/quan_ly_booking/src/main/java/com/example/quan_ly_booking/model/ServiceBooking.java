@@ -1,6 +1,6 @@
 package com.example.quan_ly_booking.model;
 
-public class Service {
+public class ServiceBooking {
 //    create table if not exists service(
 //            id_service int auto_increment primary key,
 //            service_name varchar(50) not null,
@@ -44,12 +44,12 @@ public class Service {
         this.unit = unit;
     }
 
-    public Service(int serviceId, String serviceName) {
+    public ServiceBooking(int serviceId, String serviceName) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
     }
 
-    public Service(int serviceId, String serviceName, int servicePrice, String unit) {
+    public ServiceBooking(int serviceId, String serviceName, int servicePrice, String unit) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.servicePrice = servicePrice;

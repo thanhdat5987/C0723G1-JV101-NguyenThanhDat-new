@@ -41,7 +41,7 @@
                 <th>Thời gian bắt đầu:</th>
                 <td>
                     <input required type="datetime-local" name="startTime" size="45"
-                           value="<c:out value='${editingBooking.startTime}'/>"
+                           value="<c:out value='${editingBooking.startTime}' />"
                     />
                 </td>
             </tr>

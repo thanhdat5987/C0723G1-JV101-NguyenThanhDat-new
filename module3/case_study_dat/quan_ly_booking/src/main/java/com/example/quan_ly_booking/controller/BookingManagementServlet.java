@@ -156,7 +156,7 @@ public class BookingManagementServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
         List<BookingStatus> bookingStatusList = bookingService.selectBookingStatus();
-        List<Employee> employeeList = bookingService.selectEmployeelist();
+        List<EmployeeBooking> employeeList = bookingService.selectEmployeelist();
         Booking existingBooking = bookingService.selectBooking(id);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/edit.jsp");
         req.setAttribute("editingBooking", existingBooking);
@@ -166,8 +166,8 @@ public class BookingManagementServlet extends HttpServlet {
     }
 
     private void showNewForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
-        List<Employee> employeeList = bookingService.selectEmployeelist();
-        List<Pet> petList = bookingService.selectPetList();
+        List<EmployeeBooking> employeeList = bookingService.selectEmployeelist();
+        List<PetBooking> petList = bookingService.selectPetList();
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/create.jsp");
         req.setAttribute("employeeList", employeeList);
         req.setAttribute("petList", petList);
@@ -175,7 +175,7 @@ public class BookingManagementServlet extends HttpServlet {
     }
 
     private void showNewOnlineForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
-        List<Pet> petList = bookingService.selectPetOfCustomerList();
+        List<PetBooking> petList = bookingService.selectPetOfCustomerList();
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/booking-customer.jsp");
         req.setAttribute("petList", petList);
         dispatcher.forward(req, resp);
@@ -184,7 +184,7 @@ public class BookingManagementServlet extends HttpServlet {
     private void showAddingDetailServiceForm(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
         Booking existingBooking = bookingService.selectBooking(id);
-        List<Service> serviceList = bookingService.selectServiceList();
+        List<ServiceBooking> serviceList = bookingService.selectServiceList();
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/booking/adding-detail-service.jsp");
         req.setAttribute("existingBooking", existingBooking);
         req.setAttribute("serviceList", serviceList);

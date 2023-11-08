@@ -1,10 +1,10 @@
 package com.example.quan_ly_booking.model;
 
-public class PetOfCustomer {
+public class PetOfCustomerBooking {
     private int petId;
     private String petName;
 
-    public PetOfCustomer(int petId, String petName) {
+    public PetOfCustomerBooking(int petId, String petName) {
         this.petId = petId;
         this.petName = petName;
     }

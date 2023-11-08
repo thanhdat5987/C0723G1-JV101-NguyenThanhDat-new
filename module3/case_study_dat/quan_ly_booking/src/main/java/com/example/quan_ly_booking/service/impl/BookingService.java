@@ -41,17 +41,17 @@ private IBookingRepository bookingRepository = new BookingRepository();
     }
 
     @Override
-    public List<Employee> selectEmployeelist() throws SQLException {
+    public List<EmployeeBooking> selectEmployeelist() throws SQLException {
         return bookingRepository.selectEmployeelist();
     }
 
     @Override
-    public List<Pet> selectPetList() throws SQLException {
+    public List<PetBooking> selectPetList() throws SQLException {
         return bookingRepository.selectPetList();
     }
 
     @Override
-    public List<Pet> selectPetOfCustomerList() throws SQLException {
+    public List<PetBooking> selectPetOfCustomerList() throws SQLException {
         return bookingRepository.selectPetOfCustomerList();
     }
 
@@ -66,7 +66,7 @@ bookingRepository.insertDetailService(detailService);
     }
 
     @Override
-    public List<Service> selectServiceList() throws SQLException {
+    public List<ServiceBooking> selectServiceList() throws SQLException {
         return bookingRepository.selectServiceList();
     }
 

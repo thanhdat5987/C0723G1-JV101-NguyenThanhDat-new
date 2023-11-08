@@ -132,44 +132,44 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
     }
 
     @Override
-    public List<Employee> selectEmployeelist() throws SQLException {
-        List<Employee> employeeList = new ArrayList<>();
+    public List<EmployeeBooking> selectEmployeelist() throws SQLException {
+        List<EmployeeBooking> employeeList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE_LIST);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             int employeeId = rs.getInt("id_employee");
             String employeeName = rs.getString("employee_name");
-            employeeList.add(new Employee(employeeId, employeeName));
+            employeeList.add(new EmployeeBooking(employeeId, employeeName));
         }
         return employeeList;
     }
 
 
     @Override
-    public List<Pet> selectPetList() throws SQLException {
-        List<Pet> petList = new ArrayList<>();
+    public List<PetBooking> selectPetList() throws SQLException {
+        List<PetBooking> petList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PET_CUSTOMER_LIST);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             int petId = rs.getInt("id_pet");
             String petName = rs.getString("pet_name");
-            petList.add(new Pet(petId, petName));
+            petList.add(new PetBooking(petId, petName));
         }
         return petList;
     }
 
     @Override
-    public List<Pet> selectPetOfCustomerList() throws SQLException {
-        List<Pet> petList = new ArrayList<>();
+    public List<PetBooking> selectPetOfCustomerList() throws SQLException {
+        List<PetBooking> petList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PET_OF_CUSTOMER);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             int petId = rs.getInt("id_pet");
             String petName = rs.getString("name_pet");
-            petList.add(new Pet(petId, petName));
+            petList.add(new PetBooking(petId, petName));
         }
         return petList;
     }
@@ -191,7 +191,7 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
         try (Connection connection = BaseRepository.getConnectDB();
              PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING);) {
             statement.setInt(1, booking.getEmployeeId());
-            statement.setString(2, booking.getStartTime());
+            statement.setString(2,booking.getStartTime());
             statement.setString(3, booking.getEndTime());
             statement.setInt(4, booking.getStatusId());
             statement.setInt(5, booking.getBookingId());
@@ -227,15 +227,15 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
     }
 
     @Override
-    public List<Service> selectServiceList() throws SQLException {
-        List<Service> serviceList = new ArrayList<>();
+    public List<ServiceBooking> selectServiceList() throws SQLException {
+        List<ServiceBooking> serviceList = new ArrayList<>();
         Connection connection = BaseRepository.getConnectDB();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SERVICE_LIST);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             int serviceId = rs.getInt("id_service");
             String serviceName = rs.getString("service_name");
-            serviceList.add(new Service(serviceId, serviceName));
+            serviceList.add(new ServiceBooking(serviceId, serviceName));
         }
         return serviceList;
     }

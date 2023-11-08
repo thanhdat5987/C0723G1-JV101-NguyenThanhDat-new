@@ -1,6 +1,6 @@
 package com.example.quan_ly_booking.model;
 
-public class Pet {
+public class PetBooking {
     private int petId;
     private String petName;
 
@@ -20,7 +20,7 @@ public class Pet {
         this.petName = petName;
     }
 
-    public Pet(int petId, String petName) {
+    public PetBooking(int petId, String petName) {
         this.petId = petId;
         this.petName = petName;
     }
