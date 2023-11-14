@@ -93,7 +93,7 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
     }
 
     @Override
-    public List<BookingDTO> selectAllBooking() {
+    public List<BookingDTO> selectAllBooking() throws SQLException {
         List<BookingDTO> bookings = new ArrayList<>();
         try (Connection connection = BaseRepository.getConnectDB();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BOOKING);) {
@@ -115,6 +115,7 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
             throw new RuntimeException(e);
         }
         return bookings;
+
     }
 
     @Override
@@ -177,11 +178,19 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
 
     @Override
     public boolean deleteBooking(int id) throws SQLException {
+
+//        boolean rowDeleted;
+//        try (Connection connection = BaseRepository.getConnectDB();
+//             PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING_FOR_DELETING);) {
+//            statement.setInt(1, id);
+//            rowDeleted = statement.executeUpdate() > 0;
+//        }
+//        return rowDeleted;
         boolean rowDeleted;
-        try (Connection connection = BaseRepository.getConnectDB(); PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING_FOR_DELETING);) {
-            statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
-        }
+        Connection connection = BaseRepository.getConnectDB();
+        PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING_FOR_DELETING);
+        statement.setInt(1,id);
+        rowDeleted = statement.executeUpdate()>0;
         return rowDeleted;
     }
 
@@ -198,6 +207,7 @@ private static final String UPDATE_DETAIL_SERVICE ="update detail_service set qu
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
+
     }
 
     @Override

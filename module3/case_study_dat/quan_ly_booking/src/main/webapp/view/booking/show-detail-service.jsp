@@ -67,7 +67,7 @@
 <%--                <c:forEach var="detailService" items="${detailServiceList}">--%>
 <%--                    ${totalBill = totalBill + detailService.total}--%>
 <%--                </c:forEach>--%>
-<%--                <c:out value = "${totalBill}"/>--%>
+<%--                ${totalBill}--%>
 <%--            </td>--%>
 <%--        </tr>--%>
     </table>
