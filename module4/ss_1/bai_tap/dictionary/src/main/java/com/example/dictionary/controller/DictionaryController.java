@@ -11,12 +11,12 @@ import java.util.Map;
 
 @Controller
 public class DictionaryController {
-    @GetMapping("/dictionary")
+    @GetMapping("/")
     public String showForm() {
         return "/dictionary";
     }
 
-    @PostMapping("/dictionary")
+    @PostMapping("/")
     public String translate(@RequestParam String searchingWord, Model model) {
         Map<String, String> dictionary = new HashMap<>();
         dictionary.put("hello", "Xin chào");
