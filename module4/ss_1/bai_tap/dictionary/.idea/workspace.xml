@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b56d816c-8288-4857-a9d1-d497d524f929" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo1/src/main/java/com/example/demo1/controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo1/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo1/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo1/src/main/webapp/WEB-INF/views/test.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo1/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/java/com/example/email_checking/controller/EmailController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/webapp/WEB-INF/views/success.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/email_checking/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/spring-timezone-gradle/src/main/java/com/example/springtimezonegradle/controller/TimeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/spring-timezone-gradle/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/spring-timezone-gradle/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/spring-timezone-gradle/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss_2/thuc_hanh/spring-timezone-gradle/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../currency_conversion/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../currency_conversion/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dictionary/controller/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dictionary/controller/DictionaryController.java" afterDir="false" />
-    </list>
+    <list default="true" id="b56d816c-8288-4857-a9d1-d497d524f929" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,11 +15,23 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,9 +45,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2Y9WJm47Y7OMnV9xmAybhIUeXjz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -66,11 +59,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module4/ss_1/bai_tap/dictionary/src/main/webapp/WEB-INF",
+    "last_opened_file_path": "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module4/ss_1/bai_tap/dictionary",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "45dabb7adf1a44d5c535282e69639426",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -177,6 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1699938207540</updated>
       <workItem from="1699938208993" duration="8934000" />
+      <workItem from="1700106915841" duration="1956000" />
     </task>
     <servers />
   </component>
