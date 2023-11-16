@@ -33,9 +33,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2YCYy5pyqbev0BB12TIgF7CmAbW" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,6 +52,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "5b202712e84cb9331e0116991c784294",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -158,6 +159,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700031281390</updated>
       <workItem from="1700031282579" duration="4687000" />
+      <workItem from="1700040814121" duration="60000" />
     </task>
     <servers />
   </component>

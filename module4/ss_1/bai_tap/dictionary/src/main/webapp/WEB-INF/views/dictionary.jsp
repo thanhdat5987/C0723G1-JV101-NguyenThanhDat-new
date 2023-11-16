@@ -16,6 +16,6 @@
     <input type="text" name="searchingWord" placeholder="Enter your English word"><br>
     <button type="submit">Submit</button>
 </form>
-<h3>Result is: ${result}</h3>
+<h3>${result}</h3>
 </body>
 </html>
