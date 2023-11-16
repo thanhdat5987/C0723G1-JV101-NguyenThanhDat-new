@@ -28,7 +28,7 @@ public class EmailConfigController {
     public String showDetails() {
         return "/details";
     }
-    
+
     //C1: Lưu và hiển thị luôn trên trang setting:
     @PostMapping("/saveSetting")
     public String saveSetting(@ModelAttribute EmailConfig emailConfig) {
