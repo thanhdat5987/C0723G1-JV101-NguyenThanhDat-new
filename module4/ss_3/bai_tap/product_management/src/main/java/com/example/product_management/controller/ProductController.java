@@ -39,7 +39,7 @@ public class ProductController {
     @PostMapping("/delete")
     public String delete(Product product, RedirectAttributes redirect) {
         productService.remove(product.getId());
-        redirect.addFlashAttribute("success", "Removed customer successfully!");
+        redirect.addFlashAttribute("success", "Removed product successfully!");
         return "redirect:/products";
     }
     @GetMapping("/{id}/details")

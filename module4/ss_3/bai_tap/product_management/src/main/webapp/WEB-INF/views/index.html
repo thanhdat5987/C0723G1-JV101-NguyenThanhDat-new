@@ -5,6 +5,11 @@
 </head>
 <body>
 <h3>Product List</h3>
+<div class="notify">
+    <div>
+        <span th:text="${success}"></span>
+    </div>
+</div>
 <form action="/products/findByName">
     Find by name <input type="search" placeholder="enter product name" name="findingName">
     <button>Search</button>
@@ -33,6 +38,9 @@
         <td><a th:href="@{/products/{id}/edit(id=${product.getId()})}">edit</a></td>
         <td><a th:href="@{/products/{id}/delete(id=${product.getId()})}">delete</a></td>
         <td><a th:href="@{/products/{id}/details(id=${product.getId()})}">details</a></td>
+    </tr>
+    <tr>
+        <td colspan="6" th:if ="${productList.isEmpty()}" th:text="${'Không có sản phẩm nào'}"></td>
     </tr>
     </tbody>
 </table>
