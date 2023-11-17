@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865390a0-b8ad-4ed5-b65c-6fea961dae86" name="Changes" comment="" />
+    <list default="true" id="865390a0-b8ad-4ed5-b65c-6fea961dae86" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/config/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/config/AppInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/repository/IProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/service/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/java/com/example/product_management/service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/bai_tap/product_management/src/main/webapp/WEB-INF/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/config/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/config/AppInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/java/com/example/customer_management/service/ICustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss_3/thuc_hanh/customer_management/src/main/webapp/WEB-INF/views/view.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +38,18 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,7 +83,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module4/ss_2/bai_tap/calculator/src/main/webapp/WEB-INF",
+    "last_opened_file_path": "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module4/ss_2/bai_tap/calculator",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -160,6 +196,7 @@
       <updated>1700031281390</updated>
       <workItem from="1700031282579" duration="4687000" />
       <workItem from="1700040814121" duration="60000" />
+      <workItem from="1700199586546" duration="633000" />
     </task>
     <servers />
   </component>
