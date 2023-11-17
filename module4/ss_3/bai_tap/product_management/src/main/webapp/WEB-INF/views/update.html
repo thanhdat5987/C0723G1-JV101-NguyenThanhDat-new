@@ -19,8 +19,8 @@
       <input type="text" id="name" th:field="*{name}"/>
     </div>
     <div>
-      <label for="email">Price</label>
-      <input type="email" id="email" th:field="*{price}"/>
+      <label for="price">Price</label>
+      <input type="number" id="price" min="0" th:field="*{price}"/>
     </div>
     <div>
       <label for="address">Description</label>
