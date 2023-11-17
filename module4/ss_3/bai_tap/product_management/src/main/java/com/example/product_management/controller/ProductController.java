@@ -58,8 +58,8 @@ public class ProductController {
         return "redirect:/products";
     }
     @GetMapping("/findByName")
-    public String findByName(String findingName, Model model){
-        model.addAttribute("findingProductList", productService.findByName(findingName));
-        return "/findingResult";
+    public String findByName(String findingName, Model model ){
+        model.addAttribute("productList", productService.findByName(findingName));
+        return "/index";
     }
 }
