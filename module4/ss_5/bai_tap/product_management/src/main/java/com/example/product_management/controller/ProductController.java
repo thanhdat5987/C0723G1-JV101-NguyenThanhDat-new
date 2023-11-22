@@ -31,17 +31,19 @@ public class ProductController {
         redirect.addFlashAttribute("success", "Adding new product successfully");
         return "redirect:/products";
     }
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable int id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "/delete";
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id, RedirectAttributes attributes){
+        productService.remove(id);
+        attributes.addFlashAttribute("success", "Deleted product successfully!");
+        return "redirect:/product";
     }
-    @PostMapping("/delete")
-    public String delete(Product product, RedirectAttributes redirect) {
-        productService.remove(product.getId());
-        redirect.addFlashAttribute("success", "Removing product successfully!");
-        return "redirect:/products";
-    }
+
+//    @PostMapping("/delete")
+//    public String delete(Product product, RedirectAttributes redirect) {
+//        productService.remove(product.getId());
+//        redirect.addFlashAttribute("success", "Removing product successfully!");
+//        return "redirect:/products";
+//    }
     @GetMapping("/{id}/details")
     public String view(@PathVariable int id, Model model) {
         model.addAttribute("product", productService.findById(id));
