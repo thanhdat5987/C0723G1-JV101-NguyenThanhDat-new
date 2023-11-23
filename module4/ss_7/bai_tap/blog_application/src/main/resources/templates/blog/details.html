@@ -14,7 +14,7 @@
         <h2 th:text="${blog.name}"></h2>
     <p th:text="${'Tác giả: '+blog.author}"></p>
     <p th:text="${'Ngày tạo: '+blog.createDate}"></p>
-    <p th:text="${'Danh mục: '+blog.category}"></p>
+    <p th:text="${'Danh mục: '+blog.category.categoryName}"></p>
     <div class="cus-detail">
         <p th:text="${blog.content}"></p>
     </div>

@@ -36,7 +36,10 @@
         </div>
         <div>
             <label for="category">Category</label>
-            <input type="text" id="category" th:field="*{category}"/>
+            <select id="category" th:field="*{category}" >
+                <option th:each="cate:${categoryList}" th:value="${cate.getCategoryId()}"  th:text="${cate.getCategoryName()}">
+                </option>
+            </select>
         </div>
         <input type="submit" value="Edit"/>
     </form>

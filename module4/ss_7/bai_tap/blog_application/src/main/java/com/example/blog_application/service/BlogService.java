@@ -1,6 +1,7 @@
 package com.example.blog_application.service;
 
 import com.example.blog_application.model.Blog;
+import com.example.blog_application.model.Category;
 import com.example.blog_application.repository.IBlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,5 @@ public class BlogService implements IBlogService {
     public void remove(int id) {
         blogRepository.deleteById(id);
     }
+
 }

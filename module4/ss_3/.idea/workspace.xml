@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c5ae4ad0-9cbd-4e60-ae5a-69cb5f89ee7d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/model/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/model/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/repository/IBlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/service/IBlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/java/com/example/blog_application/service/IBlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/resources/templates/blog/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/resources/templates/blog/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/resources/templates/blog/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ss_7/bai_tap/blog_application/src/main/resources/templates/blog/list.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2YYwv8YqR9e4nluoh3u2Iecsmym" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/thaodao/Thanh Dat/GitHub/Codegym/C0723G1-JV101-NguyenThanhDat-new/module4/ss_3",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5ae4ad0-9cbd-4e60-ae5a-69cb5f89ee7d" name="Changes" comment="" />
+      <created>1700716049170</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700716049170</updated>
+      <workItem from="1700716050452" duration="54000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

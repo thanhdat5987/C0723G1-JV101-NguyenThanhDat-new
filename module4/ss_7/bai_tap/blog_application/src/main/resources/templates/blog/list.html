@@ -39,7 +39,7 @@
         <td th:text="${blog.name}"></td>
         <td th:text="${blog.description}"></td>
         <td th:text="${blog.author}"></td>
-        <td th:text="${blog.category}"></td>
+        <td th:text="${blog.category.getCategoryName()}"></td>
         <td th:text="${blog.createDate}"></td>
         <td><a class="btn btn-sm btn-outline-warning" th:href="@{/blog/edit(id=${blog.getId()})}">edit</a></td>
         <td>
@@ -78,8 +78,6 @@
         </div>
     </div>
 </div>
-
-
 <script>
     function deleteBlog(element) {
         let id = element.getAttribute('data-id');

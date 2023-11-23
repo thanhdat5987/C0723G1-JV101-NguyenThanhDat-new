@@ -2,9 +2,6 @@ package com.example.blog_application.model;
 
 import javax.persistence.*;
 
-import static java.awt.SystemColor.TEXT;
-import static java.awt.SystemColor.text;
-
 @Entity
 public class Blog {
     @Id
@@ -17,8 +14,44 @@ public class Blog {
     private String description;
     @Column(columnDefinition = "text")
     private String content;
-    private String category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @ManyToOne
+@JoinColumn(name="category_id")
+private Category category;
+
+
+
     private String remark;
+
+
+    public Blog(int id, String name, String author, String createDate, String description, String content, Category category) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.createDate = createDate;
+        this.description = description;
+        this.content = content;
+        this.category = category;
+    }
+
+    public Blog(int id, String name, String author, String createDate, String description, String content, Category category, String remark) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.createDate = createDate;
+        this.description = description;
+        this.content = content;
+        this.category = category;
+        this.remark = remark;
+    }
 
     public String getAuthor() {
         return author;
@@ -44,34 +77,9 @@ public class Blog {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
-    public Blog(int id, String name, String author, String createDate, String description, String content, String category, String remark) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.createDate = createDate;
-        this.description = description;
-        this.content = content;
-        this.category = category;
-        this.remark = remark;
-    }
 
-    public Blog(int id, String name, String author, String createDate, String description, String content, String category) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.createDate = createDate;
-        this.description = description;
-        this.content = content;
-        this.category = category;
-    }
 
     public Blog() {
     }
