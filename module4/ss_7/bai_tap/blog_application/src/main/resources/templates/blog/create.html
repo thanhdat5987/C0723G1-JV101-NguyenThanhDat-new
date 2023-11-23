@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="/layout :: head">
-    <title>CreateProduct</title>
+    <title>CreateBlog</title>
 </head>
 <body>
-<h3>Add Product</h3>
+<h3>Add Blog</h3>
 <p>
     <a class="btn btn-sm btn-outline-primary" th:href="@{/blog}">
         Back to Blog list
@@ -19,12 +19,24 @@
             <input type="text" id="name" th:field="*{name}"/>
         </div>
         <div>
+            <label for="author">Author</label>
+            <input type="text" id="author" th:field="*{author}"/>
+        </div>
+        <div>
+            <label for="createDate">Create date</label>
+            <input type="datetime-local" id="createDate" th:field="*{createDate}"/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" th:field="*{description}" rows="5" cols="50"></textarea>
+        </div>
+        <div>
             <label for="content">Content</label>
             <textarea id="content" th:field="*{content}" rows="10" cols="50"></textarea>
         </div>
         <div>
-            <label for="remark">Remark</label>
-            <input type="text" id="remark" th:field="*{remark}"/>
+            <label for="category">Category</label>
+            <input type="text" id="category" th:field="*{category}"/>
         </div>
         <input type="submit" value="Save"/>
     </form>

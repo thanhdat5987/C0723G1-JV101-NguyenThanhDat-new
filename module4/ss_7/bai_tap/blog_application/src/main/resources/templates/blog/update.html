@@ -15,16 +15,28 @@
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
-            <label for="name">Blog Name</label>
+            <label for="name">Name</label>
             <input type="text" id="name" th:field="*{name}"/>
         </div>
         <div>
-            <label for="content">Content</label>
-            <textarea id="content" rows="10" cols="50" th:field="*{content}"></textarea>
+            <label for="author">Author</label>
+            <input type="text" id="author" th:field="*{author}"/>
         </div>
         <div>
-            <label for="address">Remark</label>
-            <input type="text" id="address" th:field="*{remark}"/>
+            <label for="createDate">Create date</label>
+            <input type="datetime-local" id="createDate" th:field="*{createDate}"/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" th:field="*{description}" rows="5" cols="50"></textarea>
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <textarea id="content" th:field="*{content}" rows="10" cols="50"></textarea>
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <input type="text" id="category" th:field="*{category}"/>
         </div>
         <input type="submit" value="Edit"/>
     </form>

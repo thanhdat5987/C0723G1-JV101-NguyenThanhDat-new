@@ -25,7 +25,9 @@
         <th>No.</th>
         <th>Name</th>
         <th>Content</th>
-        <th>Remark</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Create date</th>
         <th>Edit</th>
         <th>Delete</th>
         <th>Detail</th>
@@ -35,8 +37,10 @@
     <tr th:each="blog,status : ${blogList}">
         <td th:text="${status.count}"></td>
         <td th:text="${blog.name}"></td>
-        <td th:text="${blog.content}"></td>
-        <td th:text="${blog.remark}"></td>
+        <td th:text="${blog.description}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.category}"></td>
+        <td th:text="${blog.createDate}"></td>
         <td><a class="btn btn-sm btn-outline-warning" th:href="@{/blog/edit(id=${blog.getId()})}">edit</a></td>
         <td>
             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
@@ -48,7 +52,7 @@
         <td><a class="btn btn-sm btn-outline-primary" th:href="@{/blog/details(id=${blog.getId()})}">details</a></td>
     </tr>
     <tr>
-        <td colspan="6" th:if="${blogList.isEmpty()}" th:text="${'There are No blog'}"></td>
+        <td colspan="7" th:if="${blogList.isEmpty()}" th:text="${'There are No blog'}"></td>
     </tr>
     </tbody>
 </table>

@@ -11,17 +11,12 @@
     </a>
 </p>
 <div id="detail">
+        <h2 th:text="${blog.name}"></h2>
+    <p th:text="${'Tác giả: '+blog.author}"></p>
+    <p th:text="${'Ngày tạo: '+blog.createDate}"></p>
+    <p th:text="${'Danh mục: '+blog.category}"></p>
     <div class="cus-detail">
-        <label>Blog Name:</label>
-        <label th:text="${blog.name}"></label>
-    </div>
-    <div class="cus-detail">
-        <label>Blog Content:</label>
-        <label th:text="${blog.content}"></label>
-    </div>
-    <div class="cus-detail">
-        <label>Remark:</label>
-        <label th:text="${blog.remark}"></label>
+        <p th:text="${blog.content}"></p>
     </div>
 </div>
 <footer th:replace="/layout :: footer"></footer>
