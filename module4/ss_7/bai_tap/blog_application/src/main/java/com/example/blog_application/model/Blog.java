@@ -1,6 +1,7 @@
 package com.example.blog_application.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Blog {
@@ -9,7 +10,8 @@ public class Blog {
     private int id;
     private String name;
     private String author;
-    private String createDate;
+    private LocalDateTime createDate;
+    private String remark;
     @Column(columnDefinition = "text")
     private String description;
     @Column(columnDefinition = "text")
@@ -28,21 +30,11 @@ public class Blog {
 private Category category;
 
 
-
-    private String remark;
-
-
-    public Blog(int id, String name, String author, String createDate, String description, String content, Category category) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
+    public Blog(LocalDateTime createDate) {
         this.createDate = createDate;
-        this.description = description;
-        this.content = content;
-        this.category = category;
     }
 
-    public Blog(int id, String name, String author, String createDate, String description, String content, Category category, String remark) {
+    public Blog(int id, String name, String author, LocalDateTime createDate, String description, String content, Category category, String remark) {
         this.id = id;
         this.name = name;
         this.author = author;
@@ -61,11 +53,11 @@ private Category category;
         this.author = author;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -78,8 +70,15 @@ private Category category;
     }
 
 
-
-
+    public Blog(int id, String name, String author, LocalDateTime createDate, String description, String content, Category category) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.createDate = createDate;
+        this.description = description;
+        this.content = content;
+        this.category = category;
+    }
 
     public Blog() {
     }

@@ -10,10 +10,22 @@
         <span th:text="${success}"></span>
     </div>
 </div>
-<!--<form action="/products/findByName">-->
-<!--    Find by name <input type="search" placeholder="enter blog name" name="findingName">-->
-<!--    <button>Search</button>-->
-<!--</form>-->
+<form action="/blog" method="get">
+    <input name="searchingName" placeholder="enter blog name" th:value="${searchingName}">
+
+    <button>Search</button>
+</form>
+<div >
+    <form id="filterForm" >
+        <select  name="categoryId" onchange="submitForm()">
+            <option value="" th:selected="${category == null}">All Category</option>
+            <option th:if="${category!=null}" th:each="category:${categoryList}" th:text="${category.categoryName}"
+                    th:value="${category.categoryId}" th:selected="${category.categoryName.equals(category.categoryName)}"></option>
+            <option th:if="${category==null}" th:each="category:${categoryList}" th:text="${category.categoryName}"
+                    th:value="${category.categoryId}"></option>
+        </select>
+    </form>
+</div>
 <p>
     <a class="btn btn-sm btn-outline-primary" th:href="@{/blog/create}">
         Add new blog
@@ -52,10 +64,40 @@
         <td><a class="btn btn-sm btn-outline-primary" th:href="@{/blog/details(id=${blog.getId()})}">details</a></td>
     </tr>
     <tr>
-        <td colspan="7" th:if="${blogList.isEmpty()}" th:text="${'There are No blog'}"></td>
+        <td colspan="9" th:if="${blogList.isEmpty()}" th:text="${'There are No blog'}"></td>
     </tr>
     </tbody>
 </table>
+<!--<div th:if="${category==null}">-->
+<!--    <a th:if="${blogList.hasPrevious()}"-->
+<!--       th:href="@{/blog(page=${blogList.number - 1},searchingName=${searchingName})}">Previous</a>-->
+<!--    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>-->
+<!--    <a th:if="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number+1}, searchingName=${searchingName})}"></a>-->
+<!--</div>-->
+<!--<div th:if="${category!=null}">-->
+<!--    <a th:if="${blogList.hasPrevious()}"-->
+<!--       th:href="@{/blog(page=${blogList.number - 1},searchingName=${searchingName},categoryId=${category.categoryId})}">Previous</a>-->
+<!--    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>-->
+<!--    <a th:if="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number+1}, searchingName=${searchingName},categoryId=${category.categoryId})}"></a>-->
+<!--</div>-->
+
+<div th:if="${category!=null}">
+    <a th:if="${blogList.hasPrevious()}"
+       th:href="@{/blog(page=${blogList.getNumber()-1},searchingName=${searchingName},categoryId=${category.categoryId})}">Previous</a>
+    <span th:text="${blogList.number+1}"></span>/
+    <span th:text="${blogList.totalPages}"></span>
+    <a th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number+1},searchingName=${searchingName},categoryId=${category.categoryId})}">next</a>
+</div>
+<div th:if="${category==null}">
+    <a th:if="${blogList.hasPrevious()}"
+       th:href="@{/blog(page=${blogList.getNumber()-1},searchingName=${searchingName})}">Previous</a>
+    <span th:text="${blogList.number+1}"></span>/
+    <span th:text="${blogList.totalPages}"></span>
+    <a th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number+1},searchingName=${searchingName})}">next</a>
+</div>
+
 <footer th:replace="/layout :: footer"></footer>
 <!--MODAL-->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -84,6 +126,9 @@
         let name = element.getAttribute('data-name');
         document.getElementById("name").innerHTML = name;
         document.getElementById("id").value = id;
+    }
+    function submitForm() {
+        document.getElementById("filterForm").submit();
     }
 </script>
 </body>
