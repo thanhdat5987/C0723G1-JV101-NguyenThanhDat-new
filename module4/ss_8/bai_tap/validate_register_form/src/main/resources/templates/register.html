@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Register Form</h1>
+<form method="post" th:action="@{/save}" th:object="${user}">
+    <table>
+        <tr>
+            <th>Enter First Name</th>
+            <td>
+                <input type="text" th:field="*{fistName}">
+                <span th:if="${#fields.hasErrors('fistName')}" th:errors="*{fistName}"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Enter Last Name</th>
+            <td>
+                <input type="text" th:field="*{lastName}">
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Enter Phone Number</th>
+            <td>
+                <input type="text" th:field="*{phoneNumber}">
+                <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" ></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Enter Age</th>
+            <td>
+                <input type="text" th:field="*{age}">
+                <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Enter Email</th>
+            <td>
+                <input type="text" th:field="*{email}">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
