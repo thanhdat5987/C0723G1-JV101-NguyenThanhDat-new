@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface IBookRepository extends JpaRepository<Book,Integer> {
-    @Query(value = "update book set quantity =(quantity-1) where id =:id ", nativeQuery = true)
-    void borrow(@Param("id") int id);
+//    @Query(value = "update book set quantity =(quantity-1) where id =:id ", nativeQuery = true)
+//    void borrow(@Param("id") int id);
 }

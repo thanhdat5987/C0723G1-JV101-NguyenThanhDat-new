@@ -13,8 +13,8 @@
 <div style="width: 60%">
     <h2>Book Details</h2>
     <a th:href="@{/list}">Back to Book List</a>
-<!--    <form th:action="@{/borrow}" th:object="">-->
-<!--        <input type="hidden" th:field="">-->
+    <form th:action="@{/borrow}" th:object="${borrowInformation}" method="post">
+        <input type="hidden" th:field="*{id}">
         <table class="table table-striped table-hover">
             <tr>
                 <th>Name of Book</th>
@@ -28,12 +28,12 @@
                 <th>Quantity</th>
                 <td th:text="${book.quantity}"></td>
             </tr>
-<!--            <tr>-->
-<!--                <td><button type="submit">Borrow this Book</button></td>-->
-<!--                <td></td>-->
-<!--            </tr>-->
+            <tr>
+                <td><button type="submit">Borrow this Book</button></td>
+                <td></td>
+            </tr>
         </table>
-<!--    </form>-->
+    </form>
 </div>
 </body>
 </html>
