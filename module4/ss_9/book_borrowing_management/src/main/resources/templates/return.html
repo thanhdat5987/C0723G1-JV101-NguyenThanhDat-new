@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return</title>
+</head>
+<body>
+<h1>Return book</h1>
+<form method="post" th:action="@{/return}">
+    Enter Your borrowCode <input name="borrowCode" th:value="${borrowCode}">
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

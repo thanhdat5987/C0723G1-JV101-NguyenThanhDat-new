@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:text="${code}"></h1>
+<h1>Borrow Book Information</h1>
+<h3 th:text="${'Book name '+name}"></h3>
+<h3 th:text="${'Borrow Code is '+borrowCode}"></h3>
+<a th:href="@{/list}">Back to Book List</a>
 </body>
 </html>

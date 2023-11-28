@@ -14,4 +14,14 @@ public class BorrowInformationService implements IBorrowInformationService{
     public void add(BorrowInformation borrowInformation) {
         borrowInformationRepository.save(borrowInformation);
     }
+
+    @Override
+    public BorrowInformation checkBorrowCode(int code) {
+        return borrowInformationRepository.checkBorrowCode(code);
+    }
+
+    @Override
+    public void update(BorrowInformation borrowInformation) {
+        borrowInformationRepository.save(borrowInformation);
+    }
 }

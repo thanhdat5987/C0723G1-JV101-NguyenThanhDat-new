@@ -20,26 +20,60 @@ public class BookController {
     private IBookService bookService;
     @Autowired
     private IBorrowInformationService borrowInformationService;
+
     @GetMapping("/list")
-    public String showList(Model model){
+    public String showList(Model model) {
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
         return "/list";
     }
+
     @GetMapping("/details")
     public String showDetails(@RequestParam int id, Model model) {
         model.addAttribute("book", bookService.findById(id));
-        model.addAttribute("borrowInformation",new BorrowInformation());
         return "/details";
     }
-    @PostMapping("/borrow")
-    public String borrow(Book book, BorrowInformation borrowInformation,RedirectAttributes redirectAttributes){
+
+    @GetMapping("/borrow")
+    public String borrow(int id, Model model, RedirectAttributes redirectAttributes) {
+        BorrowInformation borrowInformation = new BorrowInformation();
+        Book book = bookService.findById(id);
         borrowInformation.setBook(book);
         borrowInformation.setStatus(1);
-        borrowInformation.setBorrowCode((int)Math.floor(Math.random())*1000000);
-        System.out.println(borrowInformation.getBorrowCode());
+        borrowInformation.setBorrowCode((int) (Math.random() * 100000));
         borrowInformationService.add(borrowInformation);
-        redirectAttributes.addFlashAttribute("code", borrowInformation.getBorrowCode());
+        book.setQuantity(book.getQuantity() - 1);
+        bookService.update(book);
+        redirectAttributes.addFlashAttribute("name", book.getName());
+        redirectAttributes.addFlashAttribute("borrowCode", borrowInformation.getBorrowCode());
         return "redirect:/result";
     }
+
+    @GetMapping("/result")
+    public String showResult() {
+        return "/result";
+    }
+
+    @GetMapping("/return")
+    public String showReturnForm() {
+        return "/return";
+    }
+
+    @PostMapping("/return")
+    public String returnBook(@RequestParam("borrowCode") int borrowCode, RedirectAttributes redirectAttributes) {
+        BorrowInformation borrowInformation = borrowInformationService.checkBorrowCode(borrowCode);
+        if (borrowInformation == null) {
+            redirectAttributes.addFlashAttribute("result", "Can't find the borrow Code");
+        } else {
+            borrowInformation.setStatus(0);
+            borrowInformationService.update(borrowInformation);
+            Book book = borrowInformation.getBook();
+            book.setQuantity(book.getQuantity() + 1);
+            bookService.update(book);
+            redirectAttributes.addFlashAttribute("result", "Return Book successfully!");
+
+        }
+        return "redirect:/list";
+    }
+
 }
