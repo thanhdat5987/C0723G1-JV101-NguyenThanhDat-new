@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListBlog</title>
+</head>
+<body>
+<h3>BlogList</h3>
+<div class="notify">
+    <div>
+        <span th:text="${success}"></span>
+    </div>
+</div>
+<form action="/blog" method="get">
+    <input name="searchingName" placeholder="enter blog name" th:value="${searchingName}">
+
+    <button>Search</button>
+</form>
+<div >
+    <form id="filterForm" >
+        <select  name="categoryId" onchange="submitForm()">
+            <option value="" th:selected="${category == null}">All Category</option>
+            <option th:if="${category!=null}" th:each="category:${categoryList}" th:text="${category.categoryName}"
+                    th:value="${category.categoryId}" th:selected="${category.categoryName.equals(category.categoryName)}"></option>
+            <option th:if="${category==null}" th:each="category:${categoryList}" th:text="${category.categoryName}"
+                    th:value="${category.categoryId}"></option>
+        </select>
+    </form>
+</div>
+<p>
+    <a class="btn btn-sm btn-outline-primary" th:href="@{/blog/create}">
+        Add new blog
+    </a>
+</p>
+<table id="blog">
+    <thead>
+    <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Create date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,status : ${blogList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${blog.name}"></td>
+        <td th:text="${blog.description}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.category.getCategoryName()}"></td>
+        <td th:text="${blog.createDate}"></td>
+        <td><a class="btn btn-sm btn-outline-warning" th:href="@{/blog/edit(id=${blog.getId()})}">edit</a></td>
+        <td>
+            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal"
+                    th:attr="data-id=${blog.getId()}, data-name=${blog.getName()}"
+                    onclick="deleteBlog(this)">Delete
+            </button>
+        </td>
+        <td><a class="btn btn-sm btn-outline-primary" th:href="@{/blog/details(id=${blog.getId()})}">details</a></td>
+    </tr>
+    <tr>
+        <td colspan="9" th:if="${blogList.isEmpty()}" th:text="${'There are No blog'}"></td>
+    </tr>
+    </tbody>
+</table>
+<!--<div th:if="${category==null}">-->
+<!--    <a th:if="${blogList.hasPrevious()}"-->
+<!--       th:href="@{/blog(page=${blogList.number - 1},searchingName=${searchingName})}">Previous</a>-->
+<!--    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>-->
+<!--    <a th:if="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number+1}, searchingName=${searchingName})}"></a>-->
+<!--</div>-->
+<!--<div th:if="${category!=null}">-->
+<!--    <a th:if="${blogList.hasPrevious()}"-->
+<!--       th:href="@{/blog(page=${blogList.number - 1},searchingName=${searchingName},categoryId=${category.categoryId})}">Previous</a>-->
+<!--    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>-->
+<!--    <a th:if="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number+1}, searchingName=${searchingName},categoryId=${category.categoryId})}"></a>-->
+<!--</div>-->
+
+<div th:if="${category!=null}">
+    <a th:if="${blogList.hasPrevious()}"
+       th:href="@{/blog(page=${blogList.getNumber()-1},searchingName=${searchingName},categoryId=${category.categoryId})}">Previous</a>
+    <span th:text="${blogList.number+1}"></span>/
+    <span th:text="${blogList.totalPages}"></span>
+    <a th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number+1},searchingName=${searchingName},categoryId=${category.categoryId})}">next</a>
+</div>
+<div th:if="${category==null}">
+    <a th:if="${blogList.hasPrevious()}"
+       th:href="@{/blog(page=${blogList.getNumber()-1},searchingName=${searchingName})}">Previous</a>
+    <span th:text="${blogList.number+1}"></span>/
+    <span th:text="${blogList.totalPages}"></span>
+    <a th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number+1},searchingName=${searchingName})}">next</a>
+</div>
+
+<footer th:replace="/layout :: footer"></footer>
+<!--MODAL-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/blog/delete" method="get">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Blog:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete <span id="name"></span>?
+                    <input type="hidden" id="id" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteBlog(element) {
+        let id = element.getAttribute('data-id');
+        let name = element.getAttribute('data-name');
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+    function submitForm() {
+        document.getElementById("filterForm").submit();
+    }
+</script>
+</body>
+</html>
