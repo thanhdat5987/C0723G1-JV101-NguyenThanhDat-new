@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="jQuery 3.7.1.js"></script>
 </head>
 <body>
 <h2>Search</h2>
@@ -21,6 +22,7 @@
     </tr>
     </thead>
     <tbody id="content">
+
     </tbody>
 </table>
 <button id="btn-more">More</button>
@@ -54,7 +56,9 @@
                                     <td>${i + 1}</td>
                                     <td>${data1[i].name}</td>
                                     <td>${data1[i].description}</td>
-
+                                    <td>${data1[i].author}</td>
+                                    <td>${data1[i].category.categoryName}</td>
+                                    <td>${data1[i].createDate}</td>
                                 </tr>`
                 }
                 $("#content").html(content);
@@ -63,7 +67,6 @@
     }
 
 </script>
-<script src="jQuery 3.7.1.js"></script>
 
 </body>
 
