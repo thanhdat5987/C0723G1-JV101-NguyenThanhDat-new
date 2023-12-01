@@ -1,5 +1,4 @@
 package com.example.blog_application.controller;
-
 import com.example.blog_application.model.Blog;
 import com.example.blog_application.model.Category;
 import com.example.blog_application.service.IBlogService;
@@ -11,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -29,7 +26,7 @@ public class RestBlogController {
         Pageable pageable = PageRequest.of(page, 2, Sort.by("create_date").ascending());
         Page<Blog> blogPage = blogService.findAllPage(searchingName, pageable);
         if (blogPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }
@@ -38,7 +35,7 @@ public class RestBlogController {
     public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.findAllCategory();
         if (categoryList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
@@ -47,7 +44,7 @@ public class RestBlogController {
     public ResponseEntity<?> getBlog(@PathVariable int id) {
         Blog blog = blogService.findById(id);
         if (blog == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
@@ -56,7 +53,7 @@ public class RestBlogController {
         Pageable pageable = PageRequest.of(page, 2, Sort.by("create_date").ascending());
         Page<Blog> blogPage = blogService.showByCategory(id, pageable);
         if (blogPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }

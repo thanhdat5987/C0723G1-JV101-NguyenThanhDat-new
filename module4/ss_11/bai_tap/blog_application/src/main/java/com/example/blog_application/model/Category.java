@@ -1,5 +1,6 @@
 package com.example.blog_application.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     private String categoryName;
+    @JsonBackReference
     @OneToMany(mappedBy = "category")
     private Set<Blog> blogSet;
 
