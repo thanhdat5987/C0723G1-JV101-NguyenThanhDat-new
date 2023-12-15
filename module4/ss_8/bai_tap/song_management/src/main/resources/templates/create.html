@@ -13,7 +13,7 @@
 <div style="width: 60%">
     <h2>Adding new Song</h2>
     <a th:href="@{/list}">Back to Song List</a>
-    <form th:action="@{/save}" method="post" th:object="${song}">
+    <form th:action="@{/save}" method="post" th:object="${songDto}">
         <input type="hidden" th:field="*{id}">
         <table class="table table-striped table-hover">
         <tr>
@@ -42,6 +42,5 @@
         </table>
     </form>
 </div>
-
 </body>
 </html>

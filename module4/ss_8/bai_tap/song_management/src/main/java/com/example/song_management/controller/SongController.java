@@ -1,7 +1,10 @@
 package com.example.song_management.controller;
 
+import com.example.song_management.dto.SongDto;
 import com.example.song_management.model.Song;
 import com.example.song_management.service.ISongService;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -28,20 +30,22 @@ public class SongController {
 
     @GetMapping("/create")
     public String showCreatingForm(Model model) {
-        model.addAttribute("song", new Song());
+        model.addAttribute("songDto", new SongDto());
         return "/create";
     }
 
     @PostMapping("/save")
-    public String save(@Validated Song song, BindingResult bindingResult, RedirectAttributes
+    public String save(@Valid SongDto songDto, BindingResult bindingResult, RedirectAttributes
             redirectAttributes) {
+        Song song = new Song();
+        new SongDto().validate(songDto,bindingResult);
         if (bindingResult.hasErrors()) {
             return "/create";
-        } else {
+        }
+        BeanUtils.copyProperties(songDto,song);
             songService.add(song);
             redirectAttributes.addFlashAttribute("success", "Adding successfully!");
             return "redirect:/list";
-        }
     }
 
     @GetMapping("/edit")

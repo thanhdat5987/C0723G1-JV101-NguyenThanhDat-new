@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div style="padding: 2%">
+    <div class="d-flex justify-content-between">
+        <p>
+            <a class="btn btn-sm btn-outline-primary" th:href="@{/create}">
+                Thêm mới lớp học
+            </a>
+        </p>
+
+        <form action="/" method="get" class="d-flex">
+            <input style="width: 125%" class="form-control me-2" name="searchName" placeholder="Nhập tên lớp học..."
+                   th:value="${searchName}" aria-label="Search">
+            <button style="width: 50%" class="btn btn-sm btn-outline-success">Tìm kiếm</button>
+        </form>
+
+    </div>
+    <h1>List student</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <td>TT</td>
+            <td>Ten</td>
+            <td>Lop</td>
+            <td>Sửa</td>
+            <td>Xoá</td>
+            <td>Chi </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student, status : ${studentPage}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.classes.getClassName()}"></td>
+            <td><a class="btn btn-sm btn-outline-warning" th:href="@{/edit(id=${student.getId()})}">Sửa</a></td>
+            <td>
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        th:attr="data-id=${student.getId()}, data-name=${student.getName()}"
+                        onclick="deleteBlog(this)">Xoá
+                </button>
+            </td>
+            <td><a class="btn btn-sm btn-outline-primary" th:href="@{/details(id=${student.getId()})}">Chi tiết</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <!--phan trang-->
+    <div>
+        <a th:if="${studentPage.hasPrevious()}"
+           th:href="@{/(page=${studentPage.getNumber()-1},searchName=${searchName})}">Trang
+            trước</a>
+        <span th:if="${studentPage.hasNext()}" th:text="${studentPage.number+1}"></span>
+        <span th:if="${!studentPage.hasNext()}" th:text="${studentPage.totalPages}"></span>
+        / <span th:text="${studentPage.totalPages}"></span>
+        <a th:if="${studentPage.hasNext()}"
+           th:href="@{/(page=${studentPage.number+1},searchName=${searchName})}">Trang sau</a>
+    </div>
+    <!--MODAL-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/delete" method="get">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Blog:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc muốn xoá <span id="name"></span>?
+                        <input type="hidden" id="id" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function deleteBlog(element) {
+        let id = element.getAttribute('data-id');
+        let name = element.getAttribute('data-name');
+        document.getElementById("name").innerHTML = name;
+        document.getElementById("id").value = id;
+    }
+
+</script>
+</body>
+</html>
