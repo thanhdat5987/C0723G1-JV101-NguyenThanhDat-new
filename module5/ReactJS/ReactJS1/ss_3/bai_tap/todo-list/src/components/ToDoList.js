@@ -30,7 +30,7 @@ class ToDo extends Component {
                     }]
                 })
         } else {
-            alert("Vui long nhap cong viec")
+            alert("Vui lòng nhập nhiệm vụ")
         }
 
     }
@@ -49,7 +49,7 @@ class ToDo extends Component {
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
-                        <th scope="col">Công việc</th>
+                        <th scope="col">Nhiệm vụ</th>
                     </tr>
                     </thead>
                     <tbody>
