@@ -19,16 +19,17 @@ class ToDo extends Component {
             item: {name: event.target.value}
         })
     }
+
     handleAddItem = () => {
         if (this.state.item.name.trim() !== "") {
-            const newId = this.state.list.length + 1;
-            this.setState(
-                {
-                    ...this.state,
-                    list: [...this.state.list, {
-                        ...this.state.item, id: newId
+            const newId = this.state.list[this.state.list.length-1].id +1;
+            this.setState((prevState) =>
+                ({
+                    ...prevState,
+                    list: [...prevState.list, {
+                        ...prevState.item, id: newId
                     }]
-                })
+                }));
         } else {
             alert("Vui lòng nhập nhiệm vụ")
         }
