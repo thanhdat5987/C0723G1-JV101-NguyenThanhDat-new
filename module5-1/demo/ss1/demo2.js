@@ -24,9 +24,9 @@ let arr = [-1, -2, -3, -4, -5, -7];
 // console.log(newArr)
 
 // Tính tổng các phâần tử có trong mảng
-// let sum = arr.reduce((previousValue, currentValue) =>
-//     currentValue+ previousValue )
-// console.log(sum)
+let sum = arr.reduce((previousValue, currentValue) =>
+    currentValue + previousValue)
+console.log('Sum:' + sum)
 
 // Tìm max trong mảng sử dụng reduce
 let maxNum = arr.reduce((a, b) => a > b ? a : b);

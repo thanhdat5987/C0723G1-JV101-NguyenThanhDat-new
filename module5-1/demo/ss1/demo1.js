@@ -10,7 +10,10 @@
 // }
 //
 // hello();
-
+chao = (name)=>{
+    console.log("hello" + name);
+}
+chao("dog");
 // function Dog(name) {
 //     this.name = name;
 // }
