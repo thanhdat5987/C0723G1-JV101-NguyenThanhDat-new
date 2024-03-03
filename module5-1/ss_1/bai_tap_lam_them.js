@@ -59,14 +59,12 @@ console.log(student);
 // Bai 3: Viết một function có tham số là một đối tượng bất kỳ .
 //     Function sẽ hiển thi ra 2 thuộc tính firstName và degree
 // + Nếu đối tượng truyền vào không có thuộc tính firstName thì firstNam có giá trị mặc định là "Quân", tương tự với degree là "NA"
-
-const displayInfo = (obj) => {
-    const firstName = obj.hasOwnProperty('firstName') ? obj.firstName : "Quân";
-    const degree = obj.hasOwnProperty('degree') ? obj.degree : "NA";
+function displayInfo({firstName = "Quân", degree = "N/A"}) {
     console.log(`firstName: ${firstName}, degree: ${degree}`);
-};
+}
+
 //test
 const person1 = {firstName: 'Dat', degree: 'Dai Hoc'};
 displayInfo(person1);
-const person2 = {degree: 'TII'};
+const person2 = {};
 displayInfo(person2)
