@@ -1,25 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import {Route, Routes} from "react-router-dom";
+import {CreateBook} from "./components/CreateBook";
+import {UpdateBook} from "./components/EditBook";
+import {ToastContainer} from "react-toastify";
+import {BookList} from "./components/BookList";
+import {Error} from "./components/Error";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<BookList/>}></Route>
+                <Route path="/create" element={<CreateBook/>}></Route>
+                <Route path="/update/:id" element={<UpdateBook/>}></Route>
+                <Route path="/error" element={<Error/>}></Route>
+            </Routes>
+            <ToastContainer/>
+        </>
+    );
 }
 
 export default App;

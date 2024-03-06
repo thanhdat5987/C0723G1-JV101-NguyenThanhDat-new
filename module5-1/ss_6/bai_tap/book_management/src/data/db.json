@@ -1,14 +1,72 @@
 {
-  "bookList": [
+  "categories": [
     {
       "id": 1,
-      "title": "Doi ngan dung ngu dai",
-      "quantity": "Dat"
+      "type": "Truyen Ma"
     },
     {
       "id": 2,
-      "title": "Cái gì vậy",
-      "quantity": "Dat"
+      "type": "Tu Tien"
+    },
+    {
+      "id": 3,
+      "type": "Trinh Tham"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Ong Tho",
+      "quantity": 50,
+      "categories": {
+        "id": 1,
+        "type": "Truyen Ma"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Dau La Dai Luc Phan 2",
+      "quantity": 40,
+      "categories": {
+        "id": 2,
+        "type": "Tu Tien"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Conan",
+      "quantity": 101,
+      "categories": {
+        "id": 3,
+        "type": "Trinh Tham"
+      }
+    },
+    {
+      "title": "Dau Pha Thuong Khung",
+      "quantity": 109,
+      "categories": {
+        "id": 2,
+        "type": "Tu Tien"
+      },
+      "id": 4
+    },
+    {
+      "title": "Bai Dat Hoang Sau Nha",
+      "quantity": 4,
+      "categories": {
+        "id": 1,
+        "type": "Truyen Ma"
+      },
+      "id": 5
+    },
+    {
+      "title": "Dau Pha Thuong Khung",
+      "quantity": 1000,
+      "categories": {
+        "id": 2,
+        "type": "Tu Tien"
+      },
+      "id": 6
     }
   ]
 }
